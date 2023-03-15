@@ -1,21 +1,26 @@
-# Template for Kotlin projects
+# Surgical Process Monitoring Microservice
 
-![Release](https://github.com/smartoperatingblock/kotlin-template-project/actions/workflows/build-and-deploy.yml/badge.svg?style=plastic)
+![Release](https://github.com/smartoperatingblock/surgical-process-monitoring-microservice/actions/workflows/build-and-deploy.yml/badge.svg?style=plastic)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=plastic)](https://opensource.org/licenses/MIT)
-![Version](https://img.shields.io/github/v/release/smartoperatingblock/kotlin-template-project?style=plastic)
+![Version](https://img.shields.io/github/v/release/smartoperatingblock/surgical-process-monitoring-microservice?style=plastic)
 
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
 
-## Setup
+## Usage
+1. Provide a `.env` file with the following variables:
+   - `SURGICAL_PROCESS_MICROSERVICE_MONGODB_URL`: the mongodb connection string
+   - `BOOTSTRAP_SERVER_URL`: the kafka connection endpoint
+   - `SCHEMA_REGISTRY_URL`: the schema registry url
+2. Run the container with the command:
+    ```bash
+    docker run ghcr.io/smartoperatingblock/surgical-process-monitoring-microservice:latest
+    ```
 
-In order to use this template you need to do the following steps:
-1. modify project name in `settings.gradle.kts`
-<!--
-2. [Optional] set up branch protection and a Personal Access Token and modify it in the `release` job for `semantic release`([more here](https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-a-master-branch))
--->
-
-## Apps to install when used outside this organization
-- CodeCov
-- Renovate Bot
-- GitGuardian
-- Mergify
-- SonarCloud
+## Documentation
+- Check out the website [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice)
+- Check out the _REST-API_ documentation [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice/documentation/openapi-doc)
+- Check out the Code documentation here [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice/documentation/code-doc)
