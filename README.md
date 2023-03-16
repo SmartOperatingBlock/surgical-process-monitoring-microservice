@@ -10,6 +10,8 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_staff-tracking-microservice)
 
+The microservice responsible to monitor and collect information of surgical processes inside the Operating Block.
+
 ## Usage
 1. Provide a `.env` file with the following variables:
    - `SURGICAL_PROCESS_MICROSERVICE_MONGODB_URL`: the mongodb connection string
