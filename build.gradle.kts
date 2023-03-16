@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.qa)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "io.github.smartoperatingblock"
@@ -20,7 +21,9 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
+    implementation(libs.jackson.module.kotlin)
+    implementation(libs.kmongo)
+    implementation(libs.kotlin.serialization.json)
     implementation(libs.kotlin.stdlib)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.content.negotiation)
@@ -28,7 +31,6 @@ dependencies {
     implementation(libs.ktor.server.engine.netty)
     implementation(libs.ktor.server.status.pages)
     implementation(libs.logback)
-
     testImplementation(libs.bundles.kotlin.testing)
 }
 
