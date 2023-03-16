@@ -22,6 +22,8 @@ repositories {
 
 dependencies {
     implementation(libs.jackson.module.kotlin)
+    implementation(libs.kafka.clients)
+    implementation(libs.kafka.json)
     implementation(libs.kmongo)
     implementation(libs.kotlin.serialization.json)
     implementation(libs.kotlin.stdlib)

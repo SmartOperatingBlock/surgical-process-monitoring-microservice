@@ -7,6 +7,8 @@ ktor = "2.2.4"
 archunit = { module = "com.tngtech.archunit:archunit-junit5", version = "1.0.1" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.14.2" }
 embedmongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version = "4.6.1" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.3.2-ce"}
+kafka-json = { module = "io.confluent:kafka-json-serializer", version = "7.3.2"}
 kmongo = { module = "org.litote.kmongo:kmongo-serialization", version = "4.8.0" }
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
