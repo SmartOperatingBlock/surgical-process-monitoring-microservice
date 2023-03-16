@@ -11,7 +11,7 @@ plugins {
     id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.5"
 }
 
-rootProject.name = "kotlin-template-project"
+rootProject.name = "surgical-process-monitoring-microservice"
 
 gradleEnterprise {
     buildScan {
