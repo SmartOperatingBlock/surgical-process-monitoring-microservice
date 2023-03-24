@@ -14,6 +14,7 @@ import entity.room.Room
 
 /** The model of a Surgical Process composed by:
  * - the [id] of the process
+ * - the [type] of the surgery
  * - the [patient] that is going to be operated
  * - the [healthProfessional] in charge of the process
  * - the [room] in which the process is done
@@ -22,6 +23,7 @@ import entity.room.Room
  */
 data class SurgicalProcess(
     val id: ProcessData.ProcessId,
+    val type: String,
     val patient: Patient,
     val healthProfessional: HealthProfessional,
     val room: Room,
