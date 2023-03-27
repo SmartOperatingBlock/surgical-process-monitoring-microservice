@@ -12,8 +12,8 @@ package entity.patient
  *  the [surname] and the [medicalData]. */
 data class Patient(
     val id: PatientData.PatientId,
-    val name: String?,
-    val surname: String?,
+    val name: String? = null,
+    val surname: String? = null,
     val medicalData: PatientData.MedicalData
 ) {
 

@@ -14,8 +14,8 @@ package entity.medicaldevice
  */
 data class MedicalTechnology(
     val id: MedicalDeviceData.MedicalTechnologyId,
-    val name: String?,
-    val description: String?,
+    val name: String,
+    val description: String? = null,
     val type: MedicalDeviceData.MedicalTechnologyType,
     val inUse: Boolean
 ) {

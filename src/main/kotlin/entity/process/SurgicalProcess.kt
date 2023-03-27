@@ -28,5 +28,13 @@ data class SurgicalProcess(
     val healthProfessional: HealthProfessional,
     val room: Room,
     val state: ProcessData.ProcessState,
-    val step: ProcessData.ProcessStep?
-)
+    val step: ProcessData.ProcessStep? = null
+) {
+    override fun equals(other: Any?): Boolean = when {
+        other === this -> true
+        other is SurgicalProcess -> this.id == other.id
+        else -> false
+    }
+
+    override fun hashCode(): Int = this.id.hashCode()
+}
