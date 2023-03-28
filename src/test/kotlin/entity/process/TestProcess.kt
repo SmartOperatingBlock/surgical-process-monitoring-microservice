@@ -17,6 +17,7 @@ import entity.room.RoomData
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import java.time.Instant
 
 class TestProcess : StringSpec({
 
@@ -27,6 +28,7 @@ class TestProcess : StringSpec({
         shouldThrow<IllegalArgumentException> {
             SurgicalProcess(
                 ProcessData.ProcessId(""),
+                Instant.now(),
                 "Surgery-1",
                 patient,
                 healthProfessional,
@@ -40,6 +42,7 @@ class TestProcess : StringSpec({
         val id = ProcessData.ProcessId("sp-1")
         SurgicalProcess(
             id,
+            Instant.now(),
             "Surgery-1",
             patient,
             healthProfessional,
@@ -47,6 +50,7 @@ class TestProcess : StringSpec({
             ProcessData.ProcessState.PRE_SURGERY,
         ) shouldBe SurgicalProcess(
             id,
+            Instant.now(),
             "Surgery-1",
             patient,
             healthProfessional,
