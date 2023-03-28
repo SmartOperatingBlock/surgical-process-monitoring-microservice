@@ -42,5 +42,5 @@ interface PatientRepository {
      */
     fun getCurrentPatientMedicalData(
         patientId: PatientData.PatientId
-    ): PatientData.MedicalData
+    ): PatientData.MedicalData?
 }
