@@ -11,9 +11,11 @@ package entity.process
 import entity.healthprofessional.HealthProfessional
 import entity.patient.Patient
 import entity.room.Room
+import java.time.Instant
 
 /** The model of a Surgical Process composed by:
  * - the [id] of the process
+ * - the [dateTime] of the process
  * - the [type] of the surgery
  * - the [patient] that is going to be operated
  * - the [healthProfessional] in charge of the process
@@ -23,6 +25,7 @@ import entity.room.Room
  */
 data class SurgicalProcess(
     val id: ProcessData.ProcessId,
+    val dateTime: Instant,
     val type: String,
     val patient: Patient,
     val healthProfessional: HealthProfessional,
