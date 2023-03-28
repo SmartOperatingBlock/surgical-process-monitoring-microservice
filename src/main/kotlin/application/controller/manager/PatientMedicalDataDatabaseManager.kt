@@ -42,5 +42,5 @@ interface PatientMedicalDataDatabaseManager {
      */
     fun getCurrentPatientMedicalData(
         patientId: PatientData.PatientId
-    ): PatientData.MedicalData
+    ): PatientData.MedicalData?
 }
