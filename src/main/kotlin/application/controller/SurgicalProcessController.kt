@@ -33,4 +33,18 @@ class SurgicalProcessController(
 
     override fun getCurrentSurgicalProcesses(): Set<SurgicalProcess> =
         this.processDatabaseManager.getCurrentSurgicalProcesses()
+
+    override fun updateSurgicalProcessState(
+        processId: ProcessData.ProcessId,
+        state: ProcessData.ProcessState
+    ): Boolean =
+        this.processDigitalTwinManager.updateSurgicalProcessState(processId, state) &&
+            this.processDatabaseManager.updateSurgicalProcessState(processId, state)
+
+    override fun updateSurgicalProcessStep(
+        processId: ProcessData.ProcessId,
+        step: ProcessData.ProcessStep
+    ): Boolean =
+        this.processDigitalTwinManager.updateSurgicalProcessStep(processId, step) &&
+            this.processDatabaseManager.updateSurgicalProcessStep(processId, step)
 }
