@@ -36,4 +36,20 @@ interface SurgicalProcessRepository {
      * @return a set of all processes.
      */
     fun getCurrentSurgicalProcesses(): Set<SurgicalProcess>
+
+    /**
+     * Update the [state] of a [SurgicalProcess] by its [processId].
+     */
+    fun updateSurgicalProcessState(
+        processId: ProcessData.ProcessId,
+        state: ProcessData.ProcessState
+    ): Boolean
+
+    /**
+     * Update the [step] of a [SurgicalProcess] by its [processId].
+     */
+    fun updateSurgicalProcessStep(
+        processId: ProcessData.ProcessId,
+        step: ProcessData.ProcessStep
+    ): Boolean
 }
