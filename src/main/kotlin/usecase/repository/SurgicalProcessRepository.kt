@@ -9,30 +9,31 @@
 package usecase.repository
 
 import entity.process.ProcessData
+import entity.process.SurgicalProcess
 
 /**
  * Interface that models the repository to manage the processes.
  */
-interface ProcessRepository {
+interface SurgicalProcessRepository {
     /**
-     * Create a [Process].
+     * Create a [SurgicalProcess].
      * @return null if the process already exist, the process otherwise.
      */
-    fun createProcess(
-        process: Process
-    ): Process?
+    fun createSurgicalProcess(
+        process: SurgicalProcess
+    ): SurgicalProcess?
 
     /**
-     * Get a [Process] by its id.
+     * Get a [SurgicalProcess] by its id.
      * @return the process if it exists, null otherwise.
      */
-    fun getProcessById(
+    fun getSurgicalProcessById(
         processId: ProcessData.ProcessId
-    ): Process?
+    ): SurgicalProcess?
 
     /**
-     * Get all current [Process].
+     * Get all current [SurgicalProcess].
      * @return a set of all processes.
      */
-    fun getCurrentProcesses(): Set<Process>
+    fun getCurrentSurgicalProcesses(): Set<SurgicalProcess>
 }

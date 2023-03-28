@@ -9,6 +9,7 @@
 package application.controller.manager
 
 import entity.process.ProcessData
+import entity.process.SurgicalProcess
 
 /**
  * This interface models the manager of the database for processes.
@@ -16,24 +17,24 @@ import entity.process.ProcessData
 interface ProcessDatabaseManager {
 
     /**
-     * Create a [Process].
+     * Create a [SurgicalProcess].
      * @return null if the process already exist, the process otherwise.
      */
-    fun createProcess(
-        process: Process
-    ): Process?
+    fun createSurgicalProcess(
+        process: SurgicalProcess
+    ): SurgicalProcess?
 
     /**
-     * Get a [Process] by its id.
+     * Get a [SurgicalProcess] by its id.
      * @return the process if it exists, null otherwise.
      */
-    fun getProcessById(
+    fun getSurgicalProcessById(
         processId: ProcessData.ProcessId
-    ): Process?
+    ): SurgicalProcess?
 
     /**
-     * Get all current [Process].
+     * Get all current [SurgicalProcess].
      * @return a set of all processes.
      */
-    fun getCurrentProcesses(): Set<Process>
+    fun getCurrentSurgicalProcesses(): Set<SurgicalProcess>
 }
