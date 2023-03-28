@@ -45,4 +45,28 @@ object SurgicalProcessServices {
     ) : ApplicationService<Set<SurgicalProcess>> {
         override fun execute(): Set<SurgicalProcess> = surgicalProcessRepository.getCurrentSurgicalProcesses()
     }
+
+    /**
+     * The Application Service to update the [state] of a [SurgicalProcess] by its [surgicalProcessId].
+     */
+    class UpdateSurgicalProcessState(
+        private val surgicalProcessId: ProcessData.ProcessId,
+        private val state: ProcessData.ProcessState,
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean =
+            surgicalProcessRepository.updateSurgicalProcessState(surgicalProcessId, state)
+    }
+
+    /**
+     * The Application Service to update the [step] of a [SurgicalProcess] by its [surgicalProcessId].
+     */
+    class UpdateSurgicalProcessStep(
+        private val surgicalProcessId: ProcessData.ProcessId,
+        private val step: ProcessData.ProcessStep,
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean =
+            surgicalProcessRepository.updateSurgicalProcessStep(surgicalProcessId, step)
+    }
 }
