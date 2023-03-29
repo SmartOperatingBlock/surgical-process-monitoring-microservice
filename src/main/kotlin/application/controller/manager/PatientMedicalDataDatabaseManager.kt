@@ -34,7 +34,7 @@ interface PatientMedicalDataDatabaseManager {
         patientId: PatientData.PatientId,
         from: Instant,
         to: Instant
-    ): Map<Instant, PatientData.MedicalData>
+    ): List<Pair<Instant, PatientData.MedicalData>>
 
     /**
      * Get current patient medical data given the patient id.

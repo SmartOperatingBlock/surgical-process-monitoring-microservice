@@ -38,8 +38,8 @@ object PatientDataServices {
         private val from: Instant,
         private val to: Instant,
         private val patientRepository: PatientRepository
-    ) : ApplicationService<Map<Instant, PatientData.MedicalData>> {
-        override fun execute(): Map<Instant, PatientData.MedicalData> =
+    ) : ApplicationService<List<Pair<Instant, PatientData.MedicalData>>> {
+        override fun execute(): List<Pair<Instant, PatientData.MedicalData>> =
             patientRepository.getPatientMedicalData(
                 patientId,
                 from,
