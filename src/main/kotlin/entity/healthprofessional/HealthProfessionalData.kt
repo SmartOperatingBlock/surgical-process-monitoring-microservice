@@ -8,10 +8,13 @@
 
 package entity.healthprofessional
 
+import kotlinx.serialization.Serializable
+
 /** Module with all necessary data for [HealthProfessional]. */
 object HealthProfessionalData {
 
     /** The [id] of health professionals. */
+    @Serializable
     data class HealthProfessionalId(val id: String) {
         init {
             require(this.id.isNotEmpty()) {

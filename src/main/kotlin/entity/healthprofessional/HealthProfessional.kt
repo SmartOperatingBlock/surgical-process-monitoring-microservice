@@ -8,8 +8,11 @@
 
 package entity.healthprofessional
 
+import kotlinx.serialization.Serializable
+
 /** The model of Health Professionals composed by the [id], the [name],
  *  the [surname] and the [role]. */
+@Serializable
 data class HealthProfessional(
     val id: HealthProfessionalData.HealthProfessionalId,
     val name: String? = null,

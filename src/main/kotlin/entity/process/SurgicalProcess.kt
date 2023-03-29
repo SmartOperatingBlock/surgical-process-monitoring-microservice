@@ -11,6 +11,8 @@ package entity.process
 import entity.healthprofessional.HealthProfessional
 import entity.patient.Patient
 import entity.room.Room
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.Instant
 
 /** The model of a Surgical Process composed by:
@@ -23,8 +25,10 @@ import java.time.Instant
  * - the current [state] of the process
  * - the current [step] of the process.
  */
+@Serializable
 data class SurgicalProcess(
     val id: ProcessData.ProcessId,
+    @Contextual
     val dateTime: Instant,
     val type: String,
     val patient: Patient,

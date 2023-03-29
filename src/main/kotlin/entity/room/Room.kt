@@ -8,11 +8,14 @@
 
 package entity.room
 
+import kotlinx.serialization.Serializable
+
 /** The model of a Room of the Operating Block composed by:
  * - the [id] of the room,
  * - the [name] of the room,
  * - the [type] of the room.
  */
+@Serializable
 data class Room(
     val id: RoomData.RoomId,
     val name: String? = null,

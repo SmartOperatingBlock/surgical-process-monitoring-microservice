@@ -8,10 +8,13 @@
 
 package entity.room
 
+import kotlinx.serialization.Serializable
+
 /** Module with all data necessary for Operating Block [Room]. */
 object RoomData {
 
     /** The [id] of a [Room]. */
+    @Serializable
     data class RoomId(val id: String) {
         init {
             require(this.id.isNotEmpty()) {

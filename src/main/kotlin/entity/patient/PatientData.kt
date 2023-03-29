@@ -8,10 +8,13 @@
 
 package entity.patient
 
+import kotlinx.serialization.Serializable
+
 /** Module with all necessary data for [Patient]. */
 object PatientData {
 
     /** The [id] of the [Patient]. */
+    @Serializable
     data class PatientId(val id: String) {
         init {
             require(this.id.isNotEmpty()) {
@@ -21,6 +24,7 @@ object PatientData {
     }
 
     /** The [bpm] of the [Patient]. */
+    @Serializable
     data class HeartBeat(val bpm: Int) {
         init {
             require(this.bpm >= 0) {
@@ -30,6 +34,7 @@ object PatientData {
     }
 
     /** The Diastolic blood [pressure] of the [Patient]. */
+    @Serializable
     data class DiastolicBloodPressure(val pressure: Int) {
         init {
             require(this.pressure >= 0) {
@@ -39,6 +44,7 @@ object PatientData {
     }
 
     /** The Systolic blood [pressure] of the [Patient]. */
+    @Serializable
     data class SystolicBloodPressure(val pressure: Int) {
         init {
             require(this.pressure >= 0) {
@@ -48,6 +54,7 @@ object PatientData {
     }
 
     /** The Respiratory [rate] of the [Patient]. */
+    @Serializable
     data class RespiratoryRate(val rate: Int) {
         init {
             require(this.rate >= 0) {
@@ -57,6 +64,7 @@ object PatientData {
     }
 
     /** The Saturation [percentage] of the [Patient]. */
+    @Serializable
     data class SaturationPercentage(val percentage: Int) {
         init {
             require(this.percentage >= 0) {
@@ -66,6 +74,7 @@ object PatientData {
     }
 
     /** The [degree] of body temperature of the [Patient] with the specific temperature [unit]. */
+    @Serializable
     data class BodyTemperature(val degree: Double, val unit: TemperatureUnit = TemperatureUnit.CELSIUS) {
         init {
             require(this.degree >= 0) {
@@ -86,6 +95,7 @@ object PatientData {
      * the [respiratoryRate],
      * the [saturationPercentage],
      * the [bodyTemperature]. */
+    @Serializable
     data class MedicalData(
         val heartBeat: HeartBeat? = null,
         val diastolicBloodPressure: DiastolicBloodPressure? = null,

@@ -8,8 +8,11 @@
 
 package entity.patient
 
+import kotlinx.serialization.Serializable
+
 /** The model of Patient composed by the [id], the [name],
  *  the [surname] and the [medicalData]. */
+@Serializable
 data class Patient(
     val id: PatientData.PatientId,
     val name: String? = null,
