@@ -34,7 +34,7 @@ object ProcessEventsPayloads {
      * @param processId the id of the surgical process.
      */
     @Serializable
-    data class ProcessInfo(val info: String, val processId: String) : ProcessEventPayload
+    data class PatientOnOperatingTable(val processId: String) : ProcessEventPayload
 
     /**
      * The event of medical technology usage given its [medicalTechnologyID].
