@@ -124,7 +124,7 @@ object EventHandlers {
     }
 
     /**
-     * The handler for Patient Body Temperature update events.
+     * The handler for Patient Diastolic Pressure update events.
      */
     class DiastolicPressureUpdateEventHandler(
         private val patientRepository: PatientRepository
@@ -140,6 +140,31 @@ object EventHandlers {
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(
                         diastolicBloodPressure = PatientData.DiastolicBloodPressure(this.data.data.pressure)
+                    ),
+                    Instant.parse(this.dateTime),
+                    patientRepository
+                ).execute()
+            }
+        }
+    }
+
+    /**
+     * The handler for Patient Diastolic Pressure update events.
+     */
+    class SystolicPressureUpdateEventHandler(
+        private val patientRepository: PatientRepository
+    ) : EventHandler {
+
+        override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.SystolicPressure>>()
+        }
+
+        override fun consume(event: Event<*>) {
+            event.cast<ProcessEvent<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.SystolicPressure>>> {
+                PatientDataServices.UpdatePatientMedicalData(
+                    PatientData.PatientId(this.data.patientId),
+                    PatientData.MedicalData(
+                        systolicBloodPressure = PatientData.SystolicBloodPressure(this.data.data.pressure)
                     ),
                     Instant.parse(this.dateTime),
                     patientRepository
