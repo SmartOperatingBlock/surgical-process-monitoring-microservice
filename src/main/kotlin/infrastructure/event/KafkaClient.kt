@@ -9,6 +9,7 @@
 package infrastructure.event
 
 import application.controller.MedicalDeviceController
+import application.controller.PatientDataController
 import application.controller.SurgicalProcessController
 import application.handler.EventHandler
 import application.handler.EventHandlers
@@ -46,14 +47,17 @@ class KafkaClient(private val provider: ManagerProvider) {
             provider.processDatabaseManager,
             provider.processDigitalTwinManager
         )
+
+        val patientDataController = PatientDataController(provider.patientMedicalDataDatabaseManager)
+
 //        val surgeryBookingController = SurgeryBookingController(provider.surgeryBookingDigitalTwinManager)
-//
-//        val patientDataController = PatientDataController(provider.patientMedicalDataDatabaseManager)
 
         eventHandlers = listOf(
             EventHandlers.MedicalDeviceUsageEventHandler(medicalDeviceController),
             EventHandlers.MedicalTechnologyUsageEventHandler(medicalDeviceController),
-            EventHandlers.ProcessInfoEventHandler(surgicalProcessController)
+            EventHandlers.PatientOnOperatingTableEventHandler(surgicalProcessController),
+            EventHandlers.BodyTemperatureUpdateEventHandler(patientDataController),
+            EventHandlers.DiastolicPressureUpdateEventHandler(patientDataController),
         )
     }
 
