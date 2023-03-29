@@ -58,6 +58,7 @@ class KafkaClient(private val provider: ManagerProvider) {
             EventHandlers.PatientOnOperatingTableEventHandler(surgicalProcessController),
             EventHandlers.BodyTemperatureUpdateEventHandler(patientDataController),
             EventHandlers.DiastolicPressureUpdateEventHandler(patientDataController),
+            EventHandlers.SystolicPressureUpdateEventHandler(patientDataController),
         )
     }
 
