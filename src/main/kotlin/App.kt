@@ -1,3 +1,7 @@
+import infrastructure.api.ApiRouter
+import infrastructure.event.KafkaClient
+import infrastructure.provider.ManagerProviderImpl
+
 /*
  * Copyright (c) 2023. Smart Operating Block
  *
@@ -7,8 +11,10 @@
  */
 
 /**
- * Template for kotlin projects.
+ * The launcher of the Surgical Process Monitoring System Microservice.
  */
 fun main() {
-    println("Hello World from Kotlin Template")
+    val provider = ManagerProviderImpl()
+    ApiRouter(provider).start()
+    KafkaClient(provider).start()
 }
