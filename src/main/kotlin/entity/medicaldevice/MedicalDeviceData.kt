@@ -8,10 +8,13 @@
 
 package entity.medicaldevice
 
+import kotlinx.serialization.Serializable
+
 /** Module with all data necessary for [ImplantableMedicalDevice]. */
 object MedicalDeviceData {
 
     /** The [id] of an [ImplantableMedicalDevice]. */
+    @Serializable
     data class ImplantableMedicalDeviceId(val id: String) {
         init {
             require(id.isNotEmpty()) {
@@ -21,6 +24,7 @@ object MedicalDeviceData {
     }
 
     /** The [id] of a [MedicalTechnology]. */
+    @Serializable
     data class MedicalTechnologyId(val id: String) {
         init {
             require(id.isNotEmpty()) {
@@ -30,11 +34,13 @@ object MedicalDeviceData {
     }
 
     /** The type of [ImplantableMedicalDevice]. */
+    @Serializable
     enum class DeviceType {
         CATHETER, PACE_MAKER
     }
 
     /** The type of [MedicalTechnology]. */
+    @Serializable
     enum class MedicalTechnologyType {
         ENDOSCOPE, X_RAY
     }
