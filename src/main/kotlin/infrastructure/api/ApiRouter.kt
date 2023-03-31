@@ -9,6 +9,7 @@
 package infrastructure.api
 
 import infrastructure.api.routes.processAPI
+import infrastructure.provider.ManagerProvider
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
@@ -24,7 +25,7 @@ import java.time.format.DateTimeParseException
 /**
  * The API router of the application.
  */
-class ApiRouter {
+class ApiRouter(private val provider: ManagerProvider) {
 
     private val version = "v1"
     private val apiPath: String = "/api/$version"
@@ -55,7 +56,7 @@ class ApiRouter {
      */
     private fun Application.configureRouting() {
         routing {
-            processAPI(apiPath)
+            processAPI(apiPath, provider)
         }
     }
 
