@@ -31,8 +31,8 @@ data class SurgicalProcess(
     @Contextual
     val dateTime: Instant,
     val type: String,
-    val patient: Patient,
-    val healthProfessional: HealthProfessional,
+    val patient: Patient?,
+    val healthProfessional: HealthProfessional?,
     val room: Room,
     val state: ProcessData.ProcessState,
     val step: ProcessData.ProcessStep? = null
