@@ -11,10 +11,16 @@ package infrastructure.database
 import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.PatientMedicalDataDatabaseManager
 import application.controller.manager.ProcessDatabaseManager
+import application.presenter.database.model.MedicalDeviceUsage
+import com.mongodb.MongoException
+import com.mongodb.client.MongoCollection
+import com.mongodb.client.MongoDatabase
 import entity.medicaldevice.MedicalDeviceData
 import entity.patient.PatientData
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import org.litote.kmongo.KMongo
+import org.litote.kmongo.getCollection
 import java.time.Instant
 
 /**
@@ -23,17 +29,20 @@ import java.time.Instant
 class DatabaseManager(
     connectionString: String
 ) : MedicalDeviceDatabaseManager, PatientMedicalDataDatabaseManager, ProcessDatabaseManager {
-    init {
-        check(connectionString.isNotEmpty()) {
-            "Please provide the Staff Tracking MongoDB connection string!"
-        }
-    }
+
+    /**
+     * The mongodb client.
+     */
+    val database: MongoDatabase = KMongo.createClient(connectionString).getDatabase(databaseName)
+
+    private val implantableMedicalDeviceCollection =
+        this.database.getCollection<MedicalDeviceUsage>(implantableMedicalDeviceCollectionName)
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
         processId: ProcessData.ProcessId
-    ): Boolean {
-        TODO("Not yet implemented")
+    ): Boolean = this.implantableMedicalDeviceCollection.safeMongoDbWrite(defaultResult = false) {
+        insertOne(MedicalDeviceUsage(medicalDeviceId, processId)).wasAcknowledged()
     }
 
     override fun addMedicalTechnologyUsage(
@@ -86,5 +95,23 @@ class DatabaseManager(
 
     override fun updateSurgicalProcessStep(processId: ProcessData.ProcessId, step: ProcessData.ProcessStep): Boolean {
         TODO("Not yet implemented")
+    }
+
+    private fun <T, R> MongoCollection<T>.safeMongoDbWrite(defaultResult: R, operation: MongoCollection<T>.() -> R): R =
+        try {
+            operation()
+        } catch (exception: MongoException) {
+            println(exception)
+            defaultResult
+        }
+
+    companion object {
+        private const val databaseName = "staff_tracking"
+//        private const val medicalTechnologyUsageDataCollectionName = "medical_technology_usage_data"
+        private const val implantableMedicalDeviceCollectionName = "implantable_medical_device"
+//        const val processStateEventsTimeSeriesCollectionName = "process_state_events"
+//        const val processStepEventsTimeSeriesCollectionName = "process_step_events"
+//        private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
+//        private const val surgicalProcessCollectionName = "surgical_process"
     }
 }
