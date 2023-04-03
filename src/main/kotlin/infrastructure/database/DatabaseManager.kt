@@ -14,6 +14,9 @@ import application.controller.manager.ProcessDatabaseManager
 import application.presenter.database.model.MedicalDeviceUsage
 import application.presenter.database.model.TimeSeriesMedicalTechnologyUsage
 import application.presenter.database.model.TimeSeriesMedicalTechnologyUsageMetadata
+import application.presenter.database.model.TimeSeriesPatientMedicalData
+import application.presenter.database.model.TimeSeriesPatientMedicalDataMetadata
+import application.presenter.database.model.toPatientMedicalData
 import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
@@ -22,7 +25,13 @@ import entity.patient.PatientData
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
 import org.litote.kmongo.KMongo
+import org.litote.kmongo.ascendingSort
+import org.litote.kmongo.div
+import org.litote.kmongo.eq
+import org.litote.kmongo.find
 import org.litote.kmongo.getCollection
+import org.litote.kmongo.gt
+import org.litote.kmongo.lte
 import java.time.Instant
 
 /**
@@ -39,6 +48,9 @@ class DatabaseManager(
 
     private val medicalTechnologyUsageDataCollection =
         this.database.getCollection<TimeSeriesMedicalTechnologyUsage>(medicalTechnologyUsageDataCollectionName)
+
+    private val patientMedicalDataCollection =
+        this.database.getCollection<TimeSeriesPatientMedicalData>(patientMedicalDataTimeSeriesCollectionName)
 
     private val implantableMedicalDeviceCollection =
         this.database.getCollection<MedicalDeviceUsage>(implantableMedicalDeviceCollectionName)
@@ -76,9 +88,18 @@ class DatabaseManager(
     override fun getPatientMedicalData(
         patientId: PatientData.PatientId,
         from: Instant,
-        to: Instant
+        to: Instant,
     ): List<Pair<Instant, PatientData.MedicalData>> {
-        TODO("Not yet implemented")
+        var patientMedicalData = PatientData.MedicalData()
+        return this.patientMedicalDataCollection.find(
+            TimeSeriesPatientMedicalData::metadata / TimeSeriesPatientMedicalDataMetadata::patientId eq patientId,
+            TimeSeriesPatientMedicalData::dateTime gt from,
+            TimeSeriesPatientMedicalData::dateTime lte to
+        ).ascendingSort(TimeSeriesPatientMedicalData::dateTime).toList().map {
+            val updatedPatientMedicalData = mapOf(it.metadata.type to it).toPatientMedicalData(patientMedicalData)
+            patientMedicalData = updatedPatientMedicalData
+            it.dateTime to updatedPatientMedicalData
+        }
     }
 
     override fun getCurrentPatientMedicalData(patientId: PatientData.PatientId): PatientData.MedicalData? {
@@ -122,7 +143,7 @@ class DatabaseManager(
         private const val implantableMedicalDeviceCollectionName = "implantable_medical_device"
 //        const val processStateEventsTimeSeriesCollectionName = "process_state_events"
 //        const val processStepEventsTimeSeriesCollectionName = "process_step_events"
-//        private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
+        private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
 //        private const val surgicalProcessCollectionName = "surgical_process"
     }
 }
