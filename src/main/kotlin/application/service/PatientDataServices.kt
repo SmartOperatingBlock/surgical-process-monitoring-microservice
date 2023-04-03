@@ -8,6 +8,7 @@
 
 package application.service
 
+import entity.patient.Patient
 import entity.patient.PatientData
 import usecase.repository.PatientRepository
 import java.time.Instant
@@ -56,5 +57,15 @@ object PatientDataServices {
     ) : ApplicationService<PatientData.MedicalData?> {
         override fun execute(): PatientData.MedicalData? =
             patientRepository.getCurrentPatientMedicalData(patientId)
+    }
+
+    /**
+     * Application Service to create a [Patient].
+     */
+    class CreatePatient(
+        private val patientId: PatientData.PatientId,
+        private val patientRepository: PatientRepository
+    ) : ApplicationService<Patient?> {
+        override fun execute(): Patient? = patientRepository.createPatient(patientId)
     }
 }

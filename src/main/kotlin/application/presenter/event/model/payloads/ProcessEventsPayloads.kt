@@ -30,7 +30,6 @@ object ProcessEventsPayloads {
 
     /**
      * An information for the surgical process.
-     * @param info the information of the process.
      * @param processId the id of the surgical process.
      */
     @Serializable
@@ -104,4 +103,9 @@ object ProcessEventsPayloads {
      */
     @Serializable
     data class Saturation(val saturation: Int) : PatientDataPayload
+
+    /**
+     * The payload of an emergency surgery with the [roomId] and the optional [patientTaxCode].
+     */
+    data class EmergencySurgery(val roomId: String, val patientTaxCode: String?) : ProcessEventPayload
 }

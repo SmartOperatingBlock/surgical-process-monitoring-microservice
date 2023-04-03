@@ -8,7 +8,9 @@
 
 package application.controller
 
+import application.controller.manager.PatientDigitalTwinManager
 import application.controller.manager.PatientMedicalDataDatabaseManager
+import entity.patient.Patient
 import entity.patient.PatientData
 import usecase.repository.PatientRepository
 import java.time.Instant
@@ -17,7 +19,8 @@ import java.time.Instant
  * The implementation of the [PatientRepository].
  */
 class PatientDataController(
-    private val patientMedicalDataDatabaseManager: PatientMedicalDataDatabaseManager
+    private val patientMedicalDataDatabaseManager: PatientMedicalDataDatabaseManager,
+    private val patientDigitalTwinManager: PatientDigitalTwinManager
 ) : PatientRepository {
 
     override fun updatePatientMedicalData(
@@ -35,4 +38,7 @@ class PatientDataController(
 
     override fun getCurrentPatientMedicalData(patientId: PatientData.PatientId): PatientData.MedicalData? =
         patientMedicalDataDatabaseManager.getCurrentPatientMedicalData(patientId)
+
+    override fun createPatient(patientId: PatientData.PatientId): Patient? =
+        patientDigitalTwinManager.createPatientDT(patientId)
 }

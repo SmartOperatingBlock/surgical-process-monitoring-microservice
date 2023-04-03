@@ -10,6 +10,7 @@ package infrastructure.provider
 
 import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.MedicalDeviceDigitalTwinManager
+import application.controller.manager.PatientDigitalTwinManager
 import application.controller.manager.PatientMedicalDataDatabaseManager
 import application.controller.manager.ProcessDatabaseManager
 import application.controller.manager.ProcessDigitalTwinManager
@@ -21,6 +22,7 @@ class ManagerProviderImpl : ManagerProvider {
     override val medicalDeviceDatabaseManager: MedicalDeviceDatabaseManager = TODO()
     override val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager = TODO()
     override val patientMedicalDataDatabaseManager: PatientMedicalDataDatabaseManager = TODO()
+    override val patientDigitalTwinManager: PatientDigitalTwinManager = TODO()
     override val processDatabaseManager: ProcessDatabaseManager = TODO()
     override val processDigitalTwinManager: ProcessDigitalTwinManager = TODO()
     override val surgeryBookingDigitalTwinManager: SurgeryBookingDigitalTwinManager = TODO()

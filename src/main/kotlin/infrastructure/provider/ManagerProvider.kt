@@ -10,6 +10,7 @@ package infrastructure.provider
 
 import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.MedicalDeviceDigitalTwinManager
+import application.controller.manager.PatientDigitalTwinManager
 import application.controller.manager.PatientMedicalDataDatabaseManager
 import application.controller.manager.ProcessDatabaseManager
 import application.controller.manager.ProcessDigitalTwinManager
@@ -28,6 +29,9 @@ interface ManagerProvider {
 
     /** The manager of the database of patient medical data. */
     val patientMedicalDataDatabaseManager: PatientMedicalDataDatabaseManager
+
+    /** The manager of the digital twins of patients. */
+    val patientDigitalTwinManager: PatientDigitalTwinManager
 
     /** The manager of the database of medical device usage. */
     val medicalDeviceDatabaseManager: MedicalDeviceDatabaseManager

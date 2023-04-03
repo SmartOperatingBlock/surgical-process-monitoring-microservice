@@ -8,6 +8,7 @@
 
 package usecase.repository
 
+import entity.patient.Patient
 import entity.patient.PatientData
 import java.time.Instant
 
@@ -43,4 +44,9 @@ interface PatientRepository {
     fun getCurrentPatientMedicalData(
         patientId: PatientData.PatientId
     ): PatientData.MedicalData?
+
+    /**
+     * Create a patient given its [patientId].
+     */
+    fun createPatient(patientId: PatientData.PatientId): Patient?
 }
