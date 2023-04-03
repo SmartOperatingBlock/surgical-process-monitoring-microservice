@@ -45,4 +45,6 @@ object ProcessEventsKeys {
     const val PATIENT_HEARTBEAT_UPDATE_EVENT = "PATIENT_HEARTBEAT_UPDATE_EVENT"
     /** The key of the patient tracking event. */
     const val PATIENT_TRACKED_EVENT = "PATIENT_TRACKED_EVENT"
+    /** The key of the event of an emergency surgery. */
+    const val EMERGENCY_SURGERY_EVENT = "EMERGENCY_SURGERY_EVENT"
 }
