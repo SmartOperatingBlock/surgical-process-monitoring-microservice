@@ -102,8 +102,15 @@ class DatabaseManager(
         }
     }
 
-    override fun getCurrentPatientMedicalData(patientId: PatientData.PatientId): PatientData.MedicalData? {
-        TODO("Not yet implemented")
+    override fun getCurrentPatientMedicalData(patientId: PatientData.PatientId): PatientData.MedicalData {
+        var patientMedicalData = PatientData.MedicalData()
+        return this.patientMedicalDataCollection.find(
+            TimeSeriesPatientMedicalData::metadata / TimeSeriesPatientMedicalDataMetadata::patientId eq patientId,
+        ).ascendingSort(TimeSeriesPatientMedicalData::dateTime).toList().map {
+            val updatedPatientMedicalData = mapOf(it.metadata.type to it).toPatientMedicalData(patientMedicalData)
+            patientMedicalData = updatedPatientMedicalData
+            updatedPatientMedicalData
+        }.first()
     }
 
     override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? {
