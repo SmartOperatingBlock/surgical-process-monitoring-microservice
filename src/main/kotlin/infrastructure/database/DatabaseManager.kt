@@ -12,6 +12,8 @@ import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.PatientMedicalDataDatabaseManager
 import application.controller.manager.ProcessDatabaseManager
 import application.presenter.database.model.MedicalDeviceUsage
+import application.presenter.database.model.TimeSeriesMedicalTechnologyUsage
+import application.presenter.database.model.TimeSeriesMedicalTechnologyUsageMetadata
 import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
@@ -35,6 +37,9 @@ class DatabaseManager(
      */
     val database: MongoDatabase = KMongo.createClient(connectionString).getDatabase(databaseName)
 
+    private val medicalTechnologyUsageDataCollection =
+        this.database.getCollection<TimeSeriesMedicalTechnologyUsage>(medicalTechnologyUsageDataCollectionName)
+
     private val implantableMedicalDeviceCollection =
         this.database.getCollection<MedicalDeviceUsage>(implantableMedicalDeviceCollectionName)
 
@@ -50,8 +55,14 @@ class DatabaseManager(
         dateTime: Instant,
         processId: ProcessData.ProcessId,
         inUse: Boolean
-    ): Boolean {
-        TODO("Not yet implemented")
+    ): Boolean = this.medicalTechnologyUsageDataCollection.safeMongoDbWrite(defaultResult = false) {
+        insertOne(
+            TimeSeriesMedicalTechnologyUsage(
+                dateTime,
+                TimeSeriesMedicalTechnologyUsageMetadata(medicalTechnologyId, processId),
+                inUse
+            )
+        ).wasAcknowledged()
     }
 
     override fun updatePatientMedicalData(
@@ -107,7 +118,7 @@ class DatabaseManager(
 
     companion object {
         private const val databaseName = "staff_tracking"
-//        private const val medicalTechnologyUsageDataCollectionName = "medical_technology_usage_data"
+        private const val medicalTechnologyUsageDataCollectionName = "medical_technology_usage_data"
         private const val implantableMedicalDeviceCollectionName = "implantable_medical_device"
 //        const val processStateEventsTimeSeriesCollectionName = "process_state_events"
 //        const val processStepEventsTimeSeriesCollectionName = "process_step_events"
