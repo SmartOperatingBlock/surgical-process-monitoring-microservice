@@ -49,7 +49,10 @@ class KafkaClient(private val provider: ManagerProvider) {
             provider.processDigitalTwinManager
         )
 
-        val patientDataController = PatientDataController(provider.patientMedicalDataDatabaseManager)
+        val patientDataController = PatientDataController(
+            provider.patientMedicalDataDatabaseManager,
+            provider.patientDigitalTwinManager
+        )
 
         val surgeryBookingController = SurgeryBookingController(provider.surgeryBookingDigitalTwinManager)
 
@@ -63,7 +66,8 @@ class KafkaClient(private val provider: ManagerProvider) {
             EventHandlers.RespiratoryRateUpdateEventHandler(patientDataController),
             EventHandlers.SaturationUpdateEventHandler(patientDataController),
             EventHandlers.HeartbeatUpdateEventHandler(patientDataController),
-            EventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController)
+            EventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController),
+            EventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController)
         )
     }
 
@@ -76,7 +80,7 @@ class KafkaClient(private val provider: ManagerProvider) {
 
     /** Start consuming the events on the Kafka Broker. */
     fun start() {
-        kafkaConsumer.subscribe(listOf(processEventsTopic)).run {
+        kafkaConsumer.subscribe(listOf(processEventsTopic, emergencyEventsTopic)).run {
             while (true) {
                 kafkaConsumer.poll(Duration.ofMillis(pollingTime)).forEach { event ->
                     try {
@@ -106,5 +110,6 @@ class KafkaClient(private val provider: ManagerProvider) {
         /** The polling time. */
         private const val pollingTime: Long = 100L
         private const val processEventsTopic = "process-events"
+        private const val emergencyEventsTopic = "emergency-surgery-events"
     }
 }

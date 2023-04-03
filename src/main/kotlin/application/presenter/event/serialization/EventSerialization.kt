@@ -13,6 +13,7 @@ import application.presenter.event.model.ProcessEvent
 import application.presenter.event.model.ProcessEventsKeys
 import application.presenter.event.model.payloads.ProcessEventsPayloads.BodyTemperature
 import application.presenter.event.model.payloads.ProcessEventsPayloads.DiastolicPressure
+import application.presenter.event.model.payloads.ProcessEventsPayloads.EmergencySurgery
 import application.presenter.event.model.payloads.ProcessEventsPayloads.Heartbeat
 import application.presenter.event.model.payloads.ProcessEventsPayloads.MedicalDeviceUsage
 import application.presenter.event.model.payloads.ProcessEventsPayloads.MedicalTechnologyUsage
@@ -51,6 +52,8 @@ object EventSerialization {
             deserializeToEvent<PatientData<Saturation>>(this)
         ProcessEventsKeys.PATIENT_HEARTBEAT_UPDATE_EVENT ->
             deserializeToEvent<PatientData<Heartbeat>>(this)
+        ProcessEventsKeys.EMERGENCY_SURGERY_EVENT ->
+            deserializeToEvent<EmergencySurgery>(this)
         else -> throw IllegalArgumentException("Event not supported")
     }
 

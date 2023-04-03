@@ -272,7 +272,7 @@ object EventHandlers {
                         val surgicalProcess: SurgicalProcess? =
                             SurgicalProcessServices.GetCurrentSurgicalProcesses(surgicalProcessRepository).execute()
                                 .firstOrNull {
-                                    it.patient.id.id == this.data.patientId
+                                    it.patient?.id?.id == this.data.patientId
                                 }
                         if (surgicalProcess == null) {
                             val surgeryBooking =
@@ -308,10 +308,46 @@ object EventHandlers {
                             ).execute()
                         }
                     }
+
                     ProcessEventsPayloads.RoomType.OPERATING_ROOM -> {
                         false
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * The handler for Emergency Surgery events.
+     */
+    class EmergencySurgeryEventHandler(
+        private val surgicalProcessRepository: SurgicalProcessRepository,
+        private val patientRepository: PatientRepository
+    ) : EventHandler {
+
+        override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
+            this.data.cast<ProcessEventsPayloads.EmergencySurgery>()
+        }
+
+        override fun consume(event: Event<*>) {
+            event.cast<ProcessEvent<ProcessEventsPayloads.EmergencySurgery>> {
+                SurgicalProcessServices.CreateSurgicalProcess(
+                    SurgicalProcess(
+                        ProcessData.ProcessId("emergency-${this.data.roomId}-${Instant.now()}"),
+                        Instant.now(),
+                        "Emergency",
+                        PatientDataServices.CreatePatient(
+                            PatientData.PatientId(
+                                "emergency-patient-${Instant.now()}"
+                            ),
+                            patientRepository
+                        ).execute(),
+                        null,
+                        Room(RoomData.RoomId(this.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
+                        ProcessData.ProcessState.SURGERY
+                    ),
+                    surgicalProcessRepository
+                ).execute() != null
             }
         }
     }
