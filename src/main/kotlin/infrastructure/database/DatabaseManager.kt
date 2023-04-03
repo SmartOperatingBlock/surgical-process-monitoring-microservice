@@ -29,6 +29,7 @@ import org.litote.kmongo.ascendingSort
 import org.litote.kmongo.div
 import org.litote.kmongo.eq
 import org.litote.kmongo.find
+import org.litote.kmongo.findOne
 import org.litote.kmongo.getCollection
 import org.litote.kmongo.gt
 import org.litote.kmongo.lte
@@ -54,6 +55,9 @@ class DatabaseManager(
 
     private val implantableMedicalDeviceCollection =
         this.database.getCollection<MedicalDeviceUsage>(implantableMedicalDeviceCollectionName)
+
+    private val surgicalProcessCollection =
+        this.database.getCollection<SurgicalProcess>(surgicalProcessCollectionName)
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
@@ -113,13 +117,17 @@ class DatabaseManager(
         }.first()
     }
 
-    override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? {
-        TODO("Not yet implemented")
-    }
+    override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? =
+        this.surgicalProcessCollection.safeMongoDbWrite(defaultResult = null) {
+            insertOne(
+                process
+            ).run {
+                getSurgicalProcessById(process.id)
+            }
+        }
 
-    override fun getSurgicalProcessById(processId: ProcessData.ProcessId): SurgicalProcess? {
-        TODO("Not yet implemented")
-    }
+    override fun getSurgicalProcessById(processId: ProcessData.ProcessId): SurgicalProcess? =
+        this.surgicalProcessCollection.findOne(SurgicalProcess::id eq processId)
 
     override fun getCurrentSurgicalProcesses(): Set<SurgicalProcess> {
         TODO("Not yet implemented")
@@ -151,6 +159,6 @@ class DatabaseManager(
 //        const val processStateEventsTimeSeriesCollectionName = "process_state_events"
 //        const val processStepEventsTimeSeriesCollectionName = "process_step_events"
         private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
-//        private const val surgicalProcessCollectionName = "surgical_process"
+        private const val surgicalProcessCollectionName = "surgical_process"
     }
 }
