@@ -35,6 +35,7 @@ import org.litote.kmongo.findOne
 import org.litote.kmongo.getCollection
 import org.litote.kmongo.gt
 import org.litote.kmongo.lte
+import org.litote.kmongo.ne
 import org.litote.kmongo.updateOne
 import java.time.Instant
 
@@ -138,9 +139,10 @@ class DatabaseManager(
     override fun getSurgicalProcessById(processId: ProcessData.ProcessId): SurgicalProcess? =
         this.surgicalProcessCollection.findOne(SurgicalProcess::id eq processId)
 
-    override fun getCurrentSurgicalProcesses(): Set<SurgicalProcess> {
-        TODO("Not yet implemented")
-    }
+    override fun getCurrentSurgicalProcesses(): Set<SurgicalProcess> =
+        this.surgicalProcessCollection.find(
+            SurgicalProcess::state ne ProcessData.ProcessState.TERMINATED
+        ).toSet()
 
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
