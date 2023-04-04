@@ -25,7 +25,7 @@ object ProcessData {
 
     /** The different states of a [SurgicalProcess]. */
     enum class ProcessState {
-        PRE_SURGERY, SURGERY, POST_SURGERY, INTERRUPTED
+        PRE_SURGERY, SURGERY, POST_SURGERY, INTERRUPTED, TERMINATED
     }
 
     /** The different steps of a [SurgicalProcess]. */
