@@ -17,6 +17,7 @@ import application.presenter.database.model.TimeSeriesMedicalTechnologyUsageMeta
 import application.presenter.database.model.TimeSeriesPatientMedicalData
 import application.presenter.database.model.TimeSeriesPatientMedicalDataMetadata
 import application.presenter.database.model.TimeSeriesProcessStateEvent
+import application.presenter.database.model.TimeSeriesProcessStepEvent
 import application.presenter.database.model.toPatientMedicalData
 import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
@@ -63,6 +64,9 @@ class DatabaseManager(
 
     private val processStateEventCollection =
         this.database.getCollection<TimeSeriesProcessStateEvent>(processStateEventsTimeSeriesCollectionName)
+
+    private val processStepEventCollection =
+        this.database.getCollection<TimeSeriesProcessStepEvent>(processStepEventsTimeSeriesCollectionName)
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
@@ -151,9 +155,10 @@ class DatabaseManager(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
         step: ProcessData.ProcessStep
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
+    ): Boolean =
+        this.processStepEventCollection.safeMongoDbWrite(defaultResult = false) {
+            updateOne(SurgicalProcess::id eq processId).wasAcknowledged()
+        }
 
     private fun <T, R> MongoCollection<T>.safeMongoDbWrite(defaultResult: R, operation: MongoCollection<T>.() -> R): R =
         try {
@@ -168,7 +173,7 @@ class DatabaseManager(
         private const val medicalTechnologyUsageDataCollectionName = "medical_technology_usage_data"
         private const val implantableMedicalDeviceCollectionName = "implantable_medical_device"
         private const val processStateEventsTimeSeriesCollectionName = "process_state_events"
-//        const val processStepEventsTimeSeriesCollectionName = "process_step_events"
+        private const val processStepEventsTimeSeriesCollectionName = "process_step_events"
         private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
         private const val surgicalProcessCollectionName = "surgical_process"
     }
