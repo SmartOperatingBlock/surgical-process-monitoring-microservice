@@ -16,6 +16,7 @@ import application.presenter.database.model.TimeSeriesMedicalTechnologyUsage
 import application.presenter.database.model.TimeSeriesMedicalTechnologyUsageMetadata
 import application.presenter.database.model.TimeSeriesPatientMedicalData
 import application.presenter.database.model.TimeSeriesPatientMedicalDataMetadata
+import application.presenter.database.model.TimeSeriesProcessStateEvent
 import application.presenter.database.model.toPatientMedicalData
 import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
@@ -33,6 +34,7 @@ import org.litote.kmongo.findOne
 import org.litote.kmongo.getCollection
 import org.litote.kmongo.gt
 import org.litote.kmongo.lte
+import org.litote.kmongo.updateOne
 import java.time.Instant
 
 /**
@@ -58,6 +60,9 @@ class DatabaseManager(
 
     private val surgicalProcessCollection =
         this.database.getCollection<SurgicalProcess>(surgicalProcessCollectionName)
+
+    private val processStateEventCollection =
+        this.database.getCollection<TimeSeriesProcessStateEvent>(processStateEventsTimeSeriesCollectionName)
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
@@ -135,12 +140,18 @@ class DatabaseManager(
 
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
+        dateTime: Instant,
         state: ProcessData.ProcessState
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
+    ): Boolean =
+        this.processStateEventCollection.safeMongoDbWrite(defaultResult = false) {
+            updateOne(SurgicalProcess::id eq processId).wasAcknowledged()
+        }
 
-    override fun updateSurgicalProcessStep(processId: ProcessData.ProcessId, step: ProcessData.ProcessStep): Boolean {
+    override fun updateSurgicalProcessStep(
+        processId: ProcessData.ProcessId,
+        dateTime: Instant,
+        step: ProcessData.ProcessStep
+    ): Boolean {
         TODO("Not yet implemented")
     }
 
@@ -156,7 +167,7 @@ class DatabaseManager(
         private const val databaseName = "staff_tracking"
         private const val medicalTechnologyUsageDataCollectionName = "medical_technology_usage_data"
         private const val implantableMedicalDeviceCollectionName = "implantable_medical_device"
-//        const val processStateEventsTimeSeriesCollectionName = "process_state_events"
+        private const val processStateEventsTimeSeriesCollectionName = "process_state_events"
 //        const val processStepEventsTimeSeriesCollectionName = "process_step_events"
         private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
         private const val surgicalProcessCollectionName = "surgical_process"

@@ -11,6 +11,7 @@ package application.service
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
 import usecase.repository.SurgicalProcessRepository
+import java.time.Instant
 
 /**
  * Module that contains all [ApplicationService] of surgical processes.
@@ -51,11 +52,12 @@ object SurgicalProcessServices {
      */
     class UpdateSurgicalProcessState(
         private val surgicalProcessId: ProcessData.ProcessId,
+        private val dateTime: Instant,
         private val state: ProcessData.ProcessState,
         private val surgicalProcessRepository: SurgicalProcessRepository
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
-            surgicalProcessRepository.updateSurgicalProcessState(surgicalProcessId, state)
+            surgicalProcessRepository.updateSurgicalProcessState(surgicalProcessId, dateTime, state)
     }
 
     /**
@@ -63,10 +65,11 @@ object SurgicalProcessServices {
      */
     class UpdateSurgicalProcessStep(
         private val surgicalProcessId: ProcessData.ProcessId,
+        private val dateTime: Instant,
         private val step: ProcessData.ProcessStep,
         private val surgicalProcessRepository: SurgicalProcessRepository
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
-            surgicalProcessRepository.updateSurgicalProcessStep(surgicalProcessId, step)
+            surgicalProcessRepository.updateSurgicalProcessStep(surgicalProcessId, dateTime, step)
     }
 }

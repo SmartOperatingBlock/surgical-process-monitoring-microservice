@@ -10,6 +10,7 @@ package usecase.repository
 
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import java.time.Instant
 
 /**
  * Interface that models the repository to manage the processes.
@@ -42,6 +43,7 @@ interface SurgicalProcessRepository {
      */
     fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
+        dateTime: Instant,
         state: ProcessData.ProcessState
     ): Boolean
 
@@ -50,6 +52,7 @@ interface SurgicalProcessRepository {
      */
     fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
+        dateTime: Instant,
         step: ProcessData.ProcessStep
     ): Boolean
 }

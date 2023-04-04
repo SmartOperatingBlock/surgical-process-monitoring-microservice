@@ -93,11 +93,13 @@ object EventHandlers {
             event.cast<ProcessEvent<ProcessEventsPayloads.PatientOnOperatingTable>> {
                 SurgicalProcessServices.UpdateSurgicalProcessState(
                     ProcessData.ProcessId(this.data.processId),
+                    Instant.parse(this.dateTime),
                     ProcessData.ProcessState.SURGERY,
                     surgicalProcessRepository
                 ).execute() &&
                     SurgicalProcessServices.UpdateSurgicalProcessStep(
                         ProcessData.ProcessId(this.data.processId),
+                        Instant.parse(this.dateTime),
                         ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
                         surgicalProcessRepository
                     ).execute()
@@ -303,6 +305,7 @@ object EventHandlers {
                         } else {
                             SurgicalProcessServices.UpdateSurgicalProcessState(
                                 surgicalProcess.id,
+                                Instant.parse(this.dateTime),
                                 ProcessData.ProcessState.POST_SURGERY,
                                 surgicalProcessRepository
                             ).execute()
