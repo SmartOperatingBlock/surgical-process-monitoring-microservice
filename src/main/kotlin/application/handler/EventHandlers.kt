@@ -276,42 +276,52 @@ object EventHandlers {
                                 .firstOrNull {
                                     it.patient?.id?.id == this.data.patientId
                                 }
-                        if (surgicalProcess == null) {
-                            val surgeryBooking =
-                                SurgeryBookingServices.GetSurgeryBookingByPatient(
-                                    PatientData.PatientId(this.data.patientId),
-                                    surgeryBookingRepository
-                                ).execute()
-                            if (surgeryBooking != null) {
-                                SurgicalProcessServices.CreateSurgicalProcess(
-                                    SurgicalProcess(
-                                        ProcessData.ProcessId(
-                                            "${surgeryBooking.surgeryType}-${this.data.patientId}${this.dateTime}"
+                        if (this.data.entered) {
+                            if (surgicalProcess == null) {
+                                val surgeryBooking =
+                                    SurgeryBookingServices.GetSurgeryBookingByPatient(
+                                        PatientData.PatientId(this.data.patientId),
+                                        surgeryBookingRepository
+                                    ).execute()
+                                if (surgeryBooking != null) {
+                                    SurgicalProcessServices.CreateSurgicalProcess(
+                                        SurgicalProcess(
+                                            ProcessData.ProcessId(
+                                                "${surgeryBooking.surgeryType}-${this.data.patientId}${this.dateTime}"
+                                            ),
+                                            Instant.now(),
+                                            surgeryBooking.surgeryType,
+                                            surgeryBooking.patient,
+                                            surgeryBooking.healthProfessional,
+                                            Room(
+                                                RoomData.RoomId(this.data.roomId),
+                                                type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
+                                            ),
+                                            ProcessData.ProcessState.PRE_SURGERY,
+                                            ProcessData.ProcessStep.PATIENT_IN_PREPARATION
                                         ),
-                                        Instant.now(),
-                                        surgeryBooking.surgeryType,
-                                        surgeryBooking.patient,
-                                        surgeryBooking.healthProfessional,
-                                        Room(
-                                            RoomData.RoomId(this.data.roomId),
-                                            type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
-                                        ),
-                                        ProcessData.ProcessState.PRE_SURGERY,
-                                        ProcessData.ProcessStep.PATIENT_IN_PREPARATION
-                                    ),
+                                        surgicalProcessRepository
+                                    ).execute() != null
+                                } else false
+                            } else {
+                                SurgicalProcessServices.UpdateSurgicalProcessState(
+                                    surgicalProcess.id,
+                                    Instant.parse(this.dateTime),
+                                    ProcessData.ProcessState.POST_SURGERY,
                                     surgicalProcessRepository
-                                ).execute() != null
-                            } else false
+                                ).execute()
+                            }
                         } else {
-                            SurgicalProcessServices.UpdateSurgicalProcessState(
-                                surgicalProcess.id,
-                                Instant.parse(this.dateTime),
-                                ProcessData.ProcessState.POST_SURGERY,
-                                surgicalProcessRepository
-                            ).execute()
+                            if (surgicalProcess != null) {
+                                SurgicalProcessServices.UpdateSurgicalProcessState(
+                                    surgicalProcess.id,
+                                    Instant.parse(event.dateTime),
+                                    ProcessData.ProcessState.TERMINATED,
+                                    surgicalProcessRepository
+                                ).execute()
+                            } else false
                         }
                     }
-
                     ProcessEventsPayloads.RoomType.OPERATING_ROOM -> {
                         false
                     }
