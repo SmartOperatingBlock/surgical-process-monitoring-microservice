@@ -17,7 +17,9 @@ import application.presenter.database.model.TimeSeriesMedicalTechnologyUsageMeta
 import application.presenter.database.model.TimeSeriesPatientMedicalData
 import application.presenter.database.model.TimeSeriesPatientMedicalDataMetadata
 import application.presenter.database.model.TimeSeriesProcessStateEvent
+import application.presenter.database.model.TimeSeriesProcessStateEventMetadata
 import application.presenter.database.model.TimeSeriesProcessStepEvent
+import application.presenter.database.model.TimeSeriesProcessStepEventMetadata
 import application.presenter.database.model.toPatientMedicalData
 import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
@@ -36,7 +38,6 @@ import org.litote.kmongo.getCollection
 import org.litote.kmongo.gt
 import org.litote.kmongo.lte
 import org.litote.kmongo.ne
-import org.litote.kmongo.updateOne
 import java.time.Instant
 
 /**
@@ -150,7 +151,8 @@ class DatabaseManager(
         state: ProcessData.ProcessState
     ): Boolean =
         this.processStateEventCollection.safeMongoDbWrite(defaultResult = false) {
-            updateOne(SurgicalProcess::id eq processId).wasAcknowledged()
+            insertOne(TimeSeriesProcessStateEvent(dateTime, TimeSeriesProcessStateEventMetadata(processId), state))
+                .wasAcknowledged()
         }
 
     override fun updateSurgicalProcessStep(
@@ -159,7 +161,8 @@ class DatabaseManager(
         step: ProcessData.ProcessStep
     ): Boolean =
         this.processStepEventCollection.safeMongoDbWrite(defaultResult = false) {
-            updateOne(SurgicalProcess::id eq processId).wasAcknowledged()
+            insertOne(TimeSeriesProcessStepEvent(dateTime, TimeSeriesProcessStepEventMetadata(processId), step))
+                .wasAcknowledged()
         }
 
     private fun <T, R> MongoCollection<T>.safeMongoDbWrite(defaultResult: R, operation: MongoCollection<T>.() -> R): R =
