@@ -21,6 +21,7 @@ import application.presenter.database.model.TimeSeriesProcessStateEventMetadata
 import application.presenter.database.model.TimeSeriesProcessStepEvent
 import application.presenter.database.model.TimeSeriesProcessStepEventMetadata
 import application.presenter.database.model.toPatientMedicalData
+import application.presenter.database.model.toTimeSeriesMedicalData
 import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
@@ -35,7 +36,7 @@ import org.litote.kmongo.eq
 import org.litote.kmongo.find
 import org.litote.kmongo.findOne
 import org.litote.kmongo.getCollection
-import org.litote.kmongo.gt
+import org.litote.kmongo.gte
 import org.litote.kmongo.lte
 import org.litote.kmongo.ne
 import java.time.Instant
@@ -96,9 +97,12 @@ class DatabaseManager(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
         dateTime: Instant
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
+    ): Boolean =
+        this.patientMedicalDataCollection.safeMongoDbWrite(defaultResult = false) {
+            insertOne(
+                medicalData.toTimeSeriesMedicalData(dateTime, patientId)
+            ).wasAcknowledged()
+        }
 
     override fun getPatientMedicalData(
         patientId: PatientData.PatientId,
@@ -108,7 +112,7 @@ class DatabaseManager(
         var patientMedicalData = PatientData.MedicalData()
         return this.patientMedicalDataCollection.find(
             TimeSeriesPatientMedicalData::metadata / TimeSeriesPatientMedicalDataMetadata::patientId eq patientId,
-            TimeSeriesPatientMedicalData::dateTime gt from,
+            TimeSeriesPatientMedicalData::dateTime gte from,
             TimeSeriesPatientMedicalData::dateTime lte to
         ).ascendingSort(TimeSeriesPatientMedicalData::dateTime).toList().map {
             val updatedPatientMedicalData = mapOf(it.metadata.type to it).toPatientMedicalData(patientMedicalData)
