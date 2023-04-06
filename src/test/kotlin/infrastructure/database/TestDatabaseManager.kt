@@ -20,6 +20,7 @@ import entity.room.RoomData
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 class TestDatabaseManager : StringSpec({
 
@@ -50,6 +51,17 @@ class TestDatabaseManager : StringSpec({
         healthProfessional,
         room,
         ProcessData.ProcessState.SURGERY,
+        ProcessData.ProcessStep.ANESTHESIA
+    )
+
+    val surgicalProcessTerminated = SurgicalProcess(
+        processId,
+        Instant.now(),
+        "operation",
+        patient,
+        healthProfessional,
+        room,
+        ProcessData.ProcessState.TERMINATED,
         ProcessData.ProcessStep.ANESTHESIA
     )
 
@@ -111,6 +123,55 @@ class TestDatabaseManager : StringSpec({
                 Instant.now(),
                 ProcessData.ProcessStep.ANESTHESIA
             ) shouldBe true
+        }
+    }
+
+    "test get current surgical process step" {
+        withMongo {
+            val mongoClient = DatabaseManager("mongodb://localhost:27017").also {
+                it.database.drop()
+            }
+            mongoClient.createSurgicalProcess(surgicalProcess)
+            mongoClient.createSurgicalProcess(surgicalProcessTerminated)
+            mongoClient.getCurrentSurgicalProcesses().size shouldBe 1
+        }
+    }
+
+    "test update patient medical data" {
+        withMongo {
+            val mongoClient = DatabaseManager("mongodb://localhost:27017").also {
+                it.database.drop()
+            }
+            val dateTime = Instant.now().truncatedTo(ChronoUnit.SECONDS)
+            mongoClient.updatePatientMedicalData(
+                patient.id,
+                PatientData.MedicalData(PatientData.HeartBeat(40)),
+                dateTime
+            )
+            mongoClient.getPatientMedicalData(
+                patient.id,
+                dateTime,
+                dateTime
+            ).first() shouldBe Pair(dateTime, PatientData.MedicalData(PatientData.HeartBeat(40)))
+        }
+    }
+
+    "test get patient medical data with no medical data in the range" {
+        withMongo {
+            val mongoClient = DatabaseManager("mongodb://localhost:27017").also {
+                it.database.drop()
+            }
+            val dateTime = Instant.now().truncatedTo(ChronoUnit.SECONDS)
+            mongoClient.updatePatientMedicalData(
+                patient.id,
+                PatientData.MedicalData(saturationPercentage = PatientData.SaturationPercentage(24)),
+                dateTime
+            )
+            mongoClient.getPatientMedicalData(
+                patient.id,
+                dateTime.plusSeconds(10),
+                dateTime.plusSeconds(20)
+            ).size shouldBe 0
         }
     }
 })
