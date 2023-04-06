@@ -87,3 +87,42 @@ fun Map<MedicalDataType, TimeSeriesPatientMedicalData?>.toPatientMedicalData(
         )
     } ?: startData?.bodyTemperature,
 )
+
+/**
+ * Convert patient medical data to time series medical data.
+ * @param dateTime the datetime of the medical data.
+ * @param patientId the id of the patient.
+ */
+fun PatientData.MedicalData.toTimeSeriesMedicalData(dateTime: Instant, patientId: PatientData.PatientId) =
+    getMedicalDataType(this).run {
+        TimeSeriesPatientMedicalData(
+            dateTime,
+            TimeSeriesPatientMedicalDataMetadata(
+                patientId,
+                this.first
+            ),
+            this.second
+        )
+    }
+
+private fun getMedicalDataType(medicalData: PatientData.MedicalData): Pair<MedicalDataType, Double> =
+    listOfNotNull(
+        medicalData.heartBeat?.let {
+            Pair(MedicalDataType.HEARTH_BEAT, it.bpm.toDouble())
+        },
+        medicalData.diastolicBloodPressure?.let {
+            Pair(MedicalDataType.DIASTOLIC_BLOOD_PRESSURE, it.pressure.toDouble())
+        },
+        medicalData.systolicBloodPressure?.let {
+            Pair(MedicalDataType.SYSTOLIC_BLOOD_PRESSURE, it.pressure.toDouble())
+        },
+        medicalData.bodyTemperature?.let {
+            Pair(MedicalDataType.BODY_TEMPERATURE, it.degree)
+        },
+        medicalData.respiratoryRate?.let {
+            Pair(MedicalDataType.RESPIRATION_RATE, it.rate.toDouble())
+        },
+        medicalData.saturationPercentage?.let {
+            Pair(MedicalDataType.SATURATION_PERCENTAGE, it.percentage.toDouble())
+        }
+    ).first()
