@@ -22,6 +22,8 @@ class TestRoom : StringSpec({
 
     "Room should be equal to other room with same id" {
         val id = RoomData.RoomId("room-1")
-        Room(id, type = RoomData.RoomType.OPERATING_ROOM) shouldBe Room(id, type = RoomData.RoomType.OPERATING_ROOM)
+        val first = Room(id, type = RoomData.RoomType.OPERATING_ROOM)
+        val second = Room(id, type = RoomData.RoomType.OPERATING_ROOM)
+        first shouldBe second
     }
 })

@@ -36,18 +36,21 @@ class TestSurgeryBooking : StringSpec({
 
     "Surgery booking should be equal to other booking with same id" {
         val id = SurgeryBookingData.SurgeryBookingId("sb-1")
-        SurgeryBooking(
-            id,
-            Instant.now(),
-            healthProfessional,
-            patient,
-            "Colonscopy"
-        ) shouldBe SurgeryBooking(
+        val first = SurgeryBooking(
             id,
             Instant.now(),
             healthProfessional,
             patient,
             "Colonscopy"
         )
+        val second = SurgeryBooking(
+            id,
+            Instant.now(),
+            healthProfessional,
+            patient,
+            "Colonscopy"
+        )
+
+        first shouldBe second
     }
 })

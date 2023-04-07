@@ -22,7 +22,8 @@ class TestPatient : StringSpec({
 
     "Patient should be equal to another patient with same id" {
         val id = PatientData.PatientId("patient-1")
-        Patient(id, medicalData = PatientData.MedicalData()) shouldBe
-            Patient(id, medicalData = PatientData.MedicalData())
+        val first = Patient(id, medicalData = PatientData.MedicalData())
+        val second = Patient(id, medicalData = PatientData.MedicalData())
+        first shouldBe second
     }
 })

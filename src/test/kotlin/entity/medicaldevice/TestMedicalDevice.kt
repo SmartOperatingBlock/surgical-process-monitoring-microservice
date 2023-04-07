@@ -36,24 +36,28 @@ class TestMedicalDevice : StringSpec({
 
     "Medical technology should be equal to another medical technology with same id" {
         val id = MedicalDeviceData.MedicalTechnologyId("mt-1")
-        MedicalTechnology(
-            id,
-            "x-ray-1",
-            type = MedicalDeviceData.MedicalTechnologyType.X_RAY,
-            inUse = false
-        ) shouldBe MedicalTechnology(
+        val first = MedicalTechnology(
             id,
             "x-ray-1",
             type = MedicalDeviceData.MedicalTechnologyType.X_RAY,
             inUse = false
         )
+        val second = MedicalTechnology(
+            id,
+            "x-ray-1",
+            type = MedicalDeviceData.MedicalTechnologyType.X_RAY,
+            inUse = false
+        )
+        first shouldBe second
     }
 
     "Implantable medical device should be equal to another device with same id" {
         val id = MedicalDeviceData.ImplantableMedicalDeviceId("imd-1")
-        ImplantableMedicalDevice(
+        val first = ImplantableMedicalDevice(
             id,
             MedicalDeviceData.DeviceType.PACE_MAKER
-        ) shouldBe ImplantableMedicalDevice(id, MedicalDeviceData.DeviceType.PACE_MAKER)
+        )
+        val second = ImplantableMedicalDevice(id, MedicalDeviceData.DeviceType.PACE_MAKER)
+        first shouldBe second
     }
 })

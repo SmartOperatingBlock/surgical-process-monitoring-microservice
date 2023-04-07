@@ -22,6 +22,8 @@ class TestHealthProfessional : StringSpec({
 
     "Health professional should be equal to another health professional with same id" {
         val id = HealthProfessionalData.HealthProfessionalId("12345678")
-        HealthProfessional(id) shouldBe HealthProfessional(id)
+        val first = HealthProfessional(id)
+        val second = HealthProfessional(id)
+        first shouldBe second
     }
 })

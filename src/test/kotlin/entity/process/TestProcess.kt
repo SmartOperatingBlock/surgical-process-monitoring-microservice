@@ -40,15 +40,7 @@ class TestProcess : StringSpec({
 
     "Surgical Process should be equal to other process with same id" {
         val id = ProcessData.ProcessId("sp-1")
-        SurgicalProcess(
-            id,
-            Instant.now(),
-            "Surgery-1",
-            patient,
-            healthProfessional,
-            Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
-            ProcessData.ProcessState.PRE_SURGERY,
-        ) shouldBe SurgicalProcess(
+        val first = SurgicalProcess(
             id,
             Instant.now(),
             "Surgery-1",
@@ -57,5 +49,15 @@ class TestProcess : StringSpec({
             Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
             ProcessData.ProcessState.PRE_SURGERY,
         )
+        val second = SurgicalProcess(
+            id,
+            Instant.now(),
+            "Surgery-1",
+            patient,
+            healthProfessional,
+            Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
+            ProcessData.ProcessState.PRE_SURGERY,
+        )
+        first shouldBe second
     }
 })
