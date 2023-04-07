@@ -1,0 +1,112 @@
+openapi: 3.0.0
+servers:
+  - description: Surgical Process Monitoring Microservice
+    url: http://localhost:<port>/api
+info:
+  description: This is the API of the Surgical Process Monitoring microservice within the Smart Operating Block project.
+  version: 1.0.0
+  title: Surgical Process Monitoring API
+  contact:
+    email: info@smartoperatingblock.com
+  license:
+    name: MIT License
+    url: 'https://opensource.org/license/mit/'
+
+tags:
+  - name: Surgical Processes API
+    description: This is the available API to get information about current surgical processes whithin the Operating Block.
+
+paths:
+  /processes:
+    get:
+      tags:
+        - Surgical Processes API
+      summary: get all current surgical processes
+      operationId: getSurgicalProcesses
+      description: Get all current Surgical Processes
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfProcesses'
+        '204':
+          description: no rooms present
+        '500':
+          description: server error occurred
+
+
+components:
+  schemas:
+    ArrayOfProcesses:
+      type: object
+      properties:
+        entries:
+          type: array
+          description: processes entries
+          items:
+            type: object
+            properties:
+              processEntry:
+                $ref: '#/components/schemas/ProcessEntry'
+        total:
+          type: integer
+          description: the total number of processes
+
+    ProcessEntry:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ProcessId'
+        dateTime:
+          type: string
+        type:
+          type: string
+        patient:
+          $ref: '#/components/schemas/Patient'
+        healthProfessional:
+          $ref: '#/components/schemas/HealthProfessional'
+        room:
+          $ref: '#/components/schemas/Room'
+        state:
+          type: string
+        step:
+          type: string
+
+    ProcessId:
+      type: object
+      properties:
+        id:
+          type: string
+
+    Patient:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+
+
+    HealthProfessional:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        role:
+          type: string
+
+    Room:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
