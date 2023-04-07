@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ProcessEventsKeys</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>surgical-process-monitoring-microservice</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="surgical-process-monitoring-microservice::application.presenter.event.model/ProcessEventsKeys///PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">surgical-process-monitoring-microservice</a><span class="delimiter">/</span><a href="../index.html">application.presenter.event.model</a><span class="delimiter">/</span><span class="current">ProcessEventsKeys</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Process</span><wbr></wbr><span>Events</span><wbr></wbr><span><span>Keys</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">ProcessEventsKeys</a></div><p class="paragraph">Module that wrap all the possible keys for process events.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1602428012%2FProperties%2F769193423" anchor-label="EMERGENCY_SURGERY_EVENT" id="1602428012%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-m-e-r-g-e-n-c-y_-s-u-r-g-e-r-y_-e-v-e-n-t.html"><span><span>EMERGENCY_SURGERY_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1602428012%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-e-m-e-r-g-e-n-c-y_-s-u-r-g-e-r-y_-e-v-e-n-t.html">EMERGENCY_SURGERY_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the event of an emergency surgery.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1216300245%2FProperties%2F769193423" anchor-label="MEDICAL_DEVICE_USAGE_EVENT" id="-1216300245%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-e-d-i-c-a-l_-d-e-v-i-c-e_-u-s-a-g-e_-e-v-e-n-t.html"><span><span>MEDICAL_DEVICE_USAGE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1216300245%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-m-e-d-i-c-a-l_-d-e-v-i-c-e_-u-s-a-g-e_-e-v-e-n-t.html">MEDICAL_DEVICE_USAGE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the medical device usage event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1497522763%2FProperties%2F769193423" anchor-label="MEDICAL_TECHNOLOGY_USAGE_EVENT" id="-1497522763%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-e-d-i-c-a-l_-t-e-c-h-n-o-l-o-g-y_-u-s-a-g-e_-e-v-e-n-t.html"><span><span>MEDICAL_TECHNOLOGY_USAGE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1497522763%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-m-e-d-i-c-a-l_-t-e-c-h-n-o-l-o-g-y_-u-s-a-g-e_-e-v-e-n-t.html">MEDICAL_TECHNOLOGY_USAGE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the medical technology usage event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1855420732%2FProperties%2F769193423" anchor-label="PATIENT_BODY_TEMPERATURE_UPDATE_EVENT" id="1855420732%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-b-o-d-y_-t-e-m-p-e-r-a-t-u-r-e_-u-p-d-a-t-e_-e-v-e-n-t.html"><span><span>PATIENT_BODY_TEMPERATURE_UPDATE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1855420732%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-b-o-d-y_-t-e-m-p-e-r-a-t-u-r-e_-u-p-d-a-t-e_-e-v-e-n-t.html">PATIENT_BODY_TEMPERATURE_UPDATE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the body temperature update event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1901211317%2FProperties%2F769193423" anchor-label="PATIENT_DIASTOLIC_PRESSURE_UPDATE_EVENT" id="1901211317%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-d-i-a-s-t-o-l-i-c_-p-r-e-s-s-u-r-e_-u-p-d-a-t-e_-e-v-e-n-t.html"><span><span>PATIENT_DIASTOLIC_PRESSURE_UPDATE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1901211317%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-d-i-a-s-t-o-l-i-c_-p-r-e-s-s-u-r-e_-u-p-d-a-t-e_-e-v-e-n-t.html">PATIENT_DIASTOLIC_PRESSURE_UPDATE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the diastolic pressure update event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1896660331%2FProperties%2F769193423" anchor-label="PATIENT_HEARTBEAT_UPDATE_EVENT" id="1896660331%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-h-e-a-r-t-b-e-a-t_-u-p-d-a-t-e_-e-v-e-n-t.html"><span><span>PATIENT_HEARTBEAT_UPDATE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1896660331%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-h-e-a-r-t-b-e-a-t_-u-p-d-a-t-e_-e-v-e-n-t.html">PATIENT_HEARTBEAT_UPDATE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the heartbeat update event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1111387482%2FProperties%2F769193423" anchor-label="PATIENT_ON_OB_EVENT" id="1111387482%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-o-n_-o-b_-e-v-e-n-t.html"><span><span>PATIENT_ON_OB_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1111387482%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-o-n_-o-b_-e-v-e-n-t.html">PATIENT_ON_OB_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the patient on operating bed event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1561905178%2FProperties%2F769193423" anchor-label="PATIENT_RESPIRATORY_RATE_UPDATE_EVENT" id="1561905178%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-r-e-s-p-i-r-a-t-o-r-y_-r-a-t-e_-u-p-d-a-t-e_-e-v-e-n-t.html"><span><span>PATIENT_RESPIRATORY_RATE_UPDATE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1561905178%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-r-e-s-p-i-r-a-t-o-r-y_-r-a-t-e_-u-p-d-a-t-e_-e-v-e-n-t.html">PATIENT_RESPIRATORY_RATE_UPDATE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the respiratory rate update event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1173476055%2FProperties%2F769193423" anchor-label="PATIENT_SATURATION_UPDATE_EVENT" id="1173476055%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-s-a-t-u-r-a-t-i-o-n_-u-p-d-a-t-e_-e-v-e-n-t.html"><span><span>PATIENT_SATURATION_UPDATE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1173476055%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-s-a-t-u-r-a-t-i-o-n_-u-p-d-a-t-e_-e-v-e-n-t.html">PATIENT_SATURATION_UPDATE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the saturation update event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="425598453%2FProperties%2F769193423" anchor-label="PATIENT_SYSTOLIC_PRESSURE_UPDATE_EVENT" id="425598453%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-s-y-s-t-o-l-i-c_-p-r-e-s-s-u-r-e_-u-p-d-a-t-e_-e-v-e-n-t.html"><span><span>PATIENT_SYSTOLIC_PRESSURE_UPDATE_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="425598453%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-s-y-s-t-o-l-i-c_-p-r-e-s-s-u-r-e_-u-p-d-a-t-e_-e-v-e-n-t.html">PATIENT_SYSTOLIC_PRESSURE_UPDATE_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the systolic pressure update event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1506995427%2FProperties%2F769193423" anchor-label="PATIENT_TRACKED_EVENT" id="1506995427%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-t-i-e-n-t_-t-r-a-c-k-e-d_-e-v-e-n-t.html"><span><span>PATIENT_TRACKED_EVENT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1506995427%2FProperties%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-p-a-t-i-e-n-t_-t-r-a-c-k-e-d_-e-v-e-n-t.html">PATIENT_TRACKED_EVENT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The key of the patient tracking event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
