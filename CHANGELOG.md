@@ -1,3 +1,18 @@
+## [1.0.1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.0.0...1.0.1) (2023-04-11)
+
+
+### General maintenance
+
+* update README.md with sonarcloud links ([6926477](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6926477946e783d6f3eb928689c2fa4e6e219ca6))
+
+
+### Dependency updates
+
+* **core-deps:** update dependency org.jetbrains.kotlin.jvm to v1.8.20 ([4cb2c3e](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/4cb2c3eeae263c54738d9262200f63fc941958f8))
+* **core-deps:** update plugin kotlin-serialization to v1.8.20 ([d2ca492](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d2ca4921c0698d2c7b87dfcc11760c2815663b86))
+* **deps:** update dependency ch.qos.logback:logback-classic to v1.4.6 ([c894d99](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c894d995b8b3f64b0574243972921029a5d6cccc))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.6.2 ([4b1f89b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/4b1f89b45407ea07c9efe0f89e93844193f7ab43))
+
 ## 1.0.0 (2023-04-07)
 
 
