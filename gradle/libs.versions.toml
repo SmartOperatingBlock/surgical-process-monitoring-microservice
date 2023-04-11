@@ -15,7 +15,7 @@ kmongo = { module = "org.litote.kmongo:kmongo-serialization", version = "4.8.0" 
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
-kotest-assertions-ktor = { module = "io.kotest.extensions:kotest-assertions-ktor", version = "1.0.3" }
+kotest-assertions-ktor = { module = "io.kotest.extensions:kotest-assertions-ktor", version = "2.0.0" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.5.0" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
