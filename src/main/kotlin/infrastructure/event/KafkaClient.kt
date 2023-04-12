@@ -13,7 +13,8 @@ import application.controller.PatientDataController
 import application.controller.SurgeryBookingController
 import application.controller.SurgicalProcessController
 import application.handler.EventHandler
-import application.handler.EventHandlers
+import application.handler.PatientEventHandlers
+import application.handler.ProcessEventHandlers
 import application.presenter.event.serialization.EventSerialization.toEvent
 import com.fasterxml.jackson.databind.ObjectMapper
 import infrastructure.provider.ManagerProvider
@@ -57,17 +58,17 @@ class KafkaClient(private val provider: ManagerProvider) {
         val surgeryBookingController = SurgeryBookingController(provider.surgeryBookingDigitalTwinManager)
 
         eventHandlers = listOf(
-            EventHandlers.MedicalDeviceUsageEventHandler(medicalDeviceController),
-            EventHandlers.MedicalTechnologyUsageEventHandler(medicalDeviceController),
-            EventHandlers.PatientOnOperatingTableEventHandler(surgicalProcessController),
-            EventHandlers.BodyTemperatureUpdateEventHandler(patientDataController),
-            EventHandlers.DiastolicPressureUpdateEventHandler(patientDataController),
-            EventHandlers.SystolicPressureUpdateEventHandler(patientDataController),
-            EventHandlers.RespiratoryRateUpdateEventHandler(patientDataController),
-            EventHandlers.SaturationUpdateEventHandler(patientDataController),
-            EventHandlers.HeartbeatUpdateEventHandler(patientDataController),
-            EventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController),
-            EventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController)
+            ProcessEventHandlers.MedicalDeviceUsageEventHandler(medicalDeviceController),
+            ProcessEventHandlers.MedicalTechnologyUsageEventHandler(medicalDeviceController),
+            PatientEventHandlers.PatientOnOperatingTableEventHandler(surgicalProcessController),
+            PatientEventHandlers.BodyTemperatureUpdateEventHandler(patientDataController),
+            PatientEventHandlers.DiastolicPressureUpdateEventHandler(patientDataController),
+            PatientEventHandlers.SystolicPressureUpdateEventHandler(patientDataController),
+            PatientEventHandlers.RespiratoryRateUpdateEventHandler(patientDataController),
+            PatientEventHandlers.SaturationUpdateEventHandler(patientDataController),
+            PatientEventHandlers.HeartbeatUpdateEventHandler(patientDataController),
+            ProcessEventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController),
+            ProcessEventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController)
         )
     }
 
