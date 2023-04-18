@@ -9,6 +9,7 @@
 package application.handler
 
 import application.handler.ProcessEventHandlers.cast
+import application.handler.ProcessEventHandlers.isSurgicalProcessOver
 import application.presenter.event.model.Event
 import application.presenter.event.model.ProcessEvent
 import application.presenter.event.model.payloads.ProcessEventsPayloads
@@ -38,18 +39,22 @@ object PatientEventHandlers {
 
         override fun consume(event: Event<*>) {
             event.cast<ProcessEvent<ProcessEventsPayloads.PatientOnOperatingTable>> {
-                SurgicalProcessServices.UpdateSurgicalProcessState(
-                    ProcessData.ProcessId(this.data.processId),
-                    Instant.parse(this.dateTime),
-                    ProcessData.ProcessState.SURGERY,
-                    surgicalProcessRepository
-                ).execute() &&
-                    SurgicalProcessServices.UpdateSurgicalProcessStep(
+                if (!isSurgicalProcessOver(this.data.processId, surgicalProcessRepository)) {
+                    SurgicalProcessServices.UpdateSurgicalProcessState(
                         ProcessData.ProcessId(this.data.processId),
                         Instant.parse(this.dateTime),
-                        ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
+                        ProcessData.ProcessState.SURGERY,
                         surgicalProcessRepository
-                    ).execute()
+                    ).execute() &&
+                        SurgicalProcessServices.UpdateSurgicalProcessStep(
+                            ProcessData.ProcessId(this.data.processId),
+                            Instant.parse(this.dateTime),
+                            ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
+                            surgicalProcessRepository
+                        ).execute()
+                } else {
+                    false
+                }
             }
         }
     }
