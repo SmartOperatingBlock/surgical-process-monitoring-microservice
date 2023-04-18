@@ -26,6 +26,7 @@ import entity.patient.Patient
 import entity.patient.PatientData
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.room.Room
 import entity.room.RoomData
 import infrastructure.digitaltwin.presenter.PatientAdt.toDigitalTwin
 import infrastructure.digitaltwin.presenter.SurgeryBookingAdt
@@ -137,6 +138,8 @@ class DigitalTwinManager :
                         ),
                         BasicRelationship::class.java
                     )
+                    process.preOperatingRoom?.let { room -> updateSurgicalProcessRoom(process.id, room) }
+                    process.operatingRoom?.let { room -> updateSurgicalProcessRoom(process.id, room) }
                 }
                 true
             }
@@ -154,6 +157,28 @@ class DigitalTwinManager :
     override fun updateSurgicalProcessStep(processId: ProcessData.ProcessId, step: ProcessData.ProcessStep): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
             updateDigitalTwin(processId.id, JsonPatchDocument().appendAdd("process_step", step.ordinal))
+            true
+        }
+
+    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean =
+        this.dtClient.applySafeDigitalTwinOperation(false) {
+            this.listRelationships(processId.id, BasicRelationship::class.java).forEach {
+                if (it.targetId == room.id.id) {
+                    this.deleteRelationship(it.sourceId, it.id)
+                }
+            }.let {
+                this.createOrReplaceRelationship(
+                    processId.id,
+                    "${processId.id}-${room.id.id}",
+                    BasicRelationship(
+                        "${processId.id}-${room.id.id}",
+                        processId.id,
+                        room.id.id,
+                        SurgicalProcessAdt.ROOM_RELATIONSHIP
+                    ),
+                    BasicRelationship::class.java
+                )
+            }
             true
         }
 
