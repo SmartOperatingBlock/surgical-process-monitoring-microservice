@@ -10,6 +10,7 @@ package usecase.repository
 
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.room.Room
 import java.time.Instant
 
 /**
@@ -54,5 +55,13 @@ interface SurgicalProcessRepository {
         processId: ProcessData.ProcessId,
         dateTime: Instant,
         step: ProcessData.ProcessStep
+    ): Boolean
+
+    /**
+     * Update the [room] of a [SurgicalProcess] by its [processId].
+     */
+    fun updateSurgicalProcessRoom(
+        processId: ProcessData.ProcessId,
+        room: Room
     ): Boolean
 }

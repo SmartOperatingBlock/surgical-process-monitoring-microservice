@@ -10,6 +10,7 @@ package application.controller.manager
 
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.room.Room
 
 /** This interface models the operation on Digital Twins of [SurgicalProcess]. */
 interface ProcessDigitalTwinManager {
@@ -33,5 +34,13 @@ interface ProcessDigitalTwinManager {
     fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
         step: ProcessData.ProcessStep
+    ): Boolean
+
+    /**
+     * Update the [room] of a surgical process given its [processId].
+     */
+    fun updateSurgicalProcessRoom(
+        processId: ProcessData.ProcessId,
+        room: Room
     ): Boolean
 }

@@ -10,6 +10,7 @@ package application.service
 
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.room.Room
 import usecase.repository.SurgicalProcessRepository
 import java.time.Instant
 
@@ -71,5 +72,17 @@ object SurgicalProcessServices {
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
             surgicalProcessRepository.updateSurgicalProcessStep(surgicalProcessId, dateTime, step)
+    }
+
+    /**
+     * The Application Service to update the [room] of a [SurgicalProcess] by its [surgicalProcessId].
+     */
+    class UpdateSurgicalProcessRoom(
+        private val surgicalProcessId: ProcessData.ProcessId,
+        private val room: Room,
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean =
+            surgicalProcessRepository.updateSurgicalProcessRoom(surgicalProcessId, room)
     }
 }

@@ -92,13 +92,13 @@ object ProcessEventHandlers {
 
         override fun consume(event: Event<*>) {
             event.cast<ProcessEvent<ProcessEventsPayloads.PatientTracked>> {
+                val surgicalProcess: SurgicalProcess? =
+                    SurgicalProcessServices.GetCurrentSurgicalProcesses(surgicalProcessRepository).execute()
+                        .firstOrNull {
+                            it.patientId.id == this.data.patientId
+                        }
                 when (this.data.roomType) {
                     ProcessEventsPayloads.RoomType.PRE_OPERATING_ROOM -> {
-                        val surgicalProcess: SurgicalProcess? =
-                            SurgicalProcessServices.GetCurrentSurgicalProcesses(surgicalProcessRepository).execute()
-                                .firstOrNull {
-                                    it.patientId.id == this.data.patientId
-                                }
                         if (this.data.entered) {
                             if (surgicalProcess == null) {
                                 val surgeryBooking =
@@ -116,7 +116,7 @@ object ProcessEventHandlers {
                                             surgeryBooking.surgeryType,
                                             surgeryBooking.patientId,
                                             surgeryBooking.healthProfessionalId,
-                                            operatingRoom = Room(
+                                            preOperatingRoom = Room(
                                                 RoomData.RoomId(this.data.roomId),
                                                 type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
                                             ),
@@ -135,7 +135,11 @@ object ProcessEventHandlers {
                                 ).execute()
                             }
                         } else {
-                            if (surgicalProcess != null) {
+                            if (surgicalProcess != null && !isSurgicalProcessOver(
+                                    surgicalProcess.id.id,
+                                    surgicalProcessRepository
+                                )
+                            ) {
                                 SurgicalProcessServices.UpdateSurgicalProcessState(
                                     surgicalProcess.id,
                                     Instant.parse(event.dateTime),
@@ -146,6 +150,13 @@ object ProcessEventHandlers {
                         }
                     }
                     ProcessEventsPayloads.RoomType.OPERATING_ROOM -> {
+                        surgicalProcess?.let {
+                            SurgicalProcessServices.UpdateSurgicalProcessRoom(
+                                it.id,
+                                Room(RoomData.RoomId(this.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
+                                surgicalProcessRepository
+                            ).execute()
+                        }
                         false
                     }
                 }
@@ -198,7 +209,23 @@ object ProcessEventHandlers {
     }
 
     /** Utility function to cast en event to its type. */
-    public inline fun <reified T> Any?.cast(operation: T.() -> Boolean = { true }): Boolean = if (this is T) {
+    inline fun <reified T> Any?.cast(operation: T.() -> Boolean = { true }): Boolean = if (this is T) {
         operation()
     } else false
+
+    /**
+     * Utility function to check if a [SurgicalProcess] is over.
+     */
+    fun isSurgicalProcessOver(processId: String, surgicalProcessRepository: SurgicalProcessRepository): Boolean {
+        val process = SurgicalProcessServices.GetSurgicalProcessById(
+            ProcessData.ProcessId(processId),
+            surgicalProcessRepository
+        ).execute()
+        return if (process != null) {
+            process.state != ProcessData.ProcessState.INTERRUPTED &&
+                process.state != ProcessData.ProcessState.TERMINATED
+        } else {
+            false
+        }
+    }
 }

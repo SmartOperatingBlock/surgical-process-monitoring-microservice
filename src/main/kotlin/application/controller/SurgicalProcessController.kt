@@ -12,6 +12,7 @@ import application.controller.manager.ProcessDatabaseManager
 import application.controller.manager.ProcessDigitalTwinManager
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.room.Room
 import usecase.repository.SurgicalProcessRepository
 import java.time.Instant
 
@@ -50,4 +51,8 @@ class SurgicalProcessController(
     ): Boolean =
         this.processDigitalTwinManager.updateSurgicalProcessStep(processId, step) &&
             this.processDatabaseManager.updateSurgicalProcessStep(processId, dateTime, step)
+
+    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean =
+        this.processDigitalTwinManager.updateSurgicalProcessRoom(processId, room) &&
+            this.processDatabaseManager.updateSurgicalProcessRoom(processId, room)
 }
