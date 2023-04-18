@@ -8,18 +8,18 @@
 
 package entity.booking
 
-import entity.healthprofessional.HealthProfessional
-import entity.patient.Patient
+import entity.healthprofessional.HealthProfessionalData
+import entity.patient.PatientData
 import java.time.Instant
 
 /** The model of a Surgery booking composed by the [id], the [dateTime],
- * the [healthProfessional], the [patient] and the [surgeryType].
+ * the [healthProfessionalId], the [patientId] and the [surgeryType].
  */
 data class SurgeryBooking(
     val id: SurgeryBookingData.SurgeryBookingId,
     val dateTime: Instant,
-    val healthProfessional: HealthProfessional,
-    val patient: Patient,
+    val healthProfessionalId: HealthProfessionalData.HealthProfessionalId,
+    val patientId: PatientData.PatientId,
     val surgeryType: String
 ) {
     override fun equals(other: Any?): Boolean = when {
