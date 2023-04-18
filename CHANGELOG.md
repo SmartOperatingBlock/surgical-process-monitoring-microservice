@@ -1,3 +1,62 @@
+## [1.0.2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.0.1...1.0.2) (2023-04-18)
+
+
+### Build and continuous integration
+
+* **deps:** update codecov/codecov-action action to v3.1.2 ([71c106b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/71c106b9b63da7d5385cd32d1c4a2e305fc04820))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.azure:azure-identity to v1.8.2 ([2c4b89d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/2c4b89d7cf81f512f18a487a34dfea1b5a90772b))
+* **deps:** update dependency gradle to v8.1 ([b97c080](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/b97c0805b4ba60a1ffbe26d3a06e22b3b901e308))
+* **deps:** update dependency io.confluent:kafka-json-serializer to v7.3.3 ([e3abc27](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e3abc27cfdccd5d3857ba974b5922fb339f96b36))
+* **deps:** update dependency io.kotest.extensions:kotest-assertions-ktor to v2 ([a8ac87c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a8ac87c625a4c514ef2c2daf38eb5af921a0bced))
+* **deps:** update dependency org.apache.kafka:kafka-clients to v7.3.3-ce ([c52e949](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c52e9491a00063e4db37bd932eeb451b38510e82))
+* **deps:** update dependency org.litote.kmongo:kmongo-serialization to v4.9.0 ([eb78e26](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/eb78e265d51ff9ed648c050afc680a0c43973345))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.24 ([dd61448](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/dd614482b7aedaed045cdb9a3ec44eaed9fad14d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.25 ([b96bb4b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/b96bb4b05b4ca8eeadb9ce2450ec29fa178a3247))
+* **deps:** update kotest to v5.6.0 ([8bebf08](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8bebf08ef8624db0ba1597b7b03665a7b679682c))
+* **deps:** update node.js to 18.16 ([c3efcae](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c3efcae8d8e8d97f596975213b307458724723fa))
+* **deps:** update plugin com.gradle.enterprise to v3.12.6 ([c17cf52](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c17cf5276cb55b2bf9afa86ecf2ae6e96e53e3f0))
+* **deps:** update plugin com.gradle.enterprise to v3.13 ([7c50656](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7c5065611a8caf4d4a12b3446604bd1dbad1cec4))
+* **deps:** update plugin kotlin-qa to v0.37.0 ([01d3a09](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/01d3a09c2cf035508e314fc8944d876b59d9059c))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.6 ([77218ac](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/77218acd36283d27f2e7f0cbda1587428bc5ad53))
+
+
+### Refactoring
+
+* move patient event handlers to dedicated object ([b697871](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/b697871f6bc7ade390fcb47dd65f77119f84e3de))
+
+
+### Documentation
+
+* add some documentation for adt relationships ([653577f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/653577f1f44dfc2e14874abad17b31239a20ad56))
+
+
+### Tests
+
+* change tests due to entity refactoring ([8df2adf](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8df2adf2e6460e53baca0e0bd132c6369be6c0d4))
+
+
+### General maintenance
+
+* add application service to update surgical process room ([75357b0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/75357b071bd443c242af4261d13fee31bf52c482))
+* add control to check if process is over ([49fcdbb](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/49fcdbb504bd872fdaa852a7f40fe3f134330b49))
+* add method to update room in azure dt ([b0ca8a2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/b0ca8a20675f922d24a2899ae183fcd929a519d4))
+* add pre-operating room to surgical process entity ([6fe5b65](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6fe5b657a57c9bb853c9423519b4006470203e06))
+* add utility class for adt query ([f6149e8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f6149e884fc2e9f2d3d74d5e8d14d82a54261b8a))
+* add utility class for adt query ([5e56534](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5e56534b7fdeb2a56f7cfa6a83faf5c3d1c3e6bb))
+* change return type of process application service ([8618a59](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8618a59466dedba0f71130ad908309dfbe31fb6d))
+* check if the process is interrupted in mongo query ([e216434](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e216434c765ff299ae901ee46978e176874594d1))
+* create azure digital twin manager ([44ad6fe](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/44ad6fe69985b9f99d3187ce3a93a55806766452))
+* create presenter for surgical process adt ([f05e83e](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f05e83e4071252e40d4c139f83adbdeb1c2e4f24))
+* create utility method for digital twin properties ([1d949d4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/1d949d4c4c63ac05aee63f4a7d632299830e346d))
+* create utility method for digital twin properties ([da9350c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/da9350c80ae446c2d40d9a5c6f4b29ba1f50b8f7))
+* implement azure digital twin operation ([9fab753](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/9fab7537cc38dea2f4621f0b38c667101ebb7ab9))
+* implement update room operation on mongo database manager ([764e3f9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/764e3f98fd75cf6958353c54c865fc42fd2aa7ac))
+* use id instead of entity in surgery booking ([ad8a07e](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ad8a07eaf00c1e774d9c2e97335793fd0f853e8a))
+
 ## [1.0.1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.0.0...1.0.1) (2023-04-11)
 
 
