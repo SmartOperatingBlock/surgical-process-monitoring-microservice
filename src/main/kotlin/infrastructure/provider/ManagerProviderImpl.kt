@@ -16,6 +16,7 @@ import application.controller.manager.ProcessDatabaseManager
 import application.controller.manager.ProcessDigitalTwinManager
 import application.controller.manager.SurgeryBookingDigitalTwinManager
 import infrastructure.database.DatabaseManager
+import infrastructure.digitaltwin.DigitalTwinManager
 
 /** The implementation of the [ManagerProvider]. */
 class ManagerProviderImpl : ManagerProvider {
@@ -25,11 +26,12 @@ class ManagerProviderImpl : ManagerProvider {
         }
     }
     private val databaseManager = DatabaseManager(System.getenv("SURGICAL_PROCESS_MONGODB_URL"))
+    private val digitalTwinManager = DigitalTwinManager()
     override val medicalDeviceDatabaseManager: MedicalDeviceDatabaseManager = databaseManager
-    override val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager = TODO()
+    override val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager = digitalTwinManager
     override val patientMedicalDataDatabaseManager: PatientMedicalDataDatabaseManager = databaseManager
-    override val patientDigitalTwinManager: PatientDigitalTwinManager = TODO()
+    override val patientDigitalTwinManager: PatientDigitalTwinManager = digitalTwinManager
     override val processDatabaseManager: ProcessDatabaseManager = databaseManager
-    override val processDigitalTwinManager: ProcessDigitalTwinManager = TODO()
-    override val surgeryBookingDigitalTwinManager: SurgeryBookingDigitalTwinManager = TODO()
+    override val processDigitalTwinManager: ProcessDigitalTwinManager = digitalTwinManager
+    override val surgeryBookingDigitalTwinManager: SurgeryBookingDigitalTwinManager = digitalTwinManager
 }
