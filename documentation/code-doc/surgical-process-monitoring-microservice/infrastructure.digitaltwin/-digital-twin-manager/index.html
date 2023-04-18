@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DigitalTwinManager</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>surgical-process-monitoring-microservice</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="surgical-process-monitoring-microservice::infrastructure.digitaltwin/DigitalTwinManager///PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">surgical-process-monitoring-microservice</a><span class="delimiter">/</span><a href="../index.html">infrastructure.digitaltwin</a><span class="delimiter">/</span><span class="current">DigitalTwinManager</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Digital</span><wbr></wbr><span>Twin</span><wbr></wbr><span><span>Manager</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">DigitalTwinManager</a> : <a href="../../application.controller.manager/-medical-device-digital-twin-manager/index.html">MedicalDeviceDigitalTwinManager</a>, <a href="../../application.controller.manager/-patient-digital-twin-manager/index.html">PatientDigitalTwinManager</a>, <a href="../../application.controller.manager/-process-digital-twin-manager/index.html">ProcessDigitalTwinManager</a>, <a href="../../application.controller.manager/-surgery-booking-digital-twin-manager/index.html">SurgeryBookingDigitalTwinManager</a></div><p class="paragraph">The manager of Digital Twins Operations.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-514256536%2FConstructors%2F769193423" anchor-label="DigitalTwinManager" id="-514256536%2FConstructors%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-digital-twin-manager.html"><span>Digital</span><wbr></wbr><span>Twin</span><wbr></wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-514256536%2FConstructors%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="170943084%2FClasslikes%2F769193423" anchor-label="Companion" id="170943084%2FClasslikes%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="170943084%2FClasslikes%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1803910273%2FFunctions%2F769193423" anchor-label="createPatientDT" id="-1803910273%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-patient-d-t.html"><span>create</span><wbr></wbr><span>Patient</span><wbr></wbr><span><span>DT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1803910273%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="create-patient-d-t.html"><span class="token function">createPatientDT</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">patientId<span class="token operator">: </span><a href="../../entity.patient/-patient-data/-patient-id/index.html">PatientData.PatientId</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../entity.patient/-patient/index.html">Patient</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Create the digital twin of a <a href="../../entity.patient/-patient/index.html">Patient</a> given its <a href="create-patient-d-t.html">patientId</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2054860421%2FFunctions%2F769193423" anchor-label="createSurgicalProcess" id="2054860421%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-surgical-process.html"><span>create</span><wbr></wbr><span>Surgical</span><wbr></wbr><span><span>Process</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2054860421%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="create-surgical-process.html"><span class="token function">createSurgicalProcess</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">process<span class="token operator">: </span><a href="../../entity.process/-surgical-process/index.html">SurgicalProcess</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Create the digital twin of the surgical <a href="create-surgical-process.html">process</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-148802464%2FFunctions%2F769193423" anchor-label="findSurgicalProcessByMedicalTechnology" id="-148802464%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-surgical-process-by-medical-technology.html"><span>find</span><wbr></wbr><span>Surgical</span><wbr></wbr><span>Process</span><wbr></wbr><span>By</span><wbr></wbr><span>Medical</span><wbr></wbr><span><span>Technology</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-148802464%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="find-surgical-process-by-medical-technology.html"><span class="token function">findSurgicalProcessByMedicalTechnology</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">medicalTechnologyId<span class="token operator">: </span><a href="../../entity.medicaldevice/-medical-device-data/-medical-technology-id/index.html">MedicalDeviceData.MedicalTechnologyId</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../entity.process/-process-data/-process-id/index.html">ProcessData.ProcessId</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Find the surgical process in which a medical technology is being used.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-279959532%2FFunctions%2F769193423" anchor-label="getSurgeryBookingByPatient" id="-279959532%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-surgery-booking-by-patient.html"><span>get</span><wbr></wbr><span>Surgery</span><wbr></wbr><span>Booking</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Patient</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-279959532%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="get-surgery-booking-by-patient.html"><span class="token function">getSurgeryBookingByPatient</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">patientId<span class="token operator">: </span><a href="../../entity.patient/-patient-data/-patient-id/index.html">PatientData.PatientId</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../entity.booking/-surgery-booking/index.html">SurgeryBooking</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get a <a href="../../entity.booking/-surgery-booking/index.html">SurgeryBooking</a> by the <a href="get-surgery-booking-by-patient.html">patientId</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="265321192%2FFunctions%2F769193423" anchor-label="mapRelationships" id="265321192%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-relationships.html"><span>map</span><wbr></wbr><span><span>Relationships</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="265321192%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="com.azure.digitaltwins.core/BasicDigitalTwin///PointingToDeclaration/">BasicDigitalTwin</span><span class="token punctuation">.</span><a href="map-relationships.html"><span class="token function">mapRelationships</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.azure.digitaltwins.core/BasicDigitalTwin///PointingToDeclaration/">BasicDigitalTwin</span></div><div class="brief "><p class="paragraph">Utility method to insert target relationships to the map with digital twins properties.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="451223489%2FFunctions%2F769193423" anchor-label="removePatientSurgeryBookingMapping" id="451223489%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-patient-surgery-booking-mapping.html"><span>remove</span><wbr></wbr><span>Patient</span><wbr></wbr><span>Surgery</span><wbr></wbr><span>Booking</span><wbr></wbr><span><span>Mapping</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="451223489%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="remove-patient-surgery-booking-mapping.html"><span class="token function">removePatientSurgeryBookingMapping</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">patientId<span class="token operator">: </span><a href="../../entity.patient/-patient-data/-patient-id/index.html">PatientData.PatientId</a><span class="token punctuation">, </span></span><span class="parameter ">surgeryBookingId<span class="token operator">: </span><a href="../../entity.booking/-surgery-booking-data/-surgery-booking-id/index.html">SurgeryBookingData.SurgeryBookingId</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Remove the relationship between a patient with a <a href="remove-patient-surgery-booking-mapping.html">patientId</a> and a booking with the <a href="remove-patient-surgery-booking-mapping.html">surgeryBookingId</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-763723769%2FFunctions%2F769193423" anchor-label="updateSurgicalProcessRoom" id="-763723769%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-surgical-process-room.html"><span>update</span><wbr></wbr><span>Surgical</span><wbr></wbr><span>Process</span><wbr></wbr><span><span>Room</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-763723769%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="update-surgical-process-room.html"><span class="token function">updateSurgicalProcessRoom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">processId<span class="token operator">: </span><a href="../../entity.process/-process-data/-process-id/index.html">ProcessData.ProcessId</a><span class="token punctuation">, </span></span><span class="parameter ">room<span class="token operator">: </span><a href="../../entity.room/-room/index.html">Room</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Update the <a href="update-surgical-process-room.html">room</a> of a surgical process given its <a href="update-surgical-process-room.html">processId</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1441003227%2FFunctions%2F769193423" anchor-label="updateSurgicalProcessState" id="-1441003227%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-surgical-process-state.html"><span>update</span><wbr></wbr><span>Surgical</span><wbr></wbr><span>Process</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1441003227%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="update-surgical-process-state.html"><span class="token function">updateSurgicalProcessState</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">processId<span class="token operator">: </span><a href="../../entity.process/-process-data/-process-id/index.html">ProcessData.ProcessId</a><span class="token punctuation">, </span></span><span class="parameter ">state<span class="token operator">: </span><a href="../../entity.process/-process-data/-process-state/index.html">ProcessData.ProcessState</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Update the <a href="update-surgical-process-state.html">state</a> of a <a href="../../entity.process/-surgical-process/index.html">SurgicalProcess</a> by its <a href="update-surgical-process-state.html">processId</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1845825249%2FFunctions%2F769193423" anchor-label="updateSurgicalProcessStep" id="-1845825249%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-surgical-process-step.html"><span>update</span><wbr></wbr><span>Surgical</span><wbr></wbr><span>Process</span><wbr></wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1845825249%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="update-surgical-process-step.html"><span class="token function">updateSurgicalProcessStep</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">processId<span class="token operator">: </span><a href="../../entity.process/-process-data/-process-id/index.html">ProcessData.ProcessId</a><span class="token punctuation">, </span></span><span class="parameter ">step<span class="token operator">: </span><a href="../../entity.process/-process-data/-process-step/index.html">ProcessData.ProcessStep</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Update the <a href="update-surgical-process-step.html">step</a> of a <a href="../../entity.process/-surgical-process/index.html">SurgicalProcess</a> by its <a href="update-surgical-process-step.html">processId</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
