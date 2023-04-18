@@ -47,22 +47,22 @@ class TestDatabaseManager : StringSpec({
         processId,
         Instant.now(),
         "operation",
-        patient,
-        healthProfessional,
+        patient.id,
+        healthProfessional.id,
         room,
-        ProcessData.ProcessState.SURGERY,
-        ProcessData.ProcessStep.ANESTHESIA
+        state = ProcessData.ProcessState.SURGERY,
+        step = ProcessData.ProcessStep.ANESTHESIA
     )
 
     val surgicalProcessTerminated = SurgicalProcess(
         processId,
         Instant.now(),
         "operation",
-        patient,
-        healthProfessional,
+        patient.id,
+        healthProfessional.id,
         room,
-        ProcessData.ProcessState.TERMINATED,
-        ProcessData.ProcessStep.ANESTHESIA
+        state = ProcessData.ProcessState.TERMINATED,
+        step = ProcessData.ProcessStep.ANESTHESIA
     )
 
     "test add medical technology usage" {

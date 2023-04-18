@@ -30,10 +30,10 @@ class TestProcess : StringSpec({
                 ProcessData.ProcessId(""),
                 Instant.now(),
                 "Surgery-1",
-                patient,
-                healthProfessional,
-                Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
-                ProcessData.ProcessState.PRE_SURGERY,
+                patient.id,
+                healthProfessional.id,
+                operatingRoom = Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
+                state = ProcessData.ProcessState.PRE_SURGERY,
             )
         }
     }
@@ -44,19 +44,19 @@ class TestProcess : StringSpec({
             id,
             Instant.now(),
             "Surgery-1",
-            patient,
-            healthProfessional,
-            Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
-            ProcessData.ProcessState.PRE_SURGERY,
+            patient.id,
+            healthProfessional.id,
+            operatingRoom = Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
+            state = ProcessData.ProcessState.PRE_SURGERY,
         )
         val second = SurgicalProcess(
             id,
             Instant.now(),
             "Surgery-1",
-            patient,
-            healthProfessional,
+            patient.id,
+            healthProfessional.id,
             Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
-            ProcessData.ProcessState.PRE_SURGERY,
+            state = ProcessData.ProcessState.PRE_SURGERY,
         )
         first shouldBe second
     }

@@ -27,8 +27,8 @@ class TestSurgeryBooking : StringSpec({
             SurgeryBooking(
                 SurgeryBookingData.SurgeryBookingId(""),
                 Instant.now(),
-                healthProfessional,
-                patient,
+                healthProfessional.id,
+                patient.id,
                 "Colonscopy"
             )
         }
@@ -39,15 +39,15 @@ class TestSurgeryBooking : StringSpec({
         val first = SurgeryBooking(
             id,
             Instant.now(),
-            healthProfessional,
-            patient,
+            healthProfessional.id,
+            patient.id,
             "Colonscopy"
         )
         val second = SurgeryBooking(
             id,
             Instant.now(),
-            healthProfessional,
-            patient,
+            healthProfessional.id,
+            patient.id,
             "Colonscopy"
         )
 
