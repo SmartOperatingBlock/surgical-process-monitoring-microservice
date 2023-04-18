@@ -29,6 +29,8 @@ import entity.medicaldevice.MedicalDeviceData
 import entity.patient.PatientData
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.room.Room
+import entity.room.RoomData
 import org.litote.kmongo.KMongo
 import org.litote.kmongo.ascendingSort
 import org.litote.kmongo.div
@@ -39,6 +41,7 @@ import org.litote.kmongo.getCollection
 import org.litote.kmongo.gte
 import org.litote.kmongo.lte
 import org.litote.kmongo.ne
+import org.litote.kmongo.setValue
 import java.time.Instant
 
 /**
@@ -168,6 +171,26 @@ class DatabaseManager(
         this.processStepEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStepEvent(dateTime, TimeSeriesProcessStepEventMetadata(processId), step))
                 .wasAcknowledged()
+        }
+
+    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean =
+        when (room.type) {
+            RoomData.RoomType.PRE_POST_OPERATING_ROOM -> {
+                this.surgicalProcessCollection.safeMongoDbWrite(false) {
+                    updateOne(
+                        SurgicalProcess::id eq processId,
+                        setValue(SurgicalProcess::preOperatingRoom, room)
+                    ).matchedCount > 0
+                }
+            }
+            RoomData.RoomType.OPERATING_ROOM -> {
+                this.surgicalProcessCollection.safeMongoDbWrite(false) {
+                    updateOne(
+                        SurgicalProcess::id eq processId,
+                        setValue(SurgicalProcess::operatingRoom, room)
+                    ).matchedCount > 0
+                }
+            }
         }
 
     private fun <T, R> MongoCollection<T>.safeMongoDbWrite(defaultResult: R, operation: MongoCollection<T>.() -> R): R =
