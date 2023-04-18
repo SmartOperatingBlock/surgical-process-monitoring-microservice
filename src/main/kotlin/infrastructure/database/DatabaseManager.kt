@@ -146,7 +146,8 @@ class DatabaseManager(
 
     override fun getCurrentSurgicalProcesses(): Set<SurgicalProcess> =
         this.surgicalProcessCollection.find(
-            SurgicalProcess::state ne ProcessData.ProcessState.TERMINATED
+            SurgicalProcess::state ne ProcessData.ProcessState.TERMINATED,
+            SurgicalProcess::state ne ProcessData.ProcessState.INTERRUPTED,
         ).toSet()
 
     override fun updateSurgicalProcessState(
