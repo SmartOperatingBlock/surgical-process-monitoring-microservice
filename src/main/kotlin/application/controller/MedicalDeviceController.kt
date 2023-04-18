@@ -12,7 +12,6 @@ import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.MedicalDeviceDigitalTwinManager
 import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
-import entity.process.SurgicalProcess
 import usecase.repository.MedicalDeviceRepository
 import java.time.Instant
 
@@ -38,6 +37,6 @@ class MedicalDeviceController(
 
     override fun findSurgicalProcessByMedicalTechnology(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
-    ): SurgicalProcess? =
+    ): ProcessData.ProcessId? =
         this.medicalDeviceDigitalTwinManager.findSurgicalProcessByMedicalTechnology(medicalTechnologyId)
 }

@@ -10,7 +10,6 @@ package usecase.repository
 
 import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
-import entity.process.SurgicalProcess
 import java.time.Instant
 
 /**
@@ -44,5 +43,5 @@ interface MedicalDeviceRepository {
      */
     fun findSurgicalProcessByMedicalTechnology(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
-    ): SurgicalProcess?
+    ): ProcessData.ProcessId?
 }

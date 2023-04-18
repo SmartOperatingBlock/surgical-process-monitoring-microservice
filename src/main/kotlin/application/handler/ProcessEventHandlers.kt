@@ -61,14 +61,14 @@ object ProcessEventHandlers {
 
         override fun consume(event: Event<*>) {
             event.cast<ProcessEvent<ProcessEventsPayloads.MedicalTechnologyUsage>> {
-                val process = MedicalDeviceServices.FindProcessByMedicalTechnology(
+                val processId = MedicalDeviceServices.FindProcessByMedicalTechnology(
                     MedicalDeviceData.MedicalTechnologyId(this.data.medicalTechnologyID),
                     medicalDeviceRepository
                 ).execute()
-                if (process != null) {
+                if (processId != null) {
                     MedicalDeviceServices.AddMedicalTechnologyUsage(
                         MedicalDeviceData.MedicalTechnologyId(this.data.medicalTechnologyID),
-                        process.id,
+                        processId,
                         Instant.parse(this.dateTime),
                         this.data.inUse,
                         medicalDeviceRepository

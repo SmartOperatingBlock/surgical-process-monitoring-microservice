@@ -9,7 +9,7 @@
 package application.controller.manager
 
 import entity.medicaldevice.MedicalDeviceData
-import entity.process.SurgicalProcess
+import entity.process.ProcessData
 
 /** This interface model the operation on Medical Devices Digital Twins. */
 interface MedicalDeviceDigitalTwinManager {
@@ -20,5 +20,5 @@ interface MedicalDeviceDigitalTwinManager {
      */
     fun findSurgicalProcessByMedicalTechnology(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
-    ): SurgicalProcess?
+    ): ProcessData.ProcessId?
 }

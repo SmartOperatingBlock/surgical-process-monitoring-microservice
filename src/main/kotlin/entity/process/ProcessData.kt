@@ -30,6 +30,11 @@ object ProcessData {
 
     /** The different steps of a [SurgicalProcess]. */
     enum class ProcessStep {
-        PATIENT_IN_PREPARATION, PATIENT_ON_OPERATING_TABLE, ANESTHESIA, SURGERY_IN_PROGRESS, END_OF_SURGERY,
+        PATIENT_IN_PREPARATION,
+        PATIENT_ON_OPERATING_TABLE,
+        ANESTHESIA,
+        SURGERY_IN_PROGRESS,
+        END_OF_SURGERY,
+        PATIENT_UNDER_OBSERVATION
     }
 }

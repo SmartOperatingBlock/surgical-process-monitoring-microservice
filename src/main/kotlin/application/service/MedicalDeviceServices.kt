@@ -10,7 +10,6 @@ package application.service
 
 import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
-import entity.process.SurgicalProcess
 import usecase.repository.MedicalDeviceRepository
 import java.time.Instant
 
@@ -54,9 +53,9 @@ object MedicalDeviceServices {
     class FindProcessByMedicalTechnology(
         private val medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         private val medicalDeviceRepository: MedicalDeviceRepository
-    ) : ApplicationService<SurgicalProcess?> {
+    ) : ApplicationService<ProcessData.ProcessId?> {
 
-        override fun execute(): SurgicalProcess? =
+        override fun execute(): ProcessData.ProcessId? =
             this.medicalDeviceRepository.findSurgicalProcessByMedicalTechnology(medicalTechnologyId)
     }
 }
