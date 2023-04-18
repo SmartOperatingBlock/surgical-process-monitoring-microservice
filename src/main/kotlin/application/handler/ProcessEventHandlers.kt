@@ -78,8 +78,6 @@ object ProcessEventHandlers {
         }
     }
 
-
-
     /**
      * The handler for Patient Diastolic Pressure update events.
      */
@@ -99,7 +97,7 @@ object ProcessEventHandlers {
                         val surgicalProcess: SurgicalProcess? =
                             SurgicalProcessServices.GetCurrentSurgicalProcesses(surgicalProcessRepository).execute()
                                 .firstOrNull {
-                                    it.patient?.id?.id == this.data.patientId
+                                    it.patientId.id == this.data.patientId
                                 }
                         if (this.data.entered) {
                             if (surgicalProcess == null) {
@@ -116,14 +114,14 @@ object ProcessEventHandlers {
                                             ),
                                             Instant.now(),
                                             surgeryBooking.surgeryType,
-                                            surgeryBooking.patient,
-                                            surgeryBooking.healthProfessional,
-                                            Room(
+                                            surgeryBooking.patientId,
+                                            surgeryBooking.healthProfessionalId,
+                                            operatingRoom = Room(
                                                 RoomData.RoomId(this.data.roomId),
                                                 type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
                                             ),
-                                            ProcessData.ProcessState.PRE_SURGERY,
-                                            ProcessData.ProcessStep.PATIENT_IN_PREPARATION
+                                            state = ProcessData.ProcessState.PRE_SURGERY,
+                                            step = ProcessData.ProcessStep.PATIENT_IN_PREPARATION
                                         ),
                                         surgicalProcessRepository
                                     ).execute() != null
@@ -169,23 +167,32 @@ object ProcessEventHandlers {
 
         override fun consume(event: Event<*>) {
             event.cast<ProcessEvent<ProcessEventsPayloads.EmergencySurgery>> {
-                SurgicalProcessServices.CreateSurgicalProcess(
-                    SurgicalProcess(
-                        ProcessData.ProcessId("emergency-${this.data.roomId}-${Instant.now()}"),
-                        Instant.now(),
-                        "Emergency",
-                        PatientDataServices.CreatePatient(
-                            PatientData.PatientId(
-                                "emergency-patient-${Instant.now()}"
-                            ),
-                            patientRepository
-                        ).execute(),
-                        null,
-                        Room(RoomData.RoomId(this.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
-                        ProcessData.ProcessState.SURGERY
+                val patient = PatientDataServices.CreatePatient(
+                    PatientData.PatientId(
+                        "emergency-patient-${Instant.now()}"
                     ),
-                    surgicalProcessRepository
-                ).execute() != null
+                    patientRepository
+                ).execute()
+                if (patient != null) {
+                    SurgicalProcessServices.CreateSurgicalProcess(
+                        SurgicalProcess(
+                            ProcessData.ProcessId("emergency-${this.data.roomId}-${Instant.now()}"),
+                            Instant.parse(event.dateTime),
+                            "Emergency",
+                            patient.id,
+                            null,
+                            preOperatingRoom = null,
+                            operatingRoom = Room(
+                                RoomData.RoomId(this.data.roomId),
+                                type = RoomData.RoomType.OPERATING_ROOM
+                            ),
+                            ProcessData.ProcessState.SURGERY
+                        ),
+                        surgicalProcessRepository
+                    ).execute() != null
+                } else {
+                    false
+                }
             }
         }
     }

@@ -8,8 +8,8 @@
 
 package entity.process
 
-import entity.healthprofessional.HealthProfessional
-import entity.patient.Patient
+import entity.healthprofessional.HealthProfessionalData
+import entity.patient.PatientData
 import entity.room.Room
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
@@ -19,9 +19,10 @@ import java.time.Instant
  * - the [id] of the process
  * - the [dateTime] of the process
  * - the [type] of the surgery
- * - the [patient] that is going to be operated
- * - the [healthProfessional] in charge of the process
- * - the [room] in which the process is done
+ * - the [patientId] that is going to be operated
+ * - the [healthProfessionalId] in charge of the process
+ * - the [preOperatingRoom] in which the process is done
+ * - the [operatingRoom] in which the process is done
  * - the current [state] of the process
  * - the current [step] of the process.
  */
@@ -31,9 +32,10 @@ data class SurgicalProcess(
     @Contextual
     val dateTime: Instant,
     val type: String,
-    val patient: Patient?,
-    val healthProfessional: HealthProfessional?,
-    val room: Room,
+    val patientId: PatientData.PatientId,
+    val healthProfessionalId: HealthProfessionalData.HealthProfessionalId? = null,
+    val preOperatingRoom: Room? = null,
+    val operatingRoom: Room? = null,
     val state: ProcessData.ProcessState,
     val step: ProcessData.ProcessStep? = null
 ) {
