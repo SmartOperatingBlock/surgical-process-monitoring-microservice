@@ -44,7 +44,7 @@ object EventHandlers {
                 MedicalDeviceServices.AddMedicalDeviceUsage(
                     MedicalDeviceData.ImplantableMedicalDeviceId(this.data.medicalDeviceID),
                     ProcessData.ProcessId(this.data.processId),
-                    medicalDeviceRepository
+                    medicalDeviceRepository,
                 ).execute()
             }
         }
@@ -52,7 +52,7 @@ object EventHandlers {
 
     /** The handler for medical technology usage event. */
     class MedicalTechnologyUsageEventHandler(
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -63,7 +63,7 @@ object EventHandlers {
             event.cast<ProcessEvent<ProcessEventsPayloads.MedicalTechnologyUsage>> {
                 val process = MedicalDeviceServices.FindProcessByMedicalTechnology(
                     MedicalDeviceData.MedicalTechnologyId(this.data.medicalTechnologyID),
-                    medicalDeviceRepository
+                    medicalDeviceRepository,
                 ).execute()
                 if (process != null) {
                     MedicalDeviceServices.AddMedicalTechnologyUsage(
@@ -71,9 +71,11 @@ object EventHandlers {
                         process.id,
                         Instant.parse(this.dateTime),
                         this.data.inUse,
-                        medicalDeviceRepository
+                        medicalDeviceRepository,
                     ).execute()
-                } else false
+                } else {
+                    false
+                }
             }
         }
     }
@@ -82,7 +84,7 @@ object EventHandlers {
      * The handler for process information events.
      */
     class PatientOnOperatingTableEventHandler(
-        private val surgicalProcessRepository: SurgicalProcessRepository
+        private val surgicalProcessRepository: SurgicalProcessRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -95,13 +97,13 @@ object EventHandlers {
                     ProcessData.ProcessId(this.data.processId),
                     Instant.parse(this.dateTime),
                     ProcessData.ProcessState.SURGERY,
-                    surgicalProcessRepository
+                    surgicalProcessRepository,
                 ).execute() &&
                     SurgicalProcessServices.UpdateSurgicalProcessStep(
                         ProcessData.ProcessId(this.data.processId),
                         Instant.parse(this.dateTime),
                         ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
-                        surgicalProcessRepository
+                        surgicalProcessRepository,
                     ).execute()
             }
         }
@@ -111,7 +113,7 @@ object EventHandlers {
      * The handler for Patient Body Temperature update events.
      */
     class BodyTemperatureUpdateEventHandler(
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -124,7 +126,7 @@ object EventHandlers {
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(bodyTemperature = PatientData.BodyTemperature(this.data.data.temperature)),
                     Instant.parse(this.dateTime),
-                    patientRepository
+                    patientRepository,
                 ).execute()
             }
         }
@@ -134,7 +136,7 @@ object EventHandlers {
      * The handler for Patient Diastolic Pressure update events.
      */
     class DiastolicPressureUpdateEventHandler(
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -146,10 +148,10 @@ object EventHandlers {
                 PatientDataServices.UpdatePatientMedicalData(
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(
-                        diastolicBloodPressure = PatientData.DiastolicBloodPressure(this.data.data.pressure)
+                        diastolicBloodPressure = PatientData.DiastolicBloodPressure(this.data.data.pressure),
                     ),
                     Instant.parse(this.dateTime),
-                    patientRepository
+                    patientRepository,
                 ).execute()
             }
         }
@@ -159,7 +161,7 @@ object EventHandlers {
      * The handler for Patient Systolic Pressure update events.
      */
     class SystolicPressureUpdateEventHandler(
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -171,10 +173,10 @@ object EventHandlers {
                 PatientDataServices.UpdatePatientMedicalData(
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(
-                        systolicBloodPressure = PatientData.SystolicBloodPressure(this.data.data.pressure)
+                        systolicBloodPressure = PatientData.SystolicBloodPressure(this.data.data.pressure),
                     ),
                     Instant.parse(this.dateTime),
-                    patientRepository
+                    patientRepository,
                 ).execute()
             }
         }
@@ -184,7 +186,7 @@ object EventHandlers {
      * The handler for Patient Diastolic Pressure update events.
      */
     class RespiratoryRateUpdateEventHandler(
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -196,10 +198,10 @@ object EventHandlers {
                 PatientDataServices.UpdatePatientMedicalData(
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(
-                        respiratoryRate = PatientData.RespiratoryRate(this.data.data.rate)
+                        respiratoryRate = PatientData.RespiratoryRate(this.data.data.rate),
                     ),
                     Instant.parse(this.dateTime),
-                    patientRepository
+                    patientRepository,
                 ).execute()
             }
         }
@@ -209,7 +211,7 @@ object EventHandlers {
      * The handler for Patient saturation update events.
      */
     class SaturationUpdateEventHandler(
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -221,10 +223,10 @@ object EventHandlers {
                 PatientDataServices.UpdatePatientMedicalData(
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(
-                        saturationPercentage = PatientData.SaturationPercentage(this.data.data.saturation)
+                        saturationPercentage = PatientData.SaturationPercentage(this.data.data.saturation),
                     ),
                     Instant.parse(this.dateTime),
-                    patientRepository
+                    patientRepository,
                 ).execute()
             }
         }
@@ -234,7 +236,7 @@ object EventHandlers {
      * The handler for Patient heart beat update events.
      */
     class HeartbeatUpdateEventHandler(
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -246,10 +248,10 @@ object EventHandlers {
                 PatientDataServices.UpdatePatientMedicalData(
                     PatientData.PatientId(this.data.patientId),
                     PatientData.MedicalData(
-                        heartBeat = PatientData.HeartBeat(this.data.data.heartbeat)
+                        heartBeat = PatientData.HeartBeat(this.data.data.heartbeat),
                     ),
                     Instant.parse(this.dateTime),
-                    patientRepository
+                    patientRepository,
                 ).execute()
             }
         }
@@ -260,7 +262,7 @@ object EventHandlers {
      */
     class PatientTrackedEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
-        private val surgeryBookingRepository: BookingRepository
+        private val surgeryBookingRepository: BookingRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -281,13 +283,13 @@ object EventHandlers {
                                 val surgeryBooking =
                                     SurgeryBookingServices.GetSurgeryBookingByPatient(
                                         PatientData.PatientId(this.data.patientId),
-                                        surgeryBookingRepository
+                                        surgeryBookingRepository,
                                     ).execute()
                                 if (surgeryBooking != null) {
                                     SurgicalProcessServices.CreateSurgicalProcess(
                                         SurgicalProcess(
                                             ProcessData.ProcessId(
-                                                "${surgeryBooking.surgeryType}-${this.data.patientId}${this.dateTime}"
+                                                "${surgeryBooking.surgeryType}-${this.data.patientId}${this.dateTime}",
                                             ),
                                             Instant.now(),
                                             surgeryBooking.surgeryType,
@@ -295,20 +297,22 @@ object EventHandlers {
                                             surgeryBooking.healthProfessional,
                                             Room(
                                                 RoomData.RoomId(this.data.roomId),
-                                                type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
+                                                type = RoomData.RoomType.PRE_POST_OPERATING_ROOM,
                                             ),
                                             ProcessData.ProcessState.PRE_SURGERY,
-                                            ProcessData.ProcessStep.PATIENT_IN_PREPARATION
+                                            ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
                                         ),
-                                        surgicalProcessRepository
+                                        surgicalProcessRepository,
                                     ).execute() != null
-                                } else false
+                                } else {
+                                    false
+                                }
                             } else {
                                 SurgicalProcessServices.UpdateSurgicalProcessState(
                                     surgicalProcess.id,
                                     Instant.parse(this.dateTime),
                                     ProcessData.ProcessState.POST_SURGERY,
-                                    surgicalProcessRepository
+                                    surgicalProcessRepository,
                                 ).execute()
                             }
                         } else {
@@ -317,9 +321,11 @@ object EventHandlers {
                                     surgicalProcess.id,
                                     Instant.parse(event.dateTime),
                                     ProcessData.ProcessState.TERMINATED,
-                                    surgicalProcessRepository
+                                    surgicalProcessRepository,
                                 ).execute()
-                            } else false
+                            } else {
+                                false
+                            }
                         }
                     }
                     ProcessEventsPayloads.RoomType.OPERATING_ROOM -> {
@@ -335,7 +341,7 @@ object EventHandlers {
      */
     class EmergencySurgeryEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -351,15 +357,15 @@ object EventHandlers {
                         "Emergency",
                         PatientDataServices.CreatePatient(
                             PatientData.PatientId(
-                                "emergency-patient-${Instant.now()}"
+                                "emergency-patient-${Instant.now()}",
                             ),
-                            patientRepository
+                            patientRepository,
                         ).execute(),
                         null,
                         Room(RoomData.RoomId(this.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
-                        ProcessData.ProcessState.SURGERY
+                        ProcessData.ProcessState.SURGERY,
                     ),
-                    surgicalProcessRepository
+                    surgicalProcessRepository,
                 ).execute() != null
             }
         }
@@ -367,5 +373,7 @@ object EventHandlers {
 
     private inline fun <reified T> Any?.cast(operation: T.() -> Boolean = { true }): Boolean = if (this is T) {
         operation()
-    } else false
+    } else {
+        false
+    }
 }

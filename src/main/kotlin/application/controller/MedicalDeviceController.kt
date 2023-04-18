@@ -21,23 +21,23 @@ import java.time.Instant
  */
 class MedicalDeviceController(
     private val medicalDeviceDatabaseManager: MedicalDeviceDatabaseManager,
-    private val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager
+    private val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager,
 ) : MedicalDeviceRepository {
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean = this.medicalDeviceDatabaseManager.addMedicalDeviceUsage(medicalDeviceId, processId)
 
     override fun addMedicalTechnologyUsage(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean = this.addMedicalTechnologyUsage(medicalTechnologyId, processId, dateTime, inUse)
 
     override fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): SurgicalProcess? =
         this.medicalDeviceDigitalTwinManager.findSurgicalProcessByMedicalTechnology(medicalTechnologyId)
 }

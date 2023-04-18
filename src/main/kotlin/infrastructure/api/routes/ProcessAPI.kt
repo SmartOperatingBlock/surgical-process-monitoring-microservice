@@ -20,13 +20,12 @@ import io.ktor.server.routing.get
 
 /** The API route of Surgical Process Monitoring System Microservice. */
 fun Route.processAPI(apiPath: String, provider: ManagerProvider) {
-
     get("$apiPath/processes") {
         SurgicalProcessServices.GetCurrentSurgicalProcesses(
             SurgicalProcessController(
                 provider.processDatabaseManager,
-                provider.processDigitalTwinManager
-            )
+                provider.processDigitalTwinManager,
+            ),
         ).execute().toList().run {
             call.response.status(if (this.isEmpty()) HttpStatusCode.NoContent else HttpStatusCode.OK)
             call.respond(ResponseEntryList(this))

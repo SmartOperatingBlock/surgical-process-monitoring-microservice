@@ -21,6 +21,6 @@ interface SurgeryBookingDigitalTwinManager {
     /** Remove the relationship between a patient with a [patientId] and a booking with the [surgeryBookingId]. */
     fun removePatientSurgeryBookingMapping(
         patientId: PatientData.PatientId,
-        surgeryBookingId: SurgeryBookingData.SurgeryBookingId
+        surgeryBookingId: SurgeryBookingData.SurgeryBookingId,
     ): Boolean
 }

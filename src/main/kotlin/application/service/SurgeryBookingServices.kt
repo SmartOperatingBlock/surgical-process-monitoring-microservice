@@ -20,7 +20,7 @@ object SurgeryBookingServices {
      */
     class GetSurgeryBookingByPatient(
         private val patientId: PatientData.PatientId,
-        private val surgeryBookingRepository: BookingRepository
+        private val surgeryBookingRepository: BookingRepository,
     ) : ApplicationService<SurgeryBooking?> {
         override fun execute(): SurgeryBooking? = surgeryBookingRepository.getSurgeryBookingByPatient(patientId)
     }

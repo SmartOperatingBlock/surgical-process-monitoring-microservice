@@ -18,6 +18,6 @@ interface PatientDigitalTwinManager {
      * Create the digital twin of a [Patient] given its [patientId].
      */
     fun createPatientDT(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): Patient?
 }

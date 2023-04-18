@@ -17,7 +17,7 @@ data class Patient(
     val id: PatientData.PatientId,
     val name: String? = null,
     val surname: String? = null,
-    val medicalData: PatientData.MedicalData
+    val medicalData: PatientData.MedicalData,
 ) {
 
     override fun equals(other: Any?): Boolean = when {

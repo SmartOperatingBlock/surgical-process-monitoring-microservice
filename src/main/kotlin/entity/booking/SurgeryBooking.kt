@@ -20,7 +20,7 @@ data class SurgeryBooking(
     val dateTime: Instant,
     val healthProfessional: HealthProfessional,
     val patient: Patient,
-    val surgeryType: String
+    val surgeryType: String,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

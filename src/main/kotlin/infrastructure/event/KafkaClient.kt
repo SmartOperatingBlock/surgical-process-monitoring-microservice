@@ -41,17 +41,17 @@ class KafkaClient(private val provider: ManagerProvider) {
 
         val medicalDeviceController = MedicalDeviceController(
             provider.medicalDeviceDatabaseManager,
-            provider.medicalDeviceDigitalTwinManager
+            provider.medicalDeviceDigitalTwinManager,
         )
 
         val surgicalProcessController = SurgicalProcessController(
             provider.processDatabaseManager,
-            provider.processDigitalTwinManager
+            provider.processDigitalTwinManager,
         )
 
         val patientDataController = PatientDataController(
             provider.patientMedicalDataDatabaseManager,
-            provider.patientDigitalTwinManager
+            provider.patientDigitalTwinManager,
         )
 
         val surgeryBookingController = SurgeryBookingController(provider.surgeryBookingDigitalTwinManager)
@@ -67,15 +67,15 @@ class KafkaClient(private val provider: ManagerProvider) {
             EventHandlers.SaturationUpdateEventHandler(patientDataController),
             EventHandlers.HeartbeatUpdateEventHandler(patientDataController),
             EventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController),
-            EventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController)
+            EventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController),
         )
     }
 
     private val kafkaConsumer: KafkaConsumer<String, String> = KafkaConsumer(
         loadConsumerProperties(
             System.getenv("BOOTSTRAP_SERVER_URL"),
-            System.getenv("SCHEMA_REGISTRY_URL")
-        )
+            System.getenv("SCHEMA_REGISTRY_URL"),
+        ),
     )
 
     /** Start consuming the events on the Kafka Broker. */

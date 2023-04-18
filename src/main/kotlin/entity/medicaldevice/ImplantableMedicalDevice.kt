@@ -11,7 +11,7 @@ package entity.medicaldevice
 /** The model of an Implantable Medical Device composed by the [id] and the [type]. */
 data class ImplantableMedicalDevice(
     val id: MedicalDeviceData.ImplantableMedicalDeviceId,
-    val type: MedicalDeviceData.DeviceType
+    val type: MedicalDeviceData.DeviceType,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

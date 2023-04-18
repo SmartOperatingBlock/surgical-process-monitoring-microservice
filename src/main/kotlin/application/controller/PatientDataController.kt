@@ -20,19 +20,19 @@ import java.time.Instant
  */
 class PatientDataController(
     private val patientMedicalDataDatabaseManager: PatientMedicalDataDatabaseManager,
-    private val patientDigitalTwinManager: PatientDigitalTwinManager
+    private val patientDigitalTwinManager: PatientDigitalTwinManager,
 ) : PatientRepository {
 
     override fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
-        dateTime: Instant
+        dateTime: Instant,
     ): Boolean = patientMedicalDataDatabaseManager.updatePatientMedicalData(patientId, medicalData, dateTime)
 
     override fun getPatientMedicalData(
         patientId: PatientData.PatientId,
         from: Instant,
-        to: Instant
+        to: Instant,
     ): List<Pair<Instant, PatientData.MedicalData>> =
         patientMedicalDataDatabaseManager.getPatientMedicalData(patientId, from, to)
 

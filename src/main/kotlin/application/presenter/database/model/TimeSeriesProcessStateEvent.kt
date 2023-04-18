@@ -24,7 +24,7 @@ data class TimeSeriesProcessStateEvent(
     @Contextual
     val dateTime: Instant,
     val metadata: TimeSeriesProcessStateEventMetadata,
-    val value: ProcessData.ProcessState
+    val value: ProcessData.ProcessState,
 )
 
 /**
@@ -33,5 +33,5 @@ data class TimeSeriesProcessStateEvent(
  */
 @Serializable
 data class TimeSeriesProcessStateEventMetadata(
-    val processId: ProcessData.ProcessId
+    val processId: ProcessData.ProcessId,
 )

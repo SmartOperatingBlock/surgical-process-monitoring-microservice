@@ -31,7 +31,7 @@ class TestDatabaseManager : StringSpec({
         PatientData.PatientId("patient1"),
         "mario",
         "rossi",
-        PatientData.MedicalData()
+        PatientData.MedicalData(),
     )
     val healthProfessional = HealthProfessional(
         HealthProfessionalData.HealthProfessionalId("hp1"),
@@ -41,7 +41,7 @@ class TestDatabaseManager : StringSpec({
     val room = Room(
         RoomData.RoomId("room1"),
         null,
-        RoomData.RoomType.OPERATING_ROOM
+        RoomData.RoomType.OPERATING_ROOM,
     )
     val surgicalProcess = SurgicalProcess(
         processId,
@@ -51,7 +51,7 @@ class TestDatabaseManager : StringSpec({
         healthProfessional,
         room,
         ProcessData.ProcessState.SURGERY,
-        ProcessData.ProcessStep.ANESTHESIA
+        ProcessData.ProcessStep.ANESTHESIA,
     )
 
     val surgicalProcessTerminated = SurgicalProcess(
@@ -62,7 +62,7 @@ class TestDatabaseManager : StringSpec({
         healthProfessional,
         room,
         ProcessData.ProcessState.TERMINATED,
-        ProcessData.ProcessStep.ANESTHESIA
+        ProcessData.ProcessStep.ANESTHESIA,
     )
 
     "test add medical technology usage" {
@@ -74,7 +74,7 @@ class TestDatabaseManager : StringSpec({
                 medicalTechnologyId,
                 Instant.now(),
                 processId,
-                true
+                true,
             ) shouldBe true
         }
     }
@@ -86,7 +86,7 @@ class TestDatabaseManager : StringSpec({
             }
             mongoClient.addMedicalDeviceUsage(
                 medicalDeviceId,
-                processId
+                processId,
             ) shouldBe true
         }
     }
@@ -109,7 +109,7 @@ class TestDatabaseManager : StringSpec({
             mongoClient.updateSurgicalProcessState(
                 processId,
                 Instant.now(),
-                ProcessData.ProcessState.SURGERY
+                ProcessData.ProcessState.SURGERY,
             ) shouldBe true
         }
     }
@@ -121,7 +121,7 @@ class TestDatabaseManager : StringSpec({
             mongoClient.updateSurgicalProcessStep(
                 processId,
                 Instant.now(),
-                ProcessData.ProcessStep.ANESTHESIA
+                ProcessData.ProcessStep.ANESTHESIA,
             ) shouldBe true
         }
     }
@@ -146,12 +146,12 @@ class TestDatabaseManager : StringSpec({
             mongoClient.updatePatientMedicalData(
                 patient.id,
                 PatientData.MedicalData(PatientData.HeartBeat(40)),
-                dateTime
+                dateTime,
             )
             mongoClient.getPatientMedicalData(
                 patient.id,
                 dateTime,
-                dateTime
+                dateTime,
             ).first() shouldBe Pair(dateTime, PatientData.MedicalData(PatientData.HeartBeat(40)))
         }
     }
@@ -165,12 +165,12 @@ class TestDatabaseManager : StringSpec({
             mongoClient.updatePatientMedicalData(
                 patient.id,
                 PatientData.MedicalData(saturationPercentage = PatientData.SaturationPercentage(24)),
-                dateTime
+                dateTime,
             )
             mongoClient.getPatientMedicalData(
                 patient.id,
                 dateTime.plusSeconds(10),
-                dateTime.plusSeconds(20)
+                dateTime.plusSeconds(20),
             ).size shouldBe 0
         }
     }

@@ -20,14 +20,16 @@ import java.time.Instant
  */
 class SurgicalProcessController(
     private val processDatabaseManager: ProcessDatabaseManager,
-    private val processDigitalTwinManager: ProcessDigitalTwinManager
+    private val processDigitalTwinManager: ProcessDigitalTwinManager,
 ) : SurgicalProcessRepository {
 
     override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? =
         if (this.getSurgicalProcessById(process.id) != null) {
             this.processDigitalTwinManager.createSurgicalProcess(process)
             this.processDatabaseManager.createSurgicalProcess(process)
-        } else null
+        } else {
+            null
+        }
 
     override fun getSurgicalProcessById(processId: ProcessData.ProcessId): SurgicalProcess? =
         this.processDatabaseManager.getSurgicalProcessById(processId)
@@ -38,7 +40,7 @@ class SurgicalProcessController(
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean =
         this.processDigitalTwinManager.updateSurgicalProcessState(processId, state) &&
             this.processDatabaseManager.updateSurgicalProcessState(processId, dateTime, state)
@@ -46,7 +48,7 @@ class SurgicalProcessController(
     override fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        step: ProcessData.ProcessStep
+        step: ProcessData.ProcessStep,
     ): Boolean =
         this.processDigitalTwinManager.updateSurgicalProcessStep(processId, step) &&
             this.processDatabaseManager.updateSurgicalProcessStep(processId, dateTime, step)

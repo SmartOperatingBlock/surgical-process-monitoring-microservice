@@ -45,7 +45,7 @@ import java.time.Instant
  * Implementation of all database managers.
  */
 class DatabaseManager(
-    connectionString: String
+    connectionString: String,
 ) : MedicalDeviceDatabaseManager, PatientMedicalDataDatabaseManager, ProcessDatabaseManager {
 
     /**
@@ -73,7 +73,7 @@ class DatabaseManager(
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean = this.implantableMedicalDeviceCollection.safeMongoDbWrite(defaultResult = false) {
         insertOne(MedicalDeviceUsage(medicalDeviceId, processId)).wasAcknowledged()
     }
@@ -82,25 +82,25 @@ class DatabaseManager(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         dateTime: Instant,
         processId: ProcessData.ProcessId,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean = this.medicalTechnologyUsageDataCollection.safeMongoDbWrite(defaultResult = false) {
         insertOne(
             TimeSeriesMedicalTechnologyUsage(
                 dateTime,
                 TimeSeriesMedicalTechnologyUsageMetadata(medicalTechnologyId, processId),
-                inUse
-            )
+                inUse,
+            ),
         ).wasAcknowledged()
     }
 
     override fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
-        dateTime: Instant
+        dateTime: Instant,
     ): Boolean =
         this.patientMedicalDataCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(
-                medicalData.toTimeSeriesMedicalData(dateTime, patientId)
+                medicalData.toTimeSeriesMedicalData(dateTime, patientId),
             ).wasAcknowledged()
         }
 
@@ -113,7 +113,7 @@ class DatabaseManager(
         return this.patientMedicalDataCollection.find(
             TimeSeriesPatientMedicalData::metadata / TimeSeriesPatientMedicalDataMetadata::patientId eq patientId,
             TimeSeriesPatientMedicalData::dateTime gte from,
-            TimeSeriesPatientMedicalData::dateTime lte to
+            TimeSeriesPatientMedicalData::dateTime lte to,
         ).ascendingSort(TimeSeriesPatientMedicalData::dateTime).toList().map {
             val updatedPatientMedicalData = mapOf(it.metadata.type to it).toPatientMedicalData(patientMedicalData)
             patientMedicalData = updatedPatientMedicalData
@@ -135,7 +135,7 @@ class DatabaseManager(
     override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? =
         this.surgicalProcessCollection.safeMongoDbWrite(defaultResult = null) {
             insertOne(
-                process
+                process,
             ).run {
                 getSurgicalProcessById(process.id)
             }
@@ -146,13 +146,13 @@ class DatabaseManager(
 
     override fun getCurrentSurgicalProcesses(): Set<SurgicalProcess> =
         this.surgicalProcessCollection.find(
-            SurgicalProcess::state ne ProcessData.ProcessState.TERMINATED
+            SurgicalProcess::state ne ProcessData.ProcessState.TERMINATED,
         ).toSet()
 
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean =
         this.processStateEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStateEvent(dateTime, TimeSeriesProcessStateEventMetadata(processId), state))
@@ -162,7 +162,7 @@ class DatabaseManager(
     override fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        step: ProcessData.ProcessStep
+        step: ProcessData.ProcessStep,
     ): Boolean =
         this.processStepEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStepEvent(dateTime, TimeSeriesProcessStepEventMetadata(processId), step))

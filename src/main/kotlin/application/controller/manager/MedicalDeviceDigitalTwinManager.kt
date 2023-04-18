@@ -19,6 +19,6 @@ interface MedicalDeviceDigitalTwinManager {
      * @param medicalTechnologyId the id of the medical technology.
      */
     fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): SurgicalProcess?
 }

@@ -16,5 +16,5 @@ fun loadConsumerProperties(bootstrapServerUrl: String, schemaRegistryUrl: String
     "schema.registry.url" to schemaRegistryUrl,
     "group.id" to "surgical-process-consumer",
     "key.deserializer" to "org.apache.kafka.common.serialization.StringDeserializer",
-    "value.deserializer" to KafkaJsonDeserializer::class.java
+    "value.deserializer" to KafkaJsonDeserializer::class.java,
 )

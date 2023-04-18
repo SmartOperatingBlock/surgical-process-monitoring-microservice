@@ -35,7 +35,7 @@ data class SurgicalProcess(
     val healthProfessional: HealthProfessional?,
     val room: Room,
     val state: ProcessData.ProcessState,
-    val step: ProcessData.ProcessStep? = null
+    val step: ProcessData.ProcessStep? = null,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

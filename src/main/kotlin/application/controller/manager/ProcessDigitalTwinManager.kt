@@ -24,7 +24,7 @@ interface ProcessDigitalTwinManager {
      */
     fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean
 
     /**
@@ -32,6 +32,6 @@ interface ProcessDigitalTwinManager {
      */
     fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
-        step: ProcessData.ProcessStep
+        step: ProcessData.ProcessStep,
     ): Boolean
 }

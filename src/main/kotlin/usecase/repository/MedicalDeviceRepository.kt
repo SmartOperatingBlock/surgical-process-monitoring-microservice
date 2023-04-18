@@ -24,7 +24,7 @@ interface MedicalDeviceRepository {
      */
     fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean
 
     /**
@@ -35,7 +35,7 @@ interface MedicalDeviceRepository {
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean
 
     /**
@@ -43,6 +43,6 @@ interface MedicalDeviceRepository {
      * @return the surgical process.
      */
     fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): SurgicalProcess?
 }

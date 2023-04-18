@@ -25,7 +25,7 @@ object MedicalDeviceServices {
     class AddMedicalDeviceUsage(
         private val medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
         private val processId: ProcessData.ProcessId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean = this.medicalDeviceRepository.addMedicalDeviceUsage(medicalDeviceId, processId)
     }
@@ -38,13 +38,13 @@ object MedicalDeviceServices {
         private val processId: ProcessData.ProcessId,
         private val dateTime: Instant,
         private val inUse: Boolean,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean = this.medicalDeviceRepository.addMedicalTechnologyUsage(
             medicalTechnologyId,
             processId,
             dateTime,
-            inUse
+            inUse,
         )
     }
 
@@ -53,7 +53,7 @@ object MedicalDeviceServices {
      */
     class FindProcessByMedicalTechnology(
         private val medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<SurgicalProcess?> {
 
         override fun execute(): SurgicalProcess? =

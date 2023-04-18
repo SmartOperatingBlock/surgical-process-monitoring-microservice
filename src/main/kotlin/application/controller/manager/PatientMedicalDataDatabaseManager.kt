@@ -23,7 +23,7 @@ interface PatientMedicalDataDatabaseManager {
     fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
-        dateTime: Instant
+        dateTime: Instant,
     ): Boolean
 
     /**
@@ -33,7 +33,7 @@ interface PatientMedicalDataDatabaseManager {
     fun getPatientMedicalData(
         patientId: PatientData.PatientId,
         from: Instant,
-        to: Instant
+        to: Instant,
     ): List<Pair<Instant, PatientData.MedicalData>>
 
     /**
@@ -41,6 +41,6 @@ interface PatientMedicalDataDatabaseManager {
      * @return the current patient medical data.
      */
     fun getCurrentPatientMedicalData(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): PatientData.MedicalData?
 }
