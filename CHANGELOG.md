@@ -1,3 +1,21 @@
+## [1.0.3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.0.2...1.0.3) (2023-04-25)
+
+
+### Build and continuous integration
+
+* **deps:** update codecov/codecov-action action to v3.1.3 ([26c28a8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/26c28a89201149fe86cb09150f9550f623fb6e71))
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.8.21 ([adc91cb](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/adc91cbcdc934c9c99d7ac0a50ca1f29074a18a2))
+* **deps:** update dependency ch.qos.logback:logback-classic to v1.4.7 ([c346261](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c346261a7e0b7c9b733ea57f557de08de8a86f7b))
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.8 ([3ad8fbc](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/3ad8fbce88f59a54622eed4d010a84c9f3c6a231))
+* **deps:** update dependency com.fasterxml.jackson.module:jackson-module-kotlin to v2.15.0 ([e126e3b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e126e3b598073fb93db880cfafa4fd301e89b62a))
+* **deps:** update dependency gradle to v8.1.1 ([0af8319](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/0af8319b0661b6eaa78a42b802201831e6a00f69))
+* **deps:** update kotest to v5.6.1 ([e87d2ac](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e87d2ac3a66925b59e9dd4a7a9148d8bc387631b))
+* **deps:** update ktor to v2.3.0 ([c81ae5f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c81ae5fbfe581e67f0e8a7636e0e63ebfce0a8a9))
+
 ## [1.0.2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.0.1...1.0.2) (2023-04-18)
 
 
