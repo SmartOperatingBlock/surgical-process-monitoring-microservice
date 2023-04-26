@@ -199,7 +199,9 @@ class DigitalTwinManager :
                 }
             }
             bookingId?.let {
-                getDigitalTwin(bookingId, BasicDigitalTwin::class.java).toSurgeryBooking()
+                getDigitalTwin(bookingId, BasicDigitalTwin::class.java)
+                    .mapRelationships()
+                    .toSurgeryBooking()
             }
         }
 
