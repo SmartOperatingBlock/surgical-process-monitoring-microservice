@@ -9,6 +9,7 @@
 package infrastructure.event
 
 import io.confluent.kafka.serializers.KafkaJsonDeserializer
+import io.confluent.kafka.serializers.KafkaJsonSerializer
 
 /** Load the properties needed to initialize the Kafka consumer. */
 fun loadConsumerProperties(bootstrapServerUrl: String, schemaRegistryUrl: String): Map<String, Any> = mapOf(
@@ -17,4 +18,12 @@ fun loadConsumerProperties(bootstrapServerUrl: String, schemaRegistryUrl: String
     "group.id" to "surgical-process-consumer",
     "key.deserializer" to "org.apache.kafka.common.serialization.StringDeserializer",
     "value.deserializer" to KafkaJsonDeserializer::class.java
+)
+
+/** Load the properties needed to initialize the Kafka consumer. */
+fun loadProducerProperties(bootstrapServerUrl: String, schemaRegistryUrl: String): Map<String, Any> = mapOf(
+    "bootstrap.servers" to bootstrapServerUrl,
+    "schema.registry.url" to schemaRegistryUrl,
+    "key.serializer" to "org.apache.kafka.common.serialization.StringSerializer",
+    "value.serializer" to KafkaJsonSerializer::class.java
 )

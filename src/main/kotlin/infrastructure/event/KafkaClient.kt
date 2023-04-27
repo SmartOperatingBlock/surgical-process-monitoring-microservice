@@ -12,20 +12,25 @@ import application.controller.MedicalDeviceController
 import application.controller.PatientDataController
 import application.controller.SurgeryBookingController
 import application.controller.SurgicalProcessController
+import application.controller.manager.EventProducer
 import application.handler.EventHandler
 import application.handler.PatientEventHandlers
 import application.handler.ProcessEventHandlers
+import application.presenter.event.model.Event
+import application.presenter.event.model.ProcessEventsKeys
 import application.presenter.event.serialization.EventSerialization.toEvent
 import com.fasterxml.jackson.databind.ObjectMapper
 import infrastructure.provider.ManagerProvider
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.clients.producer.KafkaProducer
+import org.apache.kafka.clients.producer.ProducerRecord
 import java.time.Duration
 import java.time.format.DateTimeParseException
 
 /** The Kafka Client necessary to consume surgical process events.
  */
-class KafkaClient(private val provider: ManagerProvider) {
+class KafkaClient(private val provider: ManagerProvider) : EventProducer {
 
     private val eventHandlers: List<EventHandler>
 
@@ -67,13 +72,20 @@ class KafkaClient(private val provider: ManagerProvider) {
             PatientEventHandlers.RespiratoryRateUpdateEventHandler(patientDataController),
             PatientEventHandlers.SaturationUpdateEventHandler(patientDataController),
             PatientEventHandlers.HeartbeatUpdateEventHandler(patientDataController),
-            ProcessEventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController),
+            ProcessEventHandlers.PatientTrackedEventHandler(surgicalProcessController, surgeryBookingController, this),
             ProcessEventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController)
         )
     }
 
     private val kafkaConsumer: KafkaConsumer<String, String> = KafkaConsumer(
         loadConsumerProperties(
+            System.getenv("BOOTSTRAP_SERVER_URL"),
+            System.getenv("SCHEMA_REGISTRY_URL")
+        )
+    )
+
+    private val kafkaProducer: KafkaProducer<String, Event<*>> = KafkaProducer(
+        loadProducerProperties(
             System.getenv("BOOTSTRAP_SERVER_URL"),
             System.getenv("SCHEMA_REGISTRY_URL")
         )
@@ -112,5 +124,15 @@ class KafkaClient(private val provider: ManagerProvider) {
         private const val pollingTime: Long = 100L
         private const val processEventsTopic = "process-events"
         private const val emergencyEventsTopic = "emergency-surgery-events"
+        private const val surgeryReportTopic = "process-summary-events"
+    }
+
+    override fun produceEvent(event: Event<*>) {
+        when (event.key) {
+            ProcessEventsKeys.SURGERY_REPORT_EVENT -> {
+                val record = ProducerRecord(surgeryReportTopic, event.key, event)
+                kafkaProducer.send(record)
+            }
+        }
     }
 }
