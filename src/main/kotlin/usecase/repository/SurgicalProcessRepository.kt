@@ -64,4 +64,18 @@ interface SurgicalProcessRepository {
         processId: ProcessData.ProcessId,
         room: Room
     ): Boolean
+
+    /**
+     * Get a list of pair of [Instant] and [ProcessData.ProcessState] given the [ProcessData.ProcessId].
+     */
+    fun getSurgicalProcessStates(
+        surgicalProcessId: ProcessData.ProcessId
+    ): List<Pair<Instant, ProcessData.ProcessState>>
+
+    /**
+     * Get a list of pair of [Instant] and [ProcessData.ProcessStep] given the [ProcessData.ProcessId].
+     */
+    fun getSurgicalProcessSteps(
+        surgicalProcessId: ProcessData.ProcessId
+    ): List<Pair<Instant, ProcessData.ProcessStep>>
 }
