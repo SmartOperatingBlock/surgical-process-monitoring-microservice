@@ -8,8 +8,10 @@
 
 package application.handler
 
+import application.controller.manager.EventProducer
 import application.presenter.event.model.Event
 import application.presenter.event.model.ProcessEvent
+import application.presenter.event.model.SurgeryReportEvent
 import application.presenter.event.model.payloads.ProcessEventsPayloads
 import application.service.MedicalDeviceServices
 import application.service.PatientDataServices
@@ -19,6 +21,7 @@ import entity.medicaldevice.MedicalDeviceData
 import entity.patient.PatientData
 import entity.process.ProcessData
 import entity.process.SurgicalProcess
+import entity.report.SurgeryReport
 import entity.room.Room
 import entity.room.RoomData
 import usecase.repository.BookingRepository
@@ -83,7 +86,8 @@ object ProcessEventHandlers {
      */
     class PatientTrackedEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
-        private val surgeryBookingRepository: BookingRepository
+        private val surgeryBookingRepository: BookingRepository,
+        private val eventProducer: EventProducer
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -146,6 +150,38 @@ object ProcessEventHandlers {
                                     ProcessData.ProcessState.TERMINATED,
                                     surgicalProcessRepository
                                 ).execute()
+                                val processStates = SurgicalProcessServices.GetSurgicalProcessStates(
+                                    surgicalProcess.id,
+                                    surgicalProcessRepository
+                                ).execute()
+                                val processSteps = SurgicalProcessServices.GetSurgicalProcessSteps(
+                                    surgicalProcess.id,
+                                    surgicalProcessRepository
+                                ).execute()
+                                surgicalProcess.healthProfessionalId?.let { hpId ->
+                                    surgicalProcess.preOperatingRoom?.let { preOpId ->
+                                        surgicalProcess.operatingRoom?.let { opId ->
+                                            SurgeryReport(
+                                                surgicalProcess.id,
+                                                surgicalProcess.type,
+                                                surgicalProcess.patientId,
+                                                hpId,
+                                                preOpId,
+                                                opId,
+                                                processStates,
+                                                processSteps
+                                            )
+                                        }
+                                    }
+                                }?.let {
+                                    eventProducer.produceEvent(
+                                        SurgeryReportEvent(
+                                            dateTime = Instant.now().toString(),
+                                            data = it
+                                        )
+                                    )
+                                }
+                                true
                             } else false
                         }
                     }
