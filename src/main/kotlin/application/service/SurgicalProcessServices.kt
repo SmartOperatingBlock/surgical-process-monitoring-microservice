@@ -85,4 +85,26 @@ object SurgicalProcessServices {
         override fun execute(): Boolean =
             surgicalProcessRepository.updateSurgicalProcessRoom(surgicalProcessId, room)
     }
+
+    /**
+     * The Application Service to get the [ProcessData.ProcessState] of a [SurgicalProcess] by its [surgicalProcessId].
+     */
+    class GetSurgicalProcessStates(
+        private val surgicalProcessId: ProcessData.ProcessId,
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : ApplicationService<List<Pair<Instant, ProcessData.ProcessState>>> {
+        override fun execute(): List<Pair<Instant, ProcessData.ProcessState>> =
+            surgicalProcessRepository.getSurgicalProcessStates(surgicalProcessId)
+    }
+
+    /**
+     * The Application Service to get the [ProcessData.ProcessStep] of a [SurgicalProcess] by its [surgicalProcessId].
+     */
+    class GetSurgicalProcessSteps(
+        private val surgicalProcessId: ProcessData.ProcessId,
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : ApplicationService<List<Pair<Instant, ProcessData.ProcessStep>>> {
+        override fun execute(): List<Pair<Instant, ProcessData.ProcessStep>> =
+            surgicalProcessRepository.getSurgicalProcessSteps(surgicalProcessId)
+    }
 }
