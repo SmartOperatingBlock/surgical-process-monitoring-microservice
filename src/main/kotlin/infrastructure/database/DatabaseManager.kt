@@ -193,6 +193,24 @@ class DatabaseManager(
             }
         }
 
+    override fun getSurgicalProcessStates(
+        surgicalProcessId: ProcessData.ProcessId
+    ): List<Pair<Instant, ProcessData.ProcessState>> =
+        this.processStateEventCollection.find(
+            TimeSeriesProcessStateEvent::metadata / TimeSeriesProcessStateEventMetadata::processId eq surgicalProcessId
+        ).map {
+            Pair(it.dateTime, it.value)
+        }.toList()
+
+    override fun getSurgicalProcessSteps(
+        surgicalProcessId: ProcessData.ProcessId
+    ): List<Pair<Instant, ProcessData.ProcessStep>> =
+        this.processStepEventCollection.find(
+            TimeSeriesProcessStepEvent::metadata / TimeSeriesProcessStepEventMetadata::processId eq surgicalProcessId
+        ).map {
+            Pair(it.dateTime, it.value)
+        }.toList()
+
     private fun <T, R> MongoCollection<T>.safeMongoDbWrite(defaultResult: R, operation: MongoCollection<T>.() -> R): R =
         try {
             operation()
