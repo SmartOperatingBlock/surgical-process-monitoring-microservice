@@ -220,12 +220,12 @@ class DatabaseManager(
         }
 
     companion object {
-        private const val databaseName = "staff_tracking"
+        private const val databaseName = "surgical_process_monitoring"
         private const val medicalTechnologyUsageDataCollectionName = "medical_technology_usage_data"
         private const val implantableMedicalDeviceCollectionName = "implantable_medical_device"
         private const val processStateEventsTimeSeriesCollectionName = "process_state_events"
         private const val processStepEventsTimeSeriesCollectionName = "process_step_events"
         private const val patientMedicalDataTimeSeriesCollectionName = "patient_medical_data"
-        private const val surgicalProcessCollectionName = "surgical_process"
+        private const val surgicalProcessCollectionName = "surgical_processes"
     }
 }
