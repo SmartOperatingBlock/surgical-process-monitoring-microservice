@@ -114,7 +114,7 @@ object ProcessEventHandlers {
                                     SurgicalProcessServices.CreateSurgicalProcess(
                                         SurgicalProcess(
                                             ProcessData.ProcessId(
-                                                "${surgeryBooking.surgeryType}-${this.data.patientId}${this.dateTime}"
+                                                "${this.data.patientId}-${this.dateTime.replace(":",".")}"
                                             ),
                                             Instant.now(),
                                             surgeryBooking.surgeryType,
