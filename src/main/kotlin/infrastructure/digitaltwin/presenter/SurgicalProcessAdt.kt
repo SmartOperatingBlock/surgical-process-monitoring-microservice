@@ -36,6 +36,6 @@ object SurgicalProcessAdt {
     fun SurgicalProcess.toDigitalTwin(): BasicDigitalTwin =
         BasicDigitalTwin(this.id.id)
             .setMetadata(BasicDigitalTwinMetadata().setModelId(SURGICAL_PROCESS_MODEL))
-            .addToContents(STATE_PROPERTY, this.state.ordinal)
-            .addToContents(STEP_PROPERTY, this.step?.ordinal)
+            .addToContents(STATE_PROPERTY, this.state.ordinal.toString())
+            .addToContents(STEP_PROPERTY, this.step?.ordinal.toString())
 }

@@ -25,7 +25,7 @@ class SurgicalProcessController(
 ) : SurgicalProcessRepository {
 
     override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? =
-        if (this.getSurgicalProcessById(process.id) != null) {
+        if (this.getSurgicalProcessById(process.id) == null) {
             this.processDigitalTwinManager.createSurgicalProcess(process)
             this.processDatabaseManager.createSurgicalProcess(process)
         } else null
