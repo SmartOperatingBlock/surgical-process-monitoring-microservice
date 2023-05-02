@@ -36,7 +36,6 @@ paths:
         '500':
           description: server error occurred
 
-
 components:
   schemas:
     ArrayOfProcesses:
@@ -58,49 +57,22 @@ components:
       type: object
       properties:
         id:
-          $ref: '#/components/schemas/ProcessId'
+          type: string
         dateTime:
           type: string
         type:
           type: string
-        patient:
-          $ref: '#/components/schemas/Patient'
-        healthProfessional:
-          $ref: '#/components/schemas/HealthProfessional'
-        room:
+        patientId:
+          type: string
+        healthProfessionalId:
+          type: string
+        preOperatingRoom:
+          $ref: '#/components/schemas/Room'
+        operatingRoom:
           $ref: '#/components/schemas/Room'
         state:
           type: string
         step:
-          type: string
-
-    ProcessId:
-      type: object
-      properties:
-        id:
-          type: string
-
-    Patient:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        surname:
-          type: string
-
-
-    HealthProfessional:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        surname:
-          type: string
-        role:
           type: string
 
     Room:
