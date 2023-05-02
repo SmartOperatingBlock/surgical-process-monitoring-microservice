@@ -9,6 +9,7 @@
 package infrastructure.api.routes
 
 import application.controller.SurgicalProcessController
+import application.presenter.api.toSurgicalProcessApiDto
 import application.service.SurgicalProcessServices
 import infrastructure.api.util.ResponseEntryList
 import infrastructure.provider.ManagerProvider
@@ -27,7 +28,9 @@ fun Route.processAPI(apiPath: String, provider: ManagerProvider) {
                 provider.processDatabaseManager,
                 provider.processDigitalTwinManager
             )
-        ).execute().toList().run {
+        ).execute().toList().map { surgicalProcess ->
+            surgicalProcess.toSurgicalProcessApiDto()
+        }.run {
             call.response.status(if (this.isEmpty()) HttpStatusCode.NoContent else HttpStatusCode.OK)
             call.respond(ResponseEntryList(this))
         }
