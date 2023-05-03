@@ -77,7 +77,9 @@ object PatientEventHandlers {
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.BodyTemperature>>()
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.BodyTemperature>> {
+                this.data::class.java == ProcessEventsPayloads.BodyTemperature::class.java
+            }
         }
 
         override fun consume(event: Event<*>) {
@@ -100,7 +102,9 @@ object PatientEventHandlers {
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.DiastolicPressure>>()
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.DiastolicPressure>> {
+                this.data::class.java == ProcessEventsPayloads.DiastolicPressure::class.java
+            }
         }
 
         override fun consume(event: Event<*>) {
@@ -125,7 +129,9 @@ object PatientEventHandlers {
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.SystolicPressure>>()
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.SystolicPressure>> {
+                this.data::class.java == ProcessEventsPayloads.SystolicPressure::class.java
+            }
         }
 
         override fun consume(event: Event<*>) {
@@ -150,7 +156,9 @@ object PatientEventHandlers {
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.RespiratoryRate>>()
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.RespiratoryRate>> {
+                this.data::class.java == ProcessEventsPayloads.RespiratoryRate::class.java
+            }
         }
 
         override fun consume(event: Event<*>) {
@@ -175,7 +183,9 @@ object PatientEventHandlers {
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.Saturation>>()
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.Saturation>> {
+                this.data::class.java == ProcessEventsPayloads.Saturation::class.java
+            }
         }
 
         override fun consume(event: Event<*>) {
@@ -200,7 +210,9 @@ object PatientEventHandlers {
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.Heartbeat>>()
+            this.data.cast<ProcessEventsPayloads.PatientData<ProcessEventsPayloads.Heartbeat>> {
+                this.data::class.java == ProcessEventsPayloads.Heartbeat::class.java
+            }
         }
 
         override fun consume(event: Event<*>) {
