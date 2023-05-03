@@ -150,13 +150,13 @@ class DigitalTwinManager :
         state: ProcessData.ProcessState
     ): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
-            updateDigitalTwin(processId.id, JsonPatchDocument().appendAdd("process_state", state.ordinal))
+            updateDigitalTwin(processId.id, JsonPatchDocument().appendAdd("/process_state", state.ordinal.toString()))
             true
         }
 
     override fun updateSurgicalProcessStep(processId: ProcessData.ProcessId, step: ProcessData.ProcessStep): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
-            updateDigitalTwin(processId.id, JsonPatchDocument().appendAdd("process_step", step.ordinal))
+            updateDigitalTwin(processId.id, JsonPatchDocument().appendAdd("/process_step", step.ordinal.toString()))
             true
         }
 
