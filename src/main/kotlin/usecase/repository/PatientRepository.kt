@@ -49,4 +49,9 @@ interface PatientRepository {
      * Create a patient given its [patientId].
      */
     fun createPatient(patientId: PatientData.PatientId): Patient?
+
+    /**
+     * Delete a patient given its [patientId].
+     */
+    fun deletePatient(patientId: PatientData.PatientId): Boolean
 }

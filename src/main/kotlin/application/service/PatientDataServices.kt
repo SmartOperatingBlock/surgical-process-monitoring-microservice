@@ -68,4 +68,15 @@ object PatientDataServices {
     ) : ApplicationService<Patient?> {
         override fun execute(): Patient? = patientRepository.createPatient(patientId)
     }
+
+    /**
+     * Application Service to delete a [Patient].
+     */
+    class DeletePatient(
+        private val patientId: PatientData.PatientId,
+        private val patientRepository: PatientRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean =
+            patientRepository.deletePatient(patientId)
+    }
 }

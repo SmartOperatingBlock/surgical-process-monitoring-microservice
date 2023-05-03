@@ -20,4 +20,11 @@ interface PatientDigitalTwinManager {
     fun createPatientDT(
         patientId: PatientData.PatientId
     ): Patient?
+
+    /**
+     * Delete the digital twin of a [Patient] given its [patientId].
+     */
+    fun deletePatientDT(
+        patientId: PatientData.PatientId
+    ): Boolean
 }
