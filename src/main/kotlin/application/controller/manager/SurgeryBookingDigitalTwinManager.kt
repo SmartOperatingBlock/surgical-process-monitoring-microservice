@@ -23,4 +23,7 @@ interface SurgeryBookingDigitalTwinManager {
         patientId: PatientData.PatientId,
         surgeryBookingId: SurgeryBookingData.SurgeryBookingId
     ): Boolean
+
+    /** Delete a [SurgeryBooking] by the [bookingId]. */
+    fun deleteSurgeryBooking(bookingId: SurgeryBookingData.SurgeryBookingId): Boolean
 }

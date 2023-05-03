@@ -33,4 +33,11 @@ interface BookingRepository {
         patientId: PatientData.PatientId,
         surgeryBookingId: SurgeryBookingData.SurgeryBookingId
     ): Boolean
+
+    /**
+     * Delete a [SurgeryBooking] by its [bookingId].
+     */
+    fun deleteSurgeryBooking(
+        bookingId: SurgeryBookingData.SurgeryBookingId,
+    ): Boolean
 }

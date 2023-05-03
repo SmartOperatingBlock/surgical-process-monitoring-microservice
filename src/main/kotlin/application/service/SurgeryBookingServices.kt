@@ -9,6 +9,7 @@
 package application.service
 
 import entity.booking.SurgeryBooking
+import entity.booking.SurgeryBookingData
 import entity.patient.PatientData
 import usecase.repository.BookingRepository
 
@@ -23,5 +24,15 @@ object SurgeryBookingServices {
         private val surgeryBookingRepository: BookingRepository
     ) : ApplicationService<SurgeryBooking?> {
         override fun execute(): SurgeryBooking? = surgeryBookingRepository.getSurgeryBookingByPatient(patientId)
+    }
+
+    /**
+     * The [ApplicationService] to delete a [SurgeryBooking] by a [bookingId].
+     */
+    class DeleteSurgeryBooking(
+        private val bookingId: SurgeryBookingData.SurgeryBookingId,
+        private val surgeryBookingRepository: BookingRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean = surgeryBookingRepository.deleteSurgeryBooking(bookingId)
     }
 }

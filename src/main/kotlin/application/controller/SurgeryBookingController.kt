@@ -28,4 +28,9 @@ class SurgeryBookingController(
         patientId: PatientData.PatientId,
         surgeryBookingId: SurgeryBookingData.SurgeryBookingId
     ): Boolean = this.surgeryBookingDigitalTwinManager.removePatientSurgeryBookingMapping(patientId, surgeryBookingId)
+
+    override fun deleteSurgeryBooking(
+        bookingId: SurgeryBookingData.SurgeryBookingId,
+    ): Boolean =
+        surgeryBookingDigitalTwinManager.deleteSurgeryBooking(bookingId)
 }
