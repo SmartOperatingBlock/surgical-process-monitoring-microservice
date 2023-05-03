@@ -69,4 +69,7 @@ class SurgicalProcessController(
         surgicalProcessId: ProcessData.ProcessId
     ): List<Pair<Instant, ProcessData.ProcessStep>> =
         this.processDatabaseManager.getSurgicalProcessSteps(surgicalProcessId)
+
+    override fun deleteSurgicalProcess(surgicalProcessId: ProcessData.ProcessId): Boolean =
+        this.processDigitalTwinManager.deleteSurgicalProcess(surgicalProcessId)
 }

@@ -79,4 +79,11 @@ interface SurgicalProcessRepository {
     fun getSurgicalProcessSteps(
         surgicalProcessId: ProcessData.ProcessId
     ): List<Pair<Instant, ProcessData.ProcessStep>>
+
+    /**
+     * Delete a [SurgicalProcess] by it [surgicalProcessId].
+     */
+    fun deleteSurgicalProcess(
+        surgicalProcessId: ProcessData.ProcessId
+    ): Boolean
 }

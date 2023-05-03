@@ -108,4 +108,16 @@ object SurgicalProcessServices {
         override fun execute(): List<Pair<Instant, ProcessData.ProcessStep>> =
             surgicalProcessRepository.getSurgicalProcessSteps(surgicalProcessId)
     }
+
+    /**
+     * The Application Service to delete a [SurgicalProcess] by its [surgicalProcessId]
+     * using the [surgicalProcessRepository].
+     */
+    class DeleteSurgicalProcess(
+        private val surgicalProcessId: ProcessData.ProcessId,
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean =
+            surgicalProcessRepository.deleteSurgicalProcess(surgicalProcessId)
+    }
 }
