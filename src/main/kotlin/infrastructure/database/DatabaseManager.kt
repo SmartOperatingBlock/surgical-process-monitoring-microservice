@@ -161,7 +161,13 @@ class DatabaseManager(
         this.processStateEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStateEvent(dateTime, TimeSeriesProcessStateEventMetadata(processId), state))
                 .wasAcknowledged()
-        }
+        } &&
+            this.surgicalProcessCollection.safeMongoDbWrite(false) {
+                updateOne(
+                    SurgicalProcess::id eq processId,
+                    setValue(SurgicalProcess::state, state)
+                ).wasAcknowledged()
+            }
 
     override fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
@@ -171,7 +177,13 @@ class DatabaseManager(
         this.processStepEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStepEvent(dateTime, TimeSeriesProcessStepEventMetadata(processId), step))
                 .wasAcknowledged()
-        }
+        } &&
+            this.surgicalProcessCollection.safeMongoDbWrite(false) {
+                updateOne(
+                    SurgicalProcess::id eq processId,
+                    setValue(SurgicalProcess::step, step)
+                ).wasAcknowledged()
+            }
 
     override fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
