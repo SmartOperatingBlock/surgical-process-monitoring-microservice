@@ -104,112 +104,159 @@ object ProcessEventHandlers {
                 when (this.data.roomType) {
                     ProcessEventsPayloads.RoomType.PRE_OPERATING_ROOM -> {
                         if (this.data.entered) {
-                            if (surgicalProcess == null) {
-                                val surgeryBooking =
-                                    SurgeryBookingServices.GetSurgeryBookingByPatient(
-                                        PatientData.PatientId(this.data.patientId),
-                                        surgeryBookingRepository
-                                    ).execute()
-                                if (surgeryBooking != null) {
-                                    SurgicalProcessServices.CreateSurgicalProcess(
-                                        SurgicalProcess(
-                                            ProcessData.ProcessId(
-                                                "${this.data.patientId}-${this.dateTime.replace(":",".")}"
-                                            ),
-                                            Instant.parse(this.dateTime),
-                                            surgeryBooking.surgeryType,
-                                            surgeryBooking.patientId,
-                                            surgeryBooking.healthProfessionalId,
-                                            preOperatingRoom = Room(
-                                                RoomData.RoomId(this.data.roomId),
-                                                type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
-                                            ),
-                                            state = ProcessData.ProcessState.PRE_SURGERY,
-                                            step = ProcessData.ProcessStep.PATIENT_IN_PREPARATION
-                                        ),
-                                        surgicalProcessRepository
-                                    ).execute()?.let {
-                                        SurgicalProcessServices.UpdateSurgicalProcessState(
-                                            it.id,
-                                            it.dateTime,
-                                            ProcessData.ProcessState.PRE_SURGERY,
-                                            surgicalProcessRepository
-                                        ).execute()
-                                        SurgicalProcessServices.UpdateSurgicalProcessStep(
-                                            it.id,
-                                            it.dateTime,
-                                            ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
-                                            surgicalProcessRepository
-                                        ).execute()
-                                    }
-                                    true
-                                } else false
-                            } else {
-                                SurgicalProcessServices.UpdateSurgicalProcessState(
-                                    surgicalProcess.id,
-                                    Instant.parse(this.dateTime),
-                                    ProcessData.ProcessState.POST_SURGERY,
-                                    surgicalProcessRepository
-                                ).execute()
-                            }
+                            managePreOperatingRoomPatientEntrance(
+                                surgicalProcess,
+                                this,
+                                surgeryBookingRepository,
+                                surgicalProcessRepository
+                            )
+                            true
                         } else {
-                            if (surgicalProcess != null && !isSurgicalProcessOver(
-                                    surgicalProcess.id.id,
-                                    surgicalProcessRepository
-                                )
-                            ) {
-                                SurgicalProcessServices.UpdateSurgicalProcessState(
-                                    surgicalProcess.id,
-                                    Instant.parse(event.dateTime),
-                                    ProcessData.ProcessState.TERMINATED,
-                                    surgicalProcessRepository
-                                ).execute()
-                                val processStates = SurgicalProcessServices.GetSurgicalProcessStates(
-                                    surgicalProcess.id,
-                                    surgicalProcessRepository
-                                ).execute()
-                                val processSteps = SurgicalProcessServices.GetSurgicalProcessSteps(
-                                    surgicalProcess.id,
-                                    surgicalProcessRepository
-                                ).execute()
-                                surgicalProcess.healthProfessionalId?.let { hpId ->
-                                    surgicalProcess.preOperatingRoom?.let { preOpId ->
-                                        surgicalProcess.operatingRoom?.let { opId ->
-                                            SurgeryReport(
-                                                surgicalProcess.id,
-                                                surgicalProcess.type,
-                                                surgicalProcess.patientId,
-                                                hpId,
-                                                preOpId,
-                                                opId,
-                                                processStates,
-                                                processSteps
-                                            )
-                                        }
-                                    }
-                                }?.let {
-                                    eventProducer.produceEvent(
-                                        SurgeryReportEvent(
-                                            dateTime = Instant.now().toString(),
-                                            data = it
-                                        )
-                                    )
-                                }
-                                true
-                            } else false
+                            managePreOperatingRoomPatientExit(
+                                surgicalProcess,
+                                surgicalProcessRepository,
+                                this,
+                                eventProducer
+                            )
+                            true
                         }
                     }
                     ProcessEventsPayloads.RoomType.OPERATING_ROOM -> {
-                        surgicalProcess?.let {
-                            SurgicalProcessServices.UpdateSurgicalProcessRoom(
-                                it.id,
-                                Room(RoomData.RoomId(this.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
-                                surgicalProcessRepository
-                            ).execute()
+                        if (this.data.entered) {
+                            manageOperatingRoomPatientEntrance(surgicalProcess, surgicalProcessRepository, this)
                         }
-                        false
+                        true
                     }
                 }
+            }
+        }
+    }
+
+    private fun managePreOperatingRoomPatientEntrance(
+        surgicalProcess: SurgicalProcess?,
+        event: ProcessEvent<ProcessEventsPayloads.PatientTracked>,
+        surgeryBookingRepository: BookingRepository,
+        surgicalProcessRepository: SurgicalProcessRepository,
+    ) {
+        if (surgicalProcess == null) {
+            val surgeryBooking =
+                SurgeryBookingServices.GetSurgeryBookingByPatient(
+                    PatientData.PatientId(event.data.patientId),
+                    surgeryBookingRepository
+                ).execute()
+            if (surgeryBooking != null) {
+                SurgicalProcessServices.CreateSurgicalProcess(
+                    SurgicalProcess(
+                        ProcessData.ProcessId(
+                            "${event.data.patientId}-${event.dateTime.replace(":",".")}"
+                        ),
+                        Instant.parse(event.dateTime),
+                        surgeryBooking.surgeryType,
+                        surgeryBooking.patientId,
+                        surgeryBooking.healthProfessionalId,
+                        preOperatingRoom = Room(
+                            RoomData.RoomId(event.data.roomId),
+                            type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
+                        ),
+                        state = ProcessData.ProcessState.PRE_SURGERY,
+                        step = ProcessData.ProcessStep.PATIENT_IN_PREPARATION
+                    ),
+                    surgicalProcessRepository
+                ).execute()?.let {
+                    SurgicalProcessServices.UpdateSurgicalProcessState(
+                        it.id,
+                        it.dateTime,
+                        ProcessData.ProcessState.PRE_SURGERY,
+                        surgicalProcessRepository
+                    ).execute()
+                    SurgicalProcessServices.UpdateSurgicalProcessStep(
+                        it.id,
+                        it.dateTime,
+                        ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
+                        surgicalProcessRepository
+                    ).execute()
+                }
+            }
+        } else {
+            SurgicalProcessServices.UpdateSurgicalProcessState(
+                surgicalProcess.id,
+                Instant.parse(event.dateTime),
+                ProcessData.ProcessState.POST_SURGERY,
+                surgicalProcessRepository
+            ).execute()
+            SurgicalProcessServices.UpdateSurgicalProcessRoom(
+                surgicalProcess.id,
+                surgicalProcess.operatingRoom?.id?.id,
+                Room(RoomData.RoomId(event.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
+                surgicalProcessRepository
+            ).execute()
+        }
+    }
+
+    private fun manageOperatingRoomPatientEntrance(
+        surgicalProcess: SurgicalProcess?,
+        surgicalProcessRepository: SurgicalProcessRepository,
+        event: ProcessEvent<ProcessEventsPayloads.PatientTracked>,
+    ) {
+        surgicalProcess?.let {
+            SurgicalProcessServices.UpdateSurgicalProcessRoom(
+                it.id,
+                it.preOperatingRoom?.id?.id,
+                Room(RoomData.RoomId(event.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
+                surgicalProcessRepository
+            ).execute()
+        }
+    }
+
+    private fun managePreOperatingRoomPatientExit(
+        surgicalProcess: SurgicalProcess?,
+        surgicalProcessRepository: SurgicalProcessRepository,
+        event: ProcessEvent<ProcessEventsPayloads.PatientTracked>,
+        eventProducer: EventProducer,
+    ) {
+        if (surgicalProcess != null &&
+            surgicalProcess.state == ProcessData.ProcessState.POST_SURGERY &&
+            !isSurgicalProcessOver(
+                    surgicalProcess.id.id,
+                    surgicalProcessRepository
+                )
+        ) {
+            SurgicalProcessServices.UpdateSurgicalProcessState(
+                surgicalProcess.id,
+                Instant.parse(event.dateTime),
+                ProcessData.ProcessState.TERMINATED,
+                surgicalProcessRepository
+            ).execute()
+            val processStates = SurgicalProcessServices.GetSurgicalProcessStates(
+                surgicalProcess.id,
+                surgicalProcessRepository
+            ).execute()
+            val processSteps = SurgicalProcessServices.GetSurgicalProcessSteps(
+                surgicalProcess.id,
+                surgicalProcessRepository
+            ).execute()
+            surgicalProcess.healthProfessionalId?.let { hpId ->
+                surgicalProcess.preOperatingRoom?.let { preOpId ->
+                    surgicalProcess.operatingRoom?.let { opId ->
+                        SurgeryReport(
+                            surgicalProcess.id,
+                            surgicalProcess.type,
+                            surgicalProcess.patientId,
+                            hpId,
+                            preOpId,
+                            opId,
+                            processStates,
+                            processSteps
+                        )
+                    }
+                }
+            }?.let {
+                eventProducer.produceEvent(
+                    SurgeryReportEvent(
+                        dateTime = Instant.now().toString(),
+                        data = it
+                    )
+                )
             }
         }
     }
