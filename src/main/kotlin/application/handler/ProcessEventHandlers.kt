@@ -116,7 +116,7 @@ object ProcessEventHandlers {
                                             ProcessData.ProcessId(
                                                 "${this.data.patientId}-${this.dateTime.replace(":",".")}"
                                             ),
-                                            Instant.now(),
+                                            Instant.parse(this.dateTime),
                                             surgeryBooking.surgeryType,
                                             surgeryBooking.patientId,
                                             surgeryBooking.healthProfessionalId,
@@ -131,13 +131,13 @@ object ProcessEventHandlers {
                                     ).execute()?.let {
                                         SurgicalProcessServices.UpdateSurgicalProcessState(
                                             it.id,
-                                            Instant.parse(this.dateTime),
+                                            it.dateTime,
                                             ProcessData.ProcessState.PRE_SURGERY,
                                             surgicalProcessRepository
                                         ).execute()
                                         SurgicalProcessServices.UpdateSurgicalProcessStep(
                                             it.id,
-                                            Instant.parse(this.dateTime),
+                                            it.dateTime,
                                             ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
                                             surgicalProcessRepository
                                         ).execute()
