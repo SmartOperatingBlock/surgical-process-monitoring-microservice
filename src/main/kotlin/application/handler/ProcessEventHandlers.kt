@@ -128,7 +128,21 @@ object ProcessEventHandlers {
                                             step = ProcessData.ProcessStep.PATIENT_IN_PREPARATION
                                         ),
                                         surgicalProcessRepository
-                                    ).execute() != null
+                                    ).execute()?.let {
+                                        SurgicalProcessServices.UpdateSurgicalProcessState(
+                                            it.id,
+                                            Instant.parse(this.dateTime),
+                                            ProcessData.ProcessState.PRE_SURGERY,
+                                            surgicalProcessRepository
+                                        ).execute()
+                                        SurgicalProcessServices.UpdateSurgicalProcessStep(
+                                            it.id,
+                                            Instant.parse(this.dateTime),
+                                            ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
+                                            surgicalProcessRepository
+                                        ).execute()
+                                    }
+                                    true
                                 } else false
                             } else {
                                 SurgicalProcessServices.UpdateSurgicalProcessState(
