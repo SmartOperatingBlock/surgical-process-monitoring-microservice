@@ -17,10 +17,11 @@ import entity.process.SurgicalProcess
  */
 object SurgicalProcessAdt {
 
-    private const val SURGICAL_PROCESS_MODEL = "dtmi:io:github:smartoperatingblock:SurgicalProcess;1"
     private const val STATE_PROPERTY = "process_state"
     private const val STEP_PROPERTY = "process_step"
 
+    /** The model of the surgical process DT. **/
+    const val SURGICAL_PROCESS_MODEL = "dtmi:io:github:smartoperatingblock:SurgicalProcess;1"
     /** The relationship between surgical process and booking dt. */
     const val BOOKING_RELATIONSHIP = "rel_associated_to_booking"
     /** The relationship between surgical process and patient dt. */
