@@ -82,13 +82,16 @@ class DigitalTwinManager :
                     null
                 }
             }
+
             roomId?.let {
                 query(
                     AdtQuery.createQuery()
                         .selectTop(1, "Process.\$dtId")
                         .fromDigitalTwins("Process")
                         .joinRelationship("Room", "Process", SurgicalProcessAdt.ROOM_RELATIONSHIP)
-                        .where("Room.\$dtId" eq it.id).query,
+                        .where("Room.\$dtId" eq it.id)
+                        .and("IS_OF_MODEL(Process, '${SurgicalProcessAdt.SURGICAL_PROCESS_MODEL}')")
+                        .query,
                     String::class.java,
                 ).let { result ->
                     if (result.count() == 1) {
