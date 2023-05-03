@@ -87,6 +87,7 @@ object ProcessEventHandlers {
     class PatientTrackedEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
         private val surgeryBookingRepository: BookingRepository,
+        private val patientRepository: PatientRepository,
         private val eventProducer: EventProducer
     ) : EventHandler {
 
@@ -115,6 +116,8 @@ object ProcessEventHandlers {
                             managePreOperatingRoomPatientExit(
                                 surgicalProcess,
                                 surgicalProcessRepository,
+                                patientRepository,
+                                surgeryBookingRepository,
                                 this,
                                 eventProducer
                             )
@@ -217,6 +220,8 @@ object ProcessEventHandlers {
     private fun managePreOperatingRoomPatientExit(
         surgicalProcess: SurgicalProcess?,
         surgicalProcessRepository: SurgicalProcessRepository,
+        patientRepository: PatientRepository,
+        surgeryBookingRepository: BookingRepository,
         event: ProcessEvent<ProcessEventsPayloads.PatientTracked>,
         eventProducer: EventProducer,
     ) {
@@ -263,6 +268,16 @@ object ProcessEventHandlers {
                         data = it
                     )
                 )
+            }
+            SurgicalProcessServices.DeleteSurgicalProcess(surgicalProcess.id, surgicalProcessRepository).execute()
+            PatientDataServices.DeletePatient(surgicalProcess.patientId, patientRepository).execute()
+            SurgeryBookingServices.GetSurgeryBookingByPatient(
+                PatientData.PatientId(event.data.patientId),
+                surgeryBookingRepository
+            ).execute()?.let {
+                SurgeryBookingServices.DeleteSurgeryBooking(
+                    it.id, surgeryBookingRepository
+                ).execute()
             }
         }
     }
