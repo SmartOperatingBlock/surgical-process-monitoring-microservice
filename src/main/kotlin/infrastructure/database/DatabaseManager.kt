@@ -227,6 +227,8 @@ class DatabaseManager(
             Pair(it.dateTime, it.value)
         }.toList()
 
+    override fun deleteSurgicalProcess(surgicalProcessId: ProcessData.ProcessId): Boolean = true
+
     private fun <T, R> MongoCollection<T>.safeMongoDbWrite(defaultResult: R, operation: MongoCollection<T>.() -> R): R =
         try {
             operation()

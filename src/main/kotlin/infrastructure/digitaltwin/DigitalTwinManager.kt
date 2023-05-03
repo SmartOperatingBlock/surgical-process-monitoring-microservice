@@ -113,6 +113,14 @@ class DigitalTwinManager :
             }
         }
 
+    override fun deletePatientDT(patientId: PatientData.PatientId): Boolean =
+        this.dtClient.applySafeDigitalTwinOperation(false) {
+            deleteIncomingRelationships(patientId.id)
+            deleteOutgoingRelationships(patientId.id)
+            deleteDigitalTwin(patientId.id)
+            true
+        }
+
     override fun createSurgicalProcess(process: SurgicalProcess): Boolean =
         with(process.toDigitalTwin()) {
             dtClient.applySafeDigitalTwinOperation(false) {
@@ -190,6 +198,14 @@ class DigitalTwinManager :
             true
         }
 
+    override fun deleteSurgicalProcess(processId: ProcessData.ProcessId): Boolean =
+        this.dtClient.applySafeDigitalTwinOperation(false) {
+            deleteIncomingRelationships(processId.id)
+            deleteOutgoingRelationships(processId.id)
+            deleteDigitalTwin(processId.id)
+            true
+        }
+
     override fun getSurgeryBookingByPatient(patientId: PatientData.PatientId): SurgeryBooking? =
         this.dtClient.applySafeDigitalTwinOperation(null) {
             val bookingId: String? = query(
@@ -227,6 +243,14 @@ class DigitalTwinManager :
             false
         }
 
+    override fun deleteSurgeryBooking(bookingId: SurgeryBookingData.SurgeryBookingId): Boolean =
+        this.dtClient.applySafeDigitalTwinOperation(false) {
+            deleteIncomingRelationships(bookingId.id)
+            deleteOutgoingRelationships(bookingId.id)
+            deleteDigitalTwin(bookingId.id)
+            true
+        }
+
     private fun <R> DigitalTwinsClient.applySafeDigitalTwinOperation(
         defaultResult: R,
         operation: DigitalTwinsClient.() -> R,
@@ -251,5 +275,19 @@ class DigitalTwinManager :
             this.contents[it.name] = it.targetId
         }
         return this
+    }
+
+    private fun DigitalTwinsClient.deleteIncomingRelationships(sourceId: String) {
+        this.listIncomingRelationships(sourceId).forEach {
+            this.deleteRelationship(it.sourceId, it.relationshipId)
+        }
+    }
+
+    private fun DigitalTwinsClient.deleteOutgoingRelationships(sourceId: String, relationshipName: String? = null) {
+        this.listRelationships(sourceId, BasicRelationship::class.java).forEach {
+            if (relationshipName == null || it.name == relationshipName) {
+                this.deleteRelationship(it.sourceId, it.id)
+            }
+        }
     }
 }

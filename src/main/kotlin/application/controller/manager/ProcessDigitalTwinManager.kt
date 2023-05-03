@@ -44,4 +44,11 @@ interface ProcessDigitalTwinManager {
         latestRoomId: String?,
         room: Room
     ): Boolean
+
+    /**
+     * Delete a [SurgicalProcess] by its [processId].
+     */
+    fun deleteSurgicalProcess(
+        processId: ProcessData.ProcessId
+    ): Boolean
 }
