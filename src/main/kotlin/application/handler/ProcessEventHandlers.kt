@@ -184,6 +184,12 @@ object ProcessEventHandlers {
                 ProcessData.ProcessState.POST_SURGERY,
                 surgicalProcessRepository
             ).execute()
+            SurgicalProcessServices.UpdateSurgicalProcessStep(
+                surgicalProcess.id,
+                Instant.parse(event.dateTime),
+                ProcessData.ProcessStep.PATIENT_UNDER_OBSERVATION,
+                surgicalProcessRepository
+            ).execute()
             SurgicalProcessServices.UpdateSurgicalProcessRoom(
                 surgicalProcess.id,
                 surgicalProcess.operatingRoom?.id?.id,
