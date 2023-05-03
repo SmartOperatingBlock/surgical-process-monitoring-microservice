@@ -33,7 +33,13 @@ class MedicalDeviceController(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
         inUse: Boolean
-    ): Boolean = this.addMedicalTechnologyUsage(medicalTechnologyId, processId, dateTime, inUse)
+    ): Boolean =
+        this.medicalDeviceDatabaseManager.addMedicalTechnologyUsage(
+            medicalTechnologyId,
+            dateTime,
+            processId,
+            inUse
+        )
 
     override fun findSurgicalProcessByMedicalTechnology(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
