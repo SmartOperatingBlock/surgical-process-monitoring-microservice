@@ -17,6 +17,7 @@ import application.service.PatientDataServices
 import application.service.SurgicalProcessServices
 import entity.patient.PatientData
 import entity.process.ProcessData
+import entity.process.SurgicalProcess
 import usecase.repository.PatientRepository
 import usecase.repository.SurgicalProcessRepository
 import java.time.Instant
@@ -39,15 +40,24 @@ object PatientEventHandlers {
 
         override fun consume(event: Event<*>) {
             event.cast<ProcessEvent<ProcessEventsPayloads.PatientOnOperatingTable>> {
-                if (!isSurgicalProcessOver(this.data.processId, surgicalProcessRepository)) {
+                val surgicalProcess: SurgicalProcess? =
+                    SurgicalProcessServices.GetCurrentSurgicalProcesses(surgicalProcessRepository).execute()
+                        .firstOrNull {
+                            it.patientId.id == this.data.patientId
+                        }
+                if (surgicalProcess != null && !isSurgicalProcessOver(
+                        surgicalProcess.id.id,
+                        surgicalProcessRepository
+                    )
+                ) {
                     SurgicalProcessServices.UpdateSurgicalProcessState(
-                        ProcessData.ProcessId(this.data.processId),
+                        surgicalProcess.id,
                         Instant.parse(this.dateTime),
                         ProcessData.ProcessState.SURGERY,
                         surgicalProcessRepository
                     ).execute() &&
                         SurgicalProcessServices.UpdateSurgicalProcessStep(
-                            ProcessData.ProcessId(this.data.processId),
+                            surgicalProcess.id,
                             Instant.parse(this.dateTime),
                             ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
                             surgicalProcessRepository
