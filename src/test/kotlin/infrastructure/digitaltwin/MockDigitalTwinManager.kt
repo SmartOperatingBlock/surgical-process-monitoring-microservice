@@ -36,6 +36,8 @@ class MockDigitalTwinManager :
 
     override fun createPatientDT(patientId: PatientData.PatientId): Patient? = null
 
+    override fun deletePatientDT(patientId: PatientData.PatientId): Boolean = true
+
     override fun createSurgicalProcess(process: SurgicalProcess): Boolean = surgicalProcesses.add(process)
 
     override fun updateSurgicalProcessState(
@@ -46,7 +48,13 @@ class MockDigitalTwinManager :
     override fun updateSurgicalProcessStep(processId: ProcessData.ProcessId, step: ProcessData.ProcessStep): Boolean =
         surgicalProcesses.any { it.id == processId }
 
-    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean = true
+    override fun updateSurgicalProcessRoom(
+        processId: ProcessData.ProcessId,
+        latestRoomId: String?,
+        room: Room
+    ): Boolean = true
+
+    override fun deleteSurgicalProcess(processId: ProcessData.ProcessId): Boolean = true
 
     override fun getSurgeryBookingByPatient(patientId: PatientData.PatientId): SurgeryBooking? =
         surgeryBookings.find { it.patientId == patientId }
@@ -55,4 +63,6 @@ class MockDigitalTwinManager :
         patientId: PatientData.PatientId,
         surgeryBookingId: SurgeryBookingData.SurgeryBookingId
     ): Boolean = true
+
+    override fun deleteSurgeryBooking(bookingId: SurgeryBookingData.SurgeryBookingId): Boolean = true
 }

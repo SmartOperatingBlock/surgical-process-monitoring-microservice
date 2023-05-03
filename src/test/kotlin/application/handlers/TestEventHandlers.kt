@@ -48,6 +48,7 @@ class TestEventHandlers : StringSpec({
         val eventHandler = ProcessEventHandlers.PatientTrackedEventHandler(
             surgicalProcessController(),
             surgeryBookingController(),
+            patientController(),
             MockEventProducer()
         )
         eventHandler.canHandle(event) shouldBe true
