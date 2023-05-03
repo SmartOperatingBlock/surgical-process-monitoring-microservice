@@ -52,9 +52,13 @@ class SurgicalProcessController(
         this.processDigitalTwinManager.updateSurgicalProcessStep(processId, step) &&
             this.processDatabaseManager.updateSurgicalProcessStep(processId, dateTime, step)
 
-    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean =
-        this.processDigitalTwinManager.updateSurgicalProcessRoom(processId, room) &&
-            this.processDatabaseManager.updateSurgicalProcessRoom(processId, room)
+    override fun updateSurgicalProcessRoom(
+        processId: ProcessData.ProcessId,
+        latestRoomId: String?,
+        room: Room
+    ): Boolean =
+        this.processDigitalTwinManager.updateSurgicalProcessRoom(processId, latestRoomId, room) &&
+            this.processDatabaseManager.updateSurgicalProcessRoom(processId, latestRoomId, room)
 
     override fun getSurgicalProcessStates(
         surgicalProcessId: ProcessData.ProcessId

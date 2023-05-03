@@ -173,7 +173,11 @@ class DatabaseManager(
                 .wasAcknowledged()
         }
 
-    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean =
+    override fun updateSurgicalProcessRoom(
+        processId: ProcessData.ProcessId,
+        latestRoomId: String?,
+        room: Room
+    ): Boolean =
         when (room.type) {
             RoomData.RoomType.PRE_POST_OPERATING_ROOM -> {
                 this.surgicalProcessCollection.safeMongoDbWrite(false) {

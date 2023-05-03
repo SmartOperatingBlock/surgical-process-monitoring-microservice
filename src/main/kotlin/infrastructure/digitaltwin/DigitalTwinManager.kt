@@ -138,8 +138,9 @@ class DigitalTwinManager :
                         ),
                         BasicRelationship::class.java
                     )
-                    process.preOperatingRoom?.let { room -> updateSurgicalProcessRoom(process.id, room) }
-                    process.operatingRoom?.let { room -> updateSurgicalProcessRoom(process.id, room) }
+                    process.preOperatingRoom?.let { room ->
+                        updateSurgicalProcessRoom(process.id, null, room)
+                    }
                 }
                 true
             }
@@ -160,10 +161,14 @@ class DigitalTwinManager :
             true
         }
 
-    override fun updateSurgicalProcessRoom(processId: ProcessData.ProcessId, room: Room): Boolean =
+    override fun updateSurgicalProcessRoom(
+        processId: ProcessData.ProcessId,
+        latestRoomId: String?,
+        room: Room
+    ): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
             this.listRelationships(processId.id, BasicRelationship::class.java).forEach {
-                if (it.targetId == room.id.id) {
+                if (it.targetId == latestRoomId) {
                     this.deleteRelationship(it.sourceId, it.id)
                 }
             }.let {

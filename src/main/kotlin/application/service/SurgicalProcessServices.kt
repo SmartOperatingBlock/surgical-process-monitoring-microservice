@@ -79,11 +79,12 @@ object SurgicalProcessServices {
      */
     class UpdateSurgicalProcessRoom(
         private val surgicalProcessId: ProcessData.ProcessId,
+        private val latestRoomId: String?,
         private val room: Room,
         private val surgicalProcessRepository: SurgicalProcessRepository
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
-            surgicalProcessRepository.updateSurgicalProcessRoom(surgicalProcessId, room)
+            surgicalProcessRepository.updateSurgicalProcessRoom(surgicalProcessId, latestRoomId, room)
     }
 
     /**

@@ -58,10 +58,11 @@ interface SurgicalProcessRepository {
     ): Boolean
 
     /**
-     * Update the [room] of a [SurgicalProcess] by its [processId].
+     * Update the [room] and the previous [latestRoomId] of a [SurgicalProcess] by its [processId].
      */
     fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
+        latestRoomId: String?,
         room: Room
     ): Boolean
 

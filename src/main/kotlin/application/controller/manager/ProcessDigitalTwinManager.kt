@@ -41,6 +41,7 @@ interface ProcessDigitalTwinManager {
      */
     fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
+        latestRoomId: String?,
         room: Room
     ): Boolean
 }
