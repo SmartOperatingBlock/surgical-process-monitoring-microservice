@@ -319,8 +319,8 @@ object ProcessEventHandlers {
             surgicalProcessRepository
         ).execute()
         return if (process != null) {
-            process.state != ProcessData.ProcessState.INTERRUPTED &&
-                process.state != ProcessData.ProcessState.TERMINATED
+            process.state == ProcessData.ProcessState.INTERRUPTED ||
+                process.state == ProcessData.ProcessState.TERMINATED
         } else {
             false
         }
