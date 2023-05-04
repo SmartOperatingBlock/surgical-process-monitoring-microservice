@@ -11,7 +11,7 @@ package usecase
 /**
  * This models a simple use case that return an object of type [X].
  */
-interface UseCase<out X> {
+fun interface UseCase<out X> {
 
     /** Execute the use case returning an object of type [X]. */
     fun execute(): X

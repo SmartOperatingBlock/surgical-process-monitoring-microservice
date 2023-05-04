@@ -13,7 +13,7 @@ package application.service
  * An Application Service handle application logic without business elements.
  * @param[T] the type returned by the service.
  */
-interface ApplicationService<out T> {
+fun interface ApplicationService<out T> {
     /**
      * Method to execute the application service.
      * @return the result of type [T]

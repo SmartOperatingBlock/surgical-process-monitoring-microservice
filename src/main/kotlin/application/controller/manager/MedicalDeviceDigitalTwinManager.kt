@@ -12,7 +12,7 @@ import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
 
 /** This interface model the operation on Medical Devices Digital Twins. */
-interface MedicalDeviceDigitalTwinManager {
+fun interface MedicalDeviceDigitalTwinManager {
 
     /**
      * Find the surgical process in which a medical technology is being used.
