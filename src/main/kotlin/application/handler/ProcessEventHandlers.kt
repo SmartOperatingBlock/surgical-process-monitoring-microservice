@@ -271,7 +271,6 @@ object ProcessEventHandlers {
                 )
             }
             SurgicalProcessServices.DeleteSurgicalProcess(surgicalProcess.id, surgicalProcessRepository).execute()
-            PatientDataServices.DeletePatient(surgicalProcess.patientId, patientRepository).execute()
             SurgeryBookingServices.GetSurgeryBookingByPatient(
                 PatientData.PatientId(event.data.patientId),
                 surgeryBookingRepository
@@ -280,6 +279,7 @@ object ProcessEventHandlers {
                     it.id, surgeryBookingRepository
                 ).execute()
             }
+            PatientDataServices.DeletePatient(surgicalProcess.patientId, patientRepository).execute()
         }
     }
 
