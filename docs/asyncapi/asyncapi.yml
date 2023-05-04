@@ -1,0 +1,180 @@
+asyncapi: 2.6.0
+id: 'https://github.com/smartoperatingblock/surgical-process-monitoring-microservice'
+tags:
+  - name: Surgical Process Monitoring
+  - name: Process Data Management
+info:
+  title: Surgical Process Monitoring Microservice
+  version: 1.0.0
+  description: |
+    The Surgical Process Monitoring Microservice of the Smart Operating Block project.
+    ### Features:
+    * Receive and collect the surgical process data
+    * Update and manage the Digital Twin Layer
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
+  contact:
+    name: API Support
+    url: https://smartoperatingblock.github.io
+    email: info@smartoperatingblock.com
+
+servers:
+  production:
+    url: http://broker:29092
+    protocol: kafka
+    description: The event broker
+
+defaultContentType: application/json
+
+channels:
+  process-events:
+    description: The topic on which the process events are published.
+    publish:
+      operationId: getProcessEvents
+      summary: |
+        Get all the events related to current surgical processes within the operating block.
+      message:
+        "$ref": '#/components/messages/stepManualEvent'
+
+  process-summary-events:
+    description: The topic on which the process summary events are published.
+    subscribe:
+      operationId: sendProcessSummaryEvent
+      summary: |
+        Send all the events related to surgical processes summary within the operating block.
+      message:
+        "$ref": '#/components/messages/SurgeryReportEvent'
+
+
+
+components:
+  messages:
+
+    stepManualEvent:
+      name: stepManualEvent
+      title: The Step Manual Event
+      summary: the event of a step of a surgical process comunicated by an operating room gateway.
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/stepManualEventPayload"
+
+    SurgeryReportEvent:
+      name: surgeryReportEvent
+      title: The Surgery Report Event
+      summary: the event of the surgery report sent to the dedicated microsevice.
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/SurgeryReportPayload"
+
+  schemas:
+    stepManualEventPayload:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the event.
+        data:
+          type: object
+          $ref: '#/components/schemas/StepEventData'
+        dateTime:
+          type: string
+          description: the timestamp of the event.
+
+    StepEventData:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: the id of the room.
+        step:
+          type: string
+          description: the step of the process.
+
+    SurgeryReportPayload:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the event.
+        data:
+          type: object
+          $ref: '#/components/schemas/SurgeryReport'
+        dateTime:
+          type: string
+          description: the timestamp of the event.
+
+    SurgeryReport:
+      type: object
+      properties:
+        processId:
+          type: object
+          $ref: '#/components/schemas/ProcessId'
+        processType:
+          type: string
+        patientId:
+          type: object
+          $ref: '#/components/schemas/PatientId'
+        HealthProfessionalId:
+          type: object
+          $ref: '#/components/schemas/HealthProfessionalId'
+        preOperatingRoom:
+          type: object
+          $ref: '#/components/schemas/Room'
+        operatingRoom:
+          type: object
+          $ref: '#/components/schemas/Room'
+        processStates:
+          type: object
+          $ref: '#/components/schemas/ProcessStates'
+        processSteps:
+          type: object
+          $ref: '#/components/schemas/ProcessSteps'
+
+    ProcessId:
+      type: object
+      properties:
+        id:
+          type: string
+
+    HealthProfessionalId:
+      type: object
+      properties:
+        id:
+          type: string
+
+    PatientId:
+      type: object
+      properties:
+        id:
+          type: string
+
+    Room:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: The id of the room.
+        roomType:
+          type: string
+          description: The type of the room.
+
+    ProcessStates:
+      type: array
+      properties:
+        dateTime:
+          type: string
+          description: the date time of the process state.
+        state:
+          type: string
+          description: the surgical process state.
+
+    ProcessSteps:
+      type: array
+      properties:
+        dateTime:
+          type: string
+          description: the date time of the process step.
+        step:
+          type: string
+          description: the surgical process step.
