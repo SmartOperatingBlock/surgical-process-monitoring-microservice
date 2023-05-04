@@ -9,6 +9,7 @@
 package application.handler
 
 import application.controller.manager.EventProducer
+import application.handler.ProcessEventHandlers.cast
 import application.presenter.event.model.Event
 import application.presenter.event.model.ProcessEvent
 import application.presenter.event.model.SurgeryReportEvent
@@ -322,6 +323,37 @@ object ProcessEventHandlers {
                 } else {
                     false
                 }
+            }
+        }
+    }
+
+    /**
+     * The handler for Step manual events.
+     */
+    class StepManualEventHandler(
+        private val surgicalProcessRepository: SurgicalProcessRepository
+    ) : EventHandler {
+
+        override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
+            this.data.cast<ProcessEventsPayloads.StepManualEvent>()
+        }
+
+        override fun consume(event: Event<*>) {
+            event.cast<ProcessEvent<ProcessEventsPayloads.StepManualEvent>> {
+                val surgicalProcess: SurgicalProcess? =
+                    SurgicalProcessServices
+                        .GetCurrentSurgicalProcesses(surgicalProcessRepository).execute().firstOrNull {
+                            it.operatingRoom?.id?.id == this.data.roomId
+                        }
+                surgicalProcess?.let {
+                    SurgicalProcessServices.UpdateSurgicalProcessStep(
+                        it.id,
+                        Instant.parse(this.dateTime),
+                        this.data.step,
+                        surgicalProcessRepository
+                    ).execute()
+                }
+                true
             }
         }
     }
