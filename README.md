@@ -25,4 +25,5 @@ The microservice responsible to monitor and collect information of surgical proc
 ## Documentation
 - Check out the website [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice)
 - Check out the _REST-API_ documentation [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice/documentation/openapi-doc)
+- Check out the _AsyncAPI_ documentation [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice/documentation/asyncapi-doc)
 - Check out the Code documentation here [here](https://smartoperatingblock.github.io/surgical-process-monitoring-microservice/documentation/code-doc)
