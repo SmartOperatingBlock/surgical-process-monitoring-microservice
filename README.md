@@ -10,13 +10,17 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_surgical-process-monitoring-microservice)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=SmartOperatingBlock_surgical-process-monitoring-microservice&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=SmartOperatingBlock_surgical-process-monitoring-microservice)
 
-The microservice responsible to monitor and collect information of surgical processes inside the Operating Block.
+The microservice responsible to monitor and collect information of surgical processes within the Smart Operating Block.
 
 ## Usage
 1. Provide a `.env` file with the following variables:
    - `SURGICAL_PROCESS_MICROSERVICE_MONGODB_URL`: the mongodb connection string
    - `BOOTSTRAP_SERVER_URL`: the kafka connection endpoint
    - `SCHEMA_REGISTRY_URL`: the schema registry url
+   - `AZURE_CLIENT_ID`: ID of an Azure AD application
+   - `AZURE_TENANT_ID`: ID of the application's Azure AD tenant
+   - `AZURE_CLIENT_SECRET`: the application's client secrets
+   - `AZURE_DT_ENDPOINT`: the Azure Digital Twins instance endpoint
 2. Run the container with the command:
     ```bash
     docker run ghcr.io/smartoperatingblock/surgical-process-monitoring-microservice:latest
