@@ -13,7 +13,7 @@ import application.presenter.event.model.Event
 /**
  * The [Event] producer.
  */
-interface EventProducer {
+fun interface EventProducer {
 
     /** Produce the [event] into an event broker. */
     fun produceEvent(event: Event<*>)
