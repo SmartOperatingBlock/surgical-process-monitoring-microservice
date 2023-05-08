@@ -27,15 +27,17 @@ import java.time.Instant
  * - the [operatingRoom]
  * - the [processStates]
  * - the [processSteps]
+ * - the [patientMedicalData]
  */
 @Serializable
 data class SurgeryReport(
     val processId: ProcessData.ProcessId,
     val processType: String,
     val patientId: PatientData.PatientId,
-    val healthProfessionalId: HealthProfessionalData.HealthProfessionalId,
-    val preOperatingRoom: Room,
-    val operatingRoom: Room,
+    val healthProfessionalId: HealthProfessionalData.HealthProfessionalId?,
+    val preOperatingRoom: Room?,
+    val operatingRoom: Room?,
     val processStates: List<Pair<@Contextual Instant, ProcessData.ProcessState>>,
-    val processSteps: List<Pair<@Contextual Instant, ProcessData.ProcessStep>>
+    val processSteps: List<Pair<@Contextual Instant, ProcessData.ProcessStep>>,
+    val patientMedicalData: List<Pair<@Contextual Instant, PatientData.MedicalData>>
 )

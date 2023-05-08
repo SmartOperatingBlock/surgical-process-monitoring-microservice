@@ -239,34 +239,32 @@ object ProcessEventHandlers {
                 ProcessData.ProcessState.TERMINATED,
                 surgicalProcessRepository
             ).execute()
-            val processStates = SurgicalProcessServices.GetSurgicalProcessStates(
+            SurgicalProcessServices.GetSurgicalProcessStates(
                 surgicalProcess.id,
                 surgicalProcessRepository
-            ).execute()
-            val processSteps = SurgicalProcessServices.GetSurgicalProcessSteps(
-                surgicalProcess.id,
-                surgicalProcessRepository
-            ).execute()
-            surgicalProcess.healthProfessionalId?.let { hpId ->
-                surgicalProcess.preOperatingRoom?.let { preOpId ->
-                    surgicalProcess.operatingRoom?.let { opId ->
-                        SurgeryReport(
-                            surgicalProcess.id,
-                            surgicalProcess.type,
-                            surgicalProcess.patientId,
-                            hpId,
-                            preOpId,
-                            opId,
-                            processStates,
-                            processSteps
-                        )
-                    }
-                }
-            }?.let {
+            ).execute().also { processStates ->
                 eventProducer.produceEvent(
                     SurgeryReportEvent(
                         dateTime = Instant.now().toString(),
-                        data = it
+                        data = SurgeryReport(
+                            surgicalProcess.id,
+                            surgicalProcess.type,
+                            surgicalProcess.patientId,
+                            surgicalProcess.healthProfessionalId,
+                            surgicalProcess.preOperatingRoom,
+                            surgicalProcess.operatingRoom,
+                            processStates,
+                            SurgicalProcessServices.GetSurgicalProcessSteps(
+                                surgicalProcess.id,
+                                surgicalProcessRepository
+                            ).execute(),
+                            PatientDataServices.GetPatientMedicalData(
+                                surgicalProcess.patientId,
+                                getStartAndEndProcessTime(processStates).first,
+                                getStartAndEndProcessTime(processStates).second,
+                                patientRepository
+                            ).execute()
+                        )
                     )
                 )
             }
@@ -357,6 +355,18 @@ object ProcessEventHandlers {
             }
         }
     }
+
+    private fun getStartAndEndProcessTime(
+        processStates: List<Pair<Instant, ProcessData.ProcessState>>
+    ): Pair<Instant, Instant> =
+        Pair(
+            processStates.first {
+                it.second == ProcessData.ProcessState.PRE_SURGERY
+            }.first,
+            processStates.first {
+                it.second == ProcessData.ProcessState.TERMINATED || it.second == ProcessData.ProcessState.INTERRUPTED
+            }.first
+        )
 
     /** Utility function to cast en event to its type. */
     inline fun <reified T> Any?.cast(operation: T.() -> Boolean = { true }): Boolean = if (this is T) {
