@@ -8,10 +8,13 @@
 
 package entity.medicaldevice
 
+import kotlinx.serialization.Serializable
+
 /**
  * The model of a Medical Technology composed by the [id], the [name],
  * the [description], the [type] and a value [inUse] to check if the technology is in use.
  */
+@Serializable
 data class MedicalTechnology(
     val id: MedicalDeviceData.MedicalTechnologyId,
     val name: String,
