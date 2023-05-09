@@ -76,6 +76,7 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
                 surgicalProcessController,
                 surgeryBookingController,
                 patientDataController,
+                medicalDeviceController,
                 this,
             ),
             ProcessEventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController),
