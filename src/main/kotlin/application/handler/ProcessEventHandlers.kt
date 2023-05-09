@@ -89,6 +89,7 @@ object ProcessEventHandlers {
         private val surgicalProcessRepository: SurgicalProcessRepository,
         private val surgeryBookingRepository: BookingRepository,
         private val patientRepository: PatientRepository,
+        private val medicalDeviceRepository: MedicalDeviceRepository,
         private val eventProducer: EventProducer
     ) : EventHandler {
 
@@ -119,6 +120,7 @@ object ProcessEventHandlers {
                                 surgicalProcessRepository,
                                 patientRepository,
                                 surgeryBookingRepository,
+                                medicalDeviceRepository,
                                 this,
                                 eventProducer
                             )
@@ -223,6 +225,7 @@ object ProcessEventHandlers {
         surgicalProcessRepository: SurgicalProcessRepository,
         patientRepository: PatientRepository,
         surgeryBookingRepository: BookingRepository,
+        medicalDeviceRepository: MedicalDeviceRepository,
         event: ProcessEvent<ProcessEventsPayloads.PatientTracked>,
         eventProducer: EventProducer,
     ) {
@@ -267,7 +270,13 @@ object ProcessEventHandlers {
                                 getStartAndEndProcessTime(processStates).first,
                                 getStartAndEndProcessTime(processStates).second,
                                 patientRepository
-                            ).execute()
+                            ).execute(),
+                            MedicalDeviceServices.GetMedicalDeviceUsageByProcessId(
+                                surgicalProcess.id,
+                                medicalDeviceRepository
+                            ).execute().toList().mapNotNull {
+                                MedicalDeviceServices.GetMedicalDeviceById(it, medicalDeviceRepository).execute()
+                            }
                         )
                     )
                 )
