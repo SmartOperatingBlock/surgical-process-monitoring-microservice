@@ -23,6 +23,7 @@ import entity.booking.SurgeryBooking
 import entity.booking.SurgeryBookingData
 import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
+import entity.medicaldevice.MedicalTechnology
 import entity.patient.Patient
 import entity.patient.PatientData
 import entity.process.ProcessData
@@ -30,6 +31,7 @@ import entity.process.SurgicalProcess
 import entity.room.Room
 import entity.room.RoomData
 import infrastructure.digitaltwin.presenter.MedicalDeviceAdt.toImplantableMedicalDevice
+import infrastructure.digitaltwin.presenter.MedicalTechnologyAdt.toMedicalTechnology
 import infrastructure.digitaltwin.presenter.PatientAdt.toDigitalTwin
 import infrastructure.digitaltwin.presenter.SurgeryBookingAdt
 import infrastructure.digitaltwin.presenter.SurgeryBookingAdt.toSurgeryBooking
@@ -112,6 +114,22 @@ class DigitalTwinManager :
     ): ImplantableMedicalDevice? =
         this.dtClient.applySafeDigitalTwinOperation(null) {
             getDigitalTwin(implantableMedicalDeviceId.id, BasicDigitalTwin::class.java).toImplantableMedicalDevice()
+        }
+
+    override fun getMedicalTechnologyById(
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
+        inUse: Boolean
+    ): MedicalTechnology? =
+        this.dtClient.applySafeDigitalTwinOperation(null) {
+            getDigitalTwin(medicalTechnologyId.id, BasicDigitalTwin::class.java).toMedicalTechnology(inUse)
+        }
+
+    override fun deleteMedicalDevice(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): Boolean =
+        this.dtClient.applySafeDigitalTwinOperation(false) {
+            deleteDigitalTwin(implantableMedicalDeviceId.id)
+            true
         }
 
     override fun createPatientDT(patientId: PatientData.PatientId): Patient? =
