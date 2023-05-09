@@ -12,6 +12,7 @@ import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.MedicalDeviceDigitalTwinManager
 import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
+import entity.medicaldevice.MedicalTechnology
 import entity.process.ProcessData
 import usecase.repository.MedicalDeviceRepository
 import java.time.Instant
@@ -56,4 +57,20 @@ class MedicalDeviceController(
         implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
     ): ImplantableMedicalDevice? =
         this.medicalDeviceDigitalTwinManager.getMedicalDeviceById(implantableMedicalDeviceId)
+
+    override fun getMedicalTechnologyUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>> =
+        this.medicalDeviceDatabaseManager.getMedicalDeviceTechnologyUsageByProcessId(processId)
+
+    override fun getMedicalTechnologyById(
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
+        inUse: Boolean
+    ): MedicalTechnology? =
+        this.medicalDeviceDigitalTwinManager.getMedicalTechnologyById(medicalTechnologyId, inUse)
+
+    override fun deleteMedicalDevice(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): Boolean =
+        this.medicalDeviceDigitalTwinManager.deleteMedicalDevice(implantableMedicalDeviceId)
 }

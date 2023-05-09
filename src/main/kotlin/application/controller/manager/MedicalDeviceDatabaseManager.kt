@@ -43,4 +43,11 @@ interface MedicalDeviceDatabaseManager {
     fun getMedicalDeviceUsageByProcessId(
         processId: ProcessData.ProcessId
     ): List<MedicalDeviceData.ImplantableMedicalDeviceId>
+
+    /**
+     * Get the usage of medical technologies in a process.
+     */
+    fun getMedicalDeviceTechnologyUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>>
 }

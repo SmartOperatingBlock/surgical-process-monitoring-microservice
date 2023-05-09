@@ -10,6 +10,7 @@ package usecase.repository
 
 import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
+import entity.medicaldevice.MedicalTechnology
 import entity.process.ProcessData
 import java.time.Instant
 
@@ -59,4 +60,24 @@ interface MedicalDeviceRepository {
     fun getMedicalDeviceById(
         implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
     ): ImplantableMedicalDevice?
+
+    /**
+     * Get the medical technologies used in a surgical process by the [processId].
+     */
+    fun getMedicalTechnologyUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>>
+
+    /**
+     * Get the [MedicalTechnology] by its [medicalTechnologyId] and set the value if it is [inUse].
+     */
+    fun getMedicalTechnologyById(
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
+        inUse: Boolean
+    ): MedicalTechnology?
+
+    /**
+     * Delete the [ImplantableMedicalDevice] by its [implantableMedicalDeviceId].
+     */
+    fun deleteMedicalDevice(implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId): Boolean
 }

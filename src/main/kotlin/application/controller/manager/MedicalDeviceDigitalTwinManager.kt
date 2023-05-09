@@ -10,6 +10,7 @@ package application.controller.manager
 
 import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
+import entity.medicaldevice.MedicalTechnology
 import entity.process.ProcessData
 
 /** This interface model the operation on Medical Devices Digital Twins. */
@@ -29,4 +30,17 @@ interface MedicalDeviceDigitalTwinManager {
     fun getMedicalDeviceById(
         implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
     ): ImplantableMedicalDevice?
+
+    /**
+     * Get the [MedicalTechnology] by its [medicalTechnologyId] and set the value if it is [inUse].
+     */
+    fun getMedicalTechnologyById(
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
+        inUse: Boolean
+    ): MedicalTechnology?
+
+    /**
+     * Delete the [ImplantableMedicalDevice] by its [implantableMedicalDeviceId].
+     */
+    fun deleteMedicalDevice(implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId): Boolean
 }
