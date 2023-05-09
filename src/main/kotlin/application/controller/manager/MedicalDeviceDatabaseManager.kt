@@ -36,4 +36,11 @@ interface MedicalDeviceDatabaseManager {
         processId: ProcessData.ProcessId,
         inUse: Boolean
     ): Boolean
+
+    /**
+     * Get the usage of implantable medical devices in a process.
+     */
+    fun getMedicalDeviceUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<MedicalDeviceData.ImplantableMedicalDeviceId>
 }
