@@ -10,6 +10,7 @@ package application.service
 
 import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
+import entity.medicaldevice.MedicalTechnology
 import entity.process.ProcessData
 import usecase.repository.MedicalDeviceRepository
 import java.time.Instant
@@ -81,5 +82,39 @@ object MedicalDeviceServices {
     ) : ApplicationService<ImplantableMedicalDevice?> {
         override fun execute(): ImplantableMedicalDevice? =
             medicalDeviceRepository.getMedicalDeviceById(implantableMedicalDeviceId)
+    }
+
+    /**
+     * The [ApplicationService] to get the medical technology usage in a process by its [processId].
+     */
+    class GetMedicalTechnologyUsageByProcessId(
+        private val processId: ProcessData.ProcessId,
+        private val medicalDeviceRepository: MedicalDeviceRepository
+    ) : ApplicationService<List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>>> {
+        override fun execute(): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>> =
+            medicalDeviceRepository.getMedicalTechnologyUsageByProcessId(processId)
+    }
+
+    /**
+     * The [ApplicationService] to get the medical technology by its id.
+     */
+    class GetMedicalTechnologyById(
+        private val medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
+        private val medicalDeviceRepository: MedicalDeviceRepository,
+        private val inUse: Boolean
+    ) : ApplicationService<MedicalTechnology?> {
+        override fun execute(): MedicalTechnology? =
+            medicalDeviceRepository.getMedicalTechnologyById(medicalTechnologyId, inUse)
+    }
+
+    /**
+     * The [ApplicationService] to delete a medical device by its [implantableMedicalDeviceId].
+     */
+    class DeleteImplantableMedicalDevice(
+        private val implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
+        private val medicalDeviceRepository: MedicalDeviceRepository
+    ) : ApplicationService<Boolean> {
+        override fun execute(): Boolean =
+            medicalDeviceRepository.deleteMedicalDevice(implantableMedicalDeviceId)
     }
 }
