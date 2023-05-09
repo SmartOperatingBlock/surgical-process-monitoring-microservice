@@ -8,7 +8,10 @@
 
 package entity.medicaldevice
 
+import kotlinx.serialization.Serializable
+
 /** The model of an Implantable Medical Device composed by the [id] and the [type]. */
+@Serializable
 data class ImplantableMedicalDevice(
     val id: MedicalDeviceData.ImplantableMedicalDeviceId,
     val type: MedicalDeviceData.DeviceType
