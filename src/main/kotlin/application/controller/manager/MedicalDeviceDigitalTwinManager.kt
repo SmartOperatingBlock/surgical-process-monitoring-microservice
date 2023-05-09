@@ -8,11 +8,12 @@
 
 package application.controller.manager
 
+import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
 
 /** This interface model the operation on Medical Devices Digital Twins. */
-fun interface MedicalDeviceDigitalTwinManager {
+interface MedicalDeviceDigitalTwinManager {
 
     /**
      * Find the surgical process in which a medical technology is being used.
@@ -21,4 +22,11 @@ fun interface MedicalDeviceDigitalTwinManager {
     fun findSurgicalProcessByMedicalTechnology(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
     ): ProcessData.ProcessId?
+
+    /**
+     * Get the [ImplantableMedicalDevice] by its [implantableMedicalDeviceId].
+     */
+    fun getMedicalDeviceById(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): ImplantableMedicalDevice?
 }
