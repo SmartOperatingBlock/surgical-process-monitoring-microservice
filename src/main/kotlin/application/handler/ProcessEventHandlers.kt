@@ -274,9 +274,22 @@ object ProcessEventHandlers {
                             MedicalDeviceServices.GetMedicalDeviceUsageByProcessId(
                                 surgicalProcess.id,
                                 medicalDeviceRepository
-                            ).execute().toList().mapNotNull {
+                            ).execute().mapNotNull {
                                 MedicalDeviceServices.GetMedicalDeviceById(it, medicalDeviceRepository).execute()
-                            }
+                            },
+                            MedicalDeviceServices.GetMedicalTechnologyUsageByProcessId(
+                                surgicalProcess.id,
+                                medicalDeviceRepository
+                            ).execute().map {
+                                Pair(
+                                    it.first,
+                                    MedicalDeviceServices.GetMedicalTechnologyById(
+                                        it.second,
+                                        medicalDeviceRepository,
+                                        it.third
+                                    ).execute()
+                                )
+                            }.filterPairs()
                         )
                     )
                 )
@@ -291,6 +304,12 @@ object ProcessEventHandlers {
                 ).execute()
             }
             PatientDataServices.DeletePatient(surgicalProcess.patientId, patientRepository).execute()
+            MedicalDeviceServices.GetMedicalDeviceUsageByProcessId(
+                surgicalProcess.id,
+                medicalDeviceRepository
+            ).execute().forEach {
+                MedicalDeviceServices.DeleteImplantableMedicalDevice(it, medicalDeviceRepository).execute()
+            }
         }
     }
 
@@ -385,6 +404,14 @@ object ProcessEventHandlers {
     inline fun <reified T> Any?.cast(operation: T.() -> Boolean = { true }): Boolean = if (this is T) {
         operation()
     } else false
+
+    /**
+     * Utility function to filter the null values of a list of pair.
+     */
+    fun <T, U> List<Pair<T?, U?>>.filterPairs(): List<Pair<T, U>> =
+        mapNotNull { (t, u) ->
+            if (t == null || u == null) null else t to u
+        }
 
     /**
      * Utility function to check if a [SurgicalProcess] is over.
