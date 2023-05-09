@@ -105,6 +105,20 @@ class DatabaseManager(
             it.implantableMedicalDeviceId
         }.toList()
 
+    override fun getMedicalDeviceTechnologyUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>> =
+        this.medicalTechnologyUsageDataCollection.find(
+            TimeSeriesMedicalTechnologyUsage :: metadata /
+                TimeSeriesMedicalTechnologyUsageMetadata :: processId eq processId
+        ).map {
+            Triple(
+                it.dateTime,
+                it.metadata.medicalTechnologyId,
+                it.value
+            )
+        }.toList()
+
     override fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
