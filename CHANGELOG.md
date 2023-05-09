@@ -1,3 +1,50 @@
+## [1.2.0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.1.0...1.2.0) (2023-05-09)
+
+
+### Features
+
+* add medical technology usage data to surgery report ([4afad72](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/4afad7240e139d0965cce6c27d44626db596606f))
+* create application service to retrieve surgical process medical device usage ([e97dead](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e97deade7e52d5d54f954db7046a404a71f77b72))
+* create application services to get medical technology usage data in a process ([d825ea2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d825ea236a3cd03f29fe1d5f67351d86621ab96c))
+* create method to retrieve patient tax code ([d677cb1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d677cb17549bfcb64722d55e6d2b05c2e1bd7f3d))
+
+
+### Build and continuous integration
+
+* **deps:** update smartoperatingblock/documentation-ghp-action action to v1.1.0 ([7074f01](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7074f019b758bb210d15970a893481befbd7b4ff))
+
+
+### Tests
+
+* add method to mock digital twin ([584fd37](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/584fd372f46b3bcc7875c1be5f337aef81a68fb1))
+
+
+### General maintenance
+
+* add infrastructure method to retrieve medical devices usage ([bc7e07a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/bc7e07a6d0021c280aca646f2f95f92cf0dea780))
+* add medical device controller to event handler ([7f562ea](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7f562ead866715a81295096f87e57eacd2e97f8f))
+* add medical device data to surgery report in process handler ([a633468](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a6334683443eccae11b37be14c2af86191a9508d))
+* add medical device usage to surgery report ([30ffd98](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/30ffd98066f2f795070989c62b895406f9296b26))
+* add methods to manager and repository ([7ac9b68](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7ac9b68fa4b1ba57df07d1405bc80722dd2d73d5))
+* add patient tax code data ([12b6ff6](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/12b6ff6bfd9a9f23d37d9ab00ecae6818f968bb9))
+* add patient tax code to surgery report ([44fdc39](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/44fdc39f741b728bac7198a870fb19fd1138906e))
+* add serializable annotation to medical device entity ([cbcf6be](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/cbcf6be39f41dc6d8e4191e02f487a90f6a03bd0))
+* add topic for step manual events ([311c30b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/311c30bfee045b046647f1060222c7b476fb372f))
+* create model for medical device adt ([59aa3b7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/59aa3b770dbb960f485b9175b75d6dd1e155f694))
+* create presenter for medical technology azure dt ([a1e0e19](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a1e0e1994f01274bdebae4ab1918250cf6de8103))
+* implement azure operation to get the medical technology frrom azure dt ([888662a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/888662af97b4492f07533124016cc7b1c29ef996))
+* implement method to get the dt of the medical device ([ef6e86a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ef6e86a743869679608f5d09adcca7dd07ece2be))
+* implement method to get the list of devices used in a process ([2734b27](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/2734b27d91a84bcff69e0ee29ab3dabc1e8fece7))
+* implement mongo query to retrieve medical technology usage data ([adc213d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/adc213ddce55be006bba27c15c64ecd3e332a9b4))
+* make medical technology entity serializable ([1e1183f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/1e1183f6215a724fbdc3102b8d54a4898ae58465))
+* modify wrong comment in event handler ([8da8c4b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8da8c4b9a7211f348fb79bb9f1c251e7d74e2765))
+* update the event handler with medical technology data ([ab454ae](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ab454aee05cabdef0fcff0a301194b80fdc35591))
+
+
+### Documentation
+
+* **asyncapi:** update async api documentation ([e5a964e](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e5a964eaa1ab2c47999e2fa1321861bdf2a2fe2e))
+
 ## [1.1.0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.0.3...1.1.0) (2023-05-08)
 
 
