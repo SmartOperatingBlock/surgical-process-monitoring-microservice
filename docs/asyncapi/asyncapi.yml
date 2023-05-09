@@ -115,6 +115,9 @@ components:
         patientId:
           type: object
           $ref: '#/components/schemas/PatientId'
+        patientTaxCode:
+          type: object
+          $ref: '#/components/schemas/PatientTaxCode'
         HealthProfessionalId:
           type: object
           $ref: '#/components/schemas/HealthProfessionalId'
@@ -130,6 +133,15 @@ components:
         processSteps:
           type: object
           $ref: '#/components/schemas/ProcessSteps'
+        patientMedicalData:
+          type: array
+          $ref: '#/components/schemas/MedicalData'
+        medicalDeviceUsage:
+          type: object
+          $ref: '#/components/schemas/MedicalDeviceData'
+        medicalTechnologyUsage:
+          type: object
+          $ref: '#/components/schemas/MedicalTechnologyData'
 
     ProcessId:
       type: object
@@ -149,6 +161,12 @@ components:
         id:
           type: string
 
+    PatientTaxCode:
+      type: object
+      properties:
+        code:
+          type: string
+
     Room:
       type: object
       properties:
@@ -164,6 +182,7 @@ components:
       properties:
         dateTime:
           type: string
+          format: date-time
           description: the date time of the process state.
         state:
           type: string
@@ -174,7 +193,41 @@ components:
       properties:
         dateTime:
           type: string
+          format: date-time
           description: the date time of the process step.
         step:
           type: string
           description: the surgical process step.
+
+    MedicalData:
+      type: array
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          description: the date time of the process medical data.
+        medicalData:
+          type: object
+          description: the patient medical data.
+
+    MedicalDeviceData:
+      type: array
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          description: the date time of the medical device data.
+        medicalDeviceData:
+          type: object
+          description: the medical device data.
+
+    MedicalTechnologyData:
+      type: array
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          description: the date time of the medical technology data.
+        medicalTechnologyData:
+          type: object
+          description: the medical device data.
