@@ -83,7 +83,7 @@ object ProcessEventHandlers {
     }
 
     /**
-     * The handler for Patient Diastolic Pressure update events.
+     * The handler for Patient tracked event.
      */
     class PatientTrackedEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
