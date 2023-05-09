@@ -14,7 +14,9 @@ import application.controller.manager.ProcessDigitalTwinManager
 import application.controller.manager.SurgeryBookingDigitalTwinManager
 import entity.booking.SurgeryBooking
 import entity.booking.SurgeryBookingData
+import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
+import entity.medicaldevice.MedicalTechnology
 import entity.patient.Patient
 import entity.patient.PatientData
 import entity.process.ProcessData
@@ -33,6 +35,19 @@ class MockDigitalTwinManager :
     override fun findSurgicalProcessByMedicalTechnology(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
     ): ProcessData.ProcessId? = null
+
+    override fun getMedicalDeviceById(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): ImplantableMedicalDevice? = null
+
+    override fun getMedicalTechnologyById(
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
+        inUse: Boolean
+    ): MedicalTechnology? = null
+
+    override fun deleteMedicalDevice(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): Boolean = true
 
     override fun createPatientDT(patientId: PatientData.PatientId): Patient? = null
 

@@ -49,6 +49,7 @@ class TestEventHandlers : StringSpec({
             surgicalProcessController(),
             surgeryBookingController(),
             patientController(),
+            medicalDeviceController(),
             MockEventProducer()
         )
         eventHandler.canHandle(event) shouldBe true
