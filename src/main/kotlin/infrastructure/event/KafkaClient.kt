@@ -99,7 +99,13 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
 
     /** Start consuming the events on the Kafka Broker. */
     fun start() {
-        kafkaConsumer.subscribe(listOf(processEventsTopic, emergencyEventsTopic)).run {
+        kafkaConsumer.subscribe(
+            listOf(
+                processEventsTopic,
+                emergencyEventsTopic,
+                stepManualEventsTopic
+            )
+        ).run {
             while (true) {
                 kafkaConsumer.poll(Duration.ofMillis(pollingTime)).forEach { event ->
                     try {
@@ -131,6 +137,7 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
         private const val processEventsTopic = "process-events"
         private const val emergencyEventsTopic = "emergency-surgery-events"
         private const val surgeryReportTopic = "process-summary-events"
+        private const val stepManualEventsTopic = "step-manual-events"
     }
 
     override fun produceEvent(event: Event<*>) {
