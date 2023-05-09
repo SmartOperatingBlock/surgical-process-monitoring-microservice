@@ -96,6 +96,15 @@ class DatabaseManager(
         ).wasAcknowledged()
     }
 
+    override fun getMedicalDeviceUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<MedicalDeviceData.ImplantableMedicalDeviceId> =
+        this.implantableMedicalDeviceCollection.find(
+            MedicalDeviceUsage::processId eq processId
+        ).map {
+            it.implantableMedicalDeviceId
+        }.toList()
+
     override fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,

@@ -21,6 +21,7 @@ import com.azure.digitaltwins.core.implementation.models.ErrorResponseException
 import com.azure.identity.DefaultAzureCredentialBuilder
 import entity.booking.SurgeryBooking
 import entity.booking.SurgeryBookingData
+import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
 import entity.patient.Patient
 import entity.patient.PatientData
@@ -28,6 +29,7 @@ import entity.process.ProcessData
 import entity.process.SurgicalProcess
 import entity.room.Room
 import entity.room.RoomData
+import infrastructure.digitaltwin.presenter.MedicalDeviceAdt.toImplantableMedicalDevice
 import infrastructure.digitaltwin.presenter.PatientAdt.toDigitalTwin
 import infrastructure.digitaltwin.presenter.SurgeryBookingAdt
 import infrastructure.digitaltwin.presenter.SurgeryBookingAdt.toSurgeryBooking
@@ -103,6 +105,13 @@ class DigitalTwinManager :
                     }
                 }
             }
+        }
+
+    override fun getMedicalDeviceById(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): ImplantableMedicalDevice? =
+        this.dtClient.applySafeDigitalTwinOperation(null) {
+            getDigitalTwin(implantableMedicalDeviceId.id, BasicDigitalTwin::class.java).toImplantableMedicalDevice()
         }
 
     override fun createPatientDT(patientId: PatientData.PatientId): Patient? =
