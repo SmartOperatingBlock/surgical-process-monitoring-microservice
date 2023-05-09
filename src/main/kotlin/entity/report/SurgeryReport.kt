@@ -10,6 +10,7 @@ package entity.report
 
 import entity.healthprofessional.HealthProfessionalData
 import entity.medicaldevice.ImplantableMedicalDevice
+import entity.medicaldevice.MedicalTechnology
 import entity.patient.PatientData
 import entity.process.ProcessData
 import entity.room.Room
@@ -31,6 +32,7 @@ import java.time.Instant
  * - the [processSteps]
  * - the [patientMedicalData]
  * - the [medicalDeviceUsage]
+ * - the [medicalTechnologyUsage]
  */
 @Serializable
 data class SurgeryReport(
@@ -45,4 +47,5 @@ data class SurgeryReport(
     val processSteps: List<Pair<@Contextual Instant, ProcessData.ProcessStep>>,
     val patientMedicalData: List<Pair<@Contextual Instant, PatientData.MedicalData>>,
     val medicalDeviceUsage: List<ImplantableMedicalDevice>,
+    val medicalTechnologyUsage: List<Pair<@Contextual Instant, MedicalTechnology>>
 )
