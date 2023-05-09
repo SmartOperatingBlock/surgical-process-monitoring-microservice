@@ -10,6 +10,7 @@ package application.controller
 
 import application.controller.manager.MedicalDeviceDatabaseManager
 import application.controller.manager.MedicalDeviceDigitalTwinManager
+import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
 import usecase.repository.MedicalDeviceRepository
@@ -45,4 +46,14 @@ class MedicalDeviceController(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
     ): ProcessData.ProcessId? =
         this.medicalDeviceDigitalTwinManager.findSurgicalProcessByMedicalTechnology(medicalTechnologyId)
+
+    override fun getMedicalDeviceUsageByProcessId(
+        processId: ProcessData.ProcessId
+    ): List<MedicalDeviceData.ImplantableMedicalDeviceId> =
+        this.medicalDeviceDatabaseManager.getMedicalDeviceUsageByProcessId(processId)
+
+    override fun getMedicalDeviceById(
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+    ): ImplantableMedicalDevice? =
+        this.medicalDeviceDigitalTwinManager.getMedicalDeviceById(implantableMedicalDeviceId)
 }

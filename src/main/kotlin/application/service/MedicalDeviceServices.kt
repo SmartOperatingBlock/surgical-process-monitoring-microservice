@@ -8,6 +8,7 @@
 
 package application.service
 
+import entity.medicaldevice.ImplantableMedicalDevice
 import entity.medicaldevice.MedicalDeviceData
 import entity.process.ProcessData
 import usecase.repository.MedicalDeviceRepository
@@ -57,5 +58,28 @@ object MedicalDeviceServices {
 
         override fun execute(): ProcessData.ProcessId? =
             this.medicalDeviceRepository.findSurgicalProcessByMedicalTechnology(medicalTechnologyId)
+    }
+
+    /**
+     * The [ApplicationService] to get the usage of implantable medical devices in a process.
+     */
+    class GetMedicalDeviceUsageByProcessId(
+        private val processId: ProcessData.ProcessId,
+        private val medicalDeviceRepository: MedicalDeviceRepository
+    ) : ApplicationService<List<MedicalDeviceData.ImplantableMedicalDeviceId>> {
+
+        override fun execute(): List<MedicalDeviceData.ImplantableMedicalDeviceId> =
+            medicalDeviceRepository.getMedicalDeviceUsageByProcessId(processId)
+    }
+
+    /**
+     * The [ApplicationService] to get the medical device by its id.
+     */
+    class GetMedicalDeviceById(
+        private val implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
+        private val medicalDeviceRepository: MedicalDeviceRepository
+    ) : ApplicationService<ImplantableMedicalDevice?> {
+        override fun execute(): ImplantableMedicalDevice? =
+            medicalDeviceRepository.getMedicalDeviceById(implantableMedicalDeviceId)
     }
 }
