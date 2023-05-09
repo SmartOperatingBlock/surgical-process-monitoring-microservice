@@ -83,6 +83,15 @@ object PatientData {
         }
     }
 
+    /** The tax [code] of the [Patient]. */
+    data class TaxCode(val code: String) {
+        init {
+            require(this.code.isNotEmpty()) {
+                "Patient Tax Code cannot be empty"
+            }
+        }
+    }
+
     /** The Temperature Unit. */
     enum class TemperatureUnit {
         CELSIUS
