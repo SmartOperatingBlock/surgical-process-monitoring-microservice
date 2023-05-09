@@ -250,6 +250,10 @@ object ProcessEventHandlers {
                             surgicalProcess.id,
                             surgicalProcess.type,
                             surgicalProcess.patientId,
+                            PatientDataServices.GetPatientTaxCode(
+                                surgicalProcess.patientId,
+                                patientRepository
+                            ).execute(),
                             surgicalProcess.healthProfessionalId,
                             surgicalProcess.preOperatingRoom,
                             surgicalProcess.operatingRoom,

@@ -44,4 +44,7 @@ class PatientDataController(
 
     override fun deletePatient(patientId: PatientData.PatientId): Boolean =
         patientDigitalTwinManager.deletePatientDT(patientId)
+
+    override fun getPatientTaxCode(patientId: PatientData.PatientId): PatientData.TaxCode? =
+        patientDigitalTwinManager.getPatientTaxCode(patientId)
 }

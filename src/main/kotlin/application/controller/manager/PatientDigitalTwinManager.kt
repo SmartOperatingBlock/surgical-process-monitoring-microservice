@@ -27,4 +27,11 @@ interface PatientDigitalTwinManager {
     fun deletePatientDT(
         patientId: PatientData.PatientId
     ): Boolean
+
+    /**
+     * Get the [Patient] tax code given its [patientId].
+     */
+    fun getPatientTaxCode(
+        patientId: PatientData.PatientId
+    ): PatientData.TaxCode?
 }

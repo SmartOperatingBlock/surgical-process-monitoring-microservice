@@ -38,6 +38,8 @@ class MockDigitalTwinManager :
 
     override fun deletePatientDT(patientId: PatientData.PatientId): Boolean = true
 
+    override fun getPatientTaxCode(patientId: PatientData.PatientId): PatientData.TaxCode? = null
+
     override fun createSurgicalProcess(process: SurgicalProcess): Boolean = surgicalProcesses.add(process)
 
     override fun updateSurgicalProcessState(

@@ -121,6 +121,17 @@ class DigitalTwinManager :
             true
         }
 
+    override fun getPatientTaxCode(patientId: PatientData.PatientId): PatientData.TaxCode? =
+        dtClient.applySafeDigitalTwinOperation(null) {
+            (
+                getDigitalTwin(patientId.id, BasicDigitalTwin::class.java)
+                    .mapRelationships()
+                    .contents[SurgeryBookingAdt.PATIENT_HEALTCAREUSER_RELATIONSHIP] as String?
+                )?.let {
+                PatientData.TaxCode(it)
+            }
+        }
+
     override fun createSurgicalProcess(process: SurgicalProcess): Boolean =
         with(process.toDigitalTwin()) {
             dtClient.applySafeDigitalTwinOperation(false) {

@@ -54,4 +54,9 @@ interface PatientRepository {
      * Delete a patient given its [patientId].
      */
     fun deletePatient(patientId: PatientData.PatientId): Boolean
+
+    /**
+     * Get the [PatientData.TaxCode] of a [Patient] by its [patientId].
+     */
+    fun getPatientTaxCode(patientId: PatientData.PatientId): PatientData.TaxCode?
 }

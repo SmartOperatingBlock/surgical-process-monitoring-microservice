@@ -35,7 +35,7 @@ data class SurgeryReport(
     val processId: ProcessData.ProcessId,
     val processType: String,
     val patientId: PatientData.PatientId,
-    val patientTaxCode: PatientData.TaxCode,
+    val patientTaxCode: PatientData.TaxCode?,
     val healthProfessionalId: HealthProfessionalData.HealthProfessionalId?,
     val preOperatingRoom: Room?,
     val operatingRoom: Room?,

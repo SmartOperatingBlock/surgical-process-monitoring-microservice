@@ -79,4 +79,15 @@ object PatientDataServices {
         override fun execute(): Boolean =
             patientRepository.deletePatient(patientId)
     }
+
+    /**
+     * Application Service to get the tax code of a [Patient] by its [patientId].
+     */
+    class GetPatientTaxCode(
+        private val patientId: PatientData.PatientId,
+        private val patientRepository: PatientRepository
+    ) : ApplicationService<PatientData.TaxCode?> {
+        override fun execute(): PatientData.TaxCode? =
+            patientRepository.getPatientTaxCode(patientId)
+    }
 }
