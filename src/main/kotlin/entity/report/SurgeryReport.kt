@@ -22,6 +22,7 @@ import java.time.Instant
  * - the [processId]
  * - the [processType]
  * - the [patientId]
+ * - the [patientTaxCode]
  * - the [healthProfessionalId]
  * - the [preOperatingRoom]
  * - the [operatingRoom]
@@ -34,6 +35,7 @@ data class SurgeryReport(
     val processId: ProcessData.ProcessId,
     val processType: String,
     val patientId: PatientData.PatientId,
+    val patientTaxCode: PatientData.TaxCode,
     val healthProfessionalId: HealthProfessionalData.HealthProfessionalId?,
     val preOperatingRoom: Room?,
     val operatingRoom: Room?,

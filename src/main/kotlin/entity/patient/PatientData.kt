@@ -84,6 +84,7 @@ object PatientData {
     }
 
     /** The tax [code] of the [Patient]. */
+    @Serializable
     data class TaxCode(val code: String) {
         init {
             require(this.code.isNotEmpty()) {
