@@ -28,7 +28,7 @@ servers:
 defaultContentType: application/json
 
 channels:
-  process-events:
+  step-manual-events:
     description: The topic on which the process events are published.
     publish:
       operationId: getProcessEvents
@@ -44,13 +44,9 @@ channels:
       summary: |
         Send all the events related to surgical processes summary within the operating block.
       message:
-        "$ref": '#/components/messages/SurgeryReportEvent'
-
-
-
+        "$ref": '#/components/messages/SurgeryReport'
 components:
   messages:
-
     stepManualEvent:
       name: stepManualEvent
       title: The Step Manual Event
@@ -59,14 +55,97 @@ components:
       payload:
         $ref: "#/components/schemas/stepManualEventPayload"
 
-    SurgeryReportEvent:
-      name: surgeryReportEvent
-      title: The Surgery Report Event
-      summary: the event of the surgery report sent to the dedicated microsevice.
+    SurgeryReport:
+      name: SurgeryReport
+      title: Surgery Report
+      summary: Contains information about a surgical procedure.
       contentType: application/json
       payload:
-        $ref: "#/components/schemas/SurgeryReportPayload"
-
+        type: object
+        properties:
+          processId:
+            $ref: '#/components/schemas/ProcessId'
+          processType:
+            type: string
+            description: Type of surgical procedure.
+          patientId:
+            $ref: '#/components/schemas/PatientId'
+          patientTaxCode:
+            $ref: '#/components/schemas/TaxCode'
+          healthProfessionalId:
+            $ref: '#/components/schemas/HealthProfessionalId'
+          preOperatingRoom:
+            $ref: '#/components/schemas/Room'
+          operatingRoom:
+            $ref: '#/components/schemas/Room'
+          processStates:
+            type: array
+            description: List of process states with timestamp.
+            items:
+              type: object
+              properties:
+                datetime:
+                  type: string
+                  format: date-time
+                state:
+                  type: string
+                  enum:
+                    - PRE_SURGERY
+                    - SURGERY
+                    - POST_SURGERY
+                    - INTERRUPTED
+                    - TERMINATED
+          processSteps:
+            type: array
+            description: List of process steps with timestamp.
+            items:
+              type: object
+              properties:
+                datetime:
+                  type: string
+                  format: date-time
+                step:
+                  type: string
+                  enum:
+                    - PATIENT_IN_PREPARATION
+                    - PATIENT_ON_OPERATING_TABLE
+                    - ANESTHESIA
+                    - SURGERY_IN_PROGRESS
+                    - END_OF_SURGERY
+                    - PATIENT_UNDER_OBSERVATION
+          patientMedicalData:
+            type: array
+            description: List of medical data with timestamp.
+            items:
+              type: object
+              properties:
+                datetime:
+                  type: string
+                  format: date-time
+                medicalData:
+                  $ref: '#/components/schemas/MedicalData'
+          medicalDeviceUsage:
+            type: array
+            description: List of implantable medical device usages.
+            items:
+              type: object
+              properties:
+                datetime:
+                  type: string
+                  format: date-time
+                medicalDevice:
+                  $ref: '#/components/schemas/ImplantableMedicalDevice'
+          medicalTechnologyUsage:
+            type: array
+            description: List of medical technology usages with timestamp.
+            items:
+              type: object
+              properties:
+                timestamp:
+                  type: string
+                  format: date-time
+                medicalTechnology:
+                  $ref: '#/components/schemas/MedicalTechnology'
   schemas:
     stepManualEventPayload:
       type: object
@@ -90,144 +169,132 @@ components:
         step:
           type: string
           description: the step of the process.
-
-    SurgeryReportPayload:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The key of the event.
-        data:
-          type: object
-          $ref: '#/components/schemas/SurgeryReport'
-        dateTime:
-          type: string
-          description: the timestamp of the event.
-
-    SurgeryReport:
-      type: object
-      properties:
-        processId:
-          type: object
-          $ref: '#/components/schemas/ProcessId'
-        processType:
-          type: string
-        patientId:
-          type: object
-          $ref: '#/components/schemas/PatientId'
-        patientTaxCode:
-          type: object
-          $ref: '#/components/schemas/PatientTaxCode'
-        HealthProfessionalId:
-          type: object
-          $ref: '#/components/schemas/HealthProfessionalId'
-        preOperatingRoom:
-          type: object
-          $ref: '#/components/schemas/Room'
-        operatingRoom:
-          type: object
-          $ref: '#/components/schemas/Room'
-        processStates:
-          type: object
-          $ref: '#/components/schemas/ProcessStates'
-        processSteps:
-          type: object
-          $ref: '#/components/schemas/ProcessSteps'
-        patientMedicalData:
-          type: array
-          $ref: '#/components/schemas/MedicalData'
-        medicalDeviceUsage:
-          type: object
-          $ref: '#/components/schemas/MedicalDeviceData'
-        medicalTechnologyUsage:
-          type: object
-          $ref: '#/components/schemas/MedicalTechnologyData'
-
     ProcessId:
       type: object
       properties:
         id:
           type: string
-
-    HealthProfessionalId:
-      type: object
-      properties:
-        id:
-          type: string
-
+          description: Unique identifier for the surgical procedure.
     PatientId:
       type: object
       properties:
         id:
           type: string
-
-    PatientTaxCode:
+          description: Unique identifier for the patient.
+    TaxCode:
       type: object
       properties:
         code:
           type: string
-
+          description: The patient's tax code.
+    HealthProfessionalId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the health professional.
+    RoomId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the room.
     Room:
       type: object
       properties:
-        roomId:
+        id:
+          $ref: '#/components/schemas/RoomId'
+        name:
           type: string
-          description: The id of the room.
-        roomType:
-          type: string
-          description: The type of the room.
-
-    ProcessStates:
-      type: array
-      properties:
-        dateTime:
-          type: string
-          format: date-time
-          description: the date time of the process state.
-        state:
-          type: string
-          description: the surgical process state.
-
-    ProcessSteps:
-      type: array
-      properties:
-        dateTime:
-          type: string
-          format: date-time
-          description: the date time of the process step.
-        step:
-          type: string
-          description: the surgical process step.
-
+          nullable: true
     MedicalData:
-      type: array
+      type: object
       properties:
-        dateTime:
+        heartBeat:
+          $ref: '#/components/schemas/HeartBeat'
+        diastolicBloodPressure:
+          $ref: '#/components/schemas/DiastolicBloodPressure'
+        systolicBloodPressure:
+          $ref: '#/components/schemas/SystolicBloodPressure'
+        respiratoryRate:
+          $ref: '#/components/schemas/RespiratoryRate'
+        saturationPercentage:
+          $ref: '#/components/schemas/SaturationPercentage'
+        bodyTemperature:
+          $ref: '#/components/schemas/BodyTemperature'
+    HeartBeat:
+      type: object
+      properties:
+        bpm:
+          type: integer
+          description: The value of the heart beat
+    DiastolicBloodPressure:
+      type: object
+      properties:
+        pressure:
+          type: integer
+          description: The value of the diastolic blood pressure
+    SystolicBloodPressure:
+      type: object
+      properties:
+        pressure:
+          type: integer
+          description: The value of the systolic blood pressure
+    RespiratoryRate:
+      type: object
+      properties:
+        rate:
+          type: integer
+          description: The value of the respiratory rate
+    SaturationPercentage:
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: The value of the saturation percentage
+    BodyTemperature:
+      type: object
+      properties:
+        degree:
+          type: number
+          description: The value of the body temperature
+        unit:
           type: string
-          format: date-time
-          description: the date time of the process medical data.
-        medicalData:
+          description: The unit of measurement for the body temperature value
+    ImplantableMedicalDevice:
+      type: object
+      properties:
+        id:
           type: object
-          description: the patient medical data.
+          $ref: '#/components/schemas/ImplantableMedicalDeviceId'
+        type:
+          type: string
+          description: the type of medical device.
+    MedicalTechnology:
+      type: object
+      properties:
+        id:
+          type: object
+          $ref: '#/components/schemas/MedicalTechnologyId'
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        type:
+          type: string
+          description: The type of medical technology.
 
-    MedicalDeviceData:
-      type: array
+    ImplantableMedicalDeviceId:
+      type: object
       properties:
-        dateTime:
+        id:
           type: string
-          format: date-time
-          description: the date time of the medical device data.
-        medicalDeviceData:
-          type: object
-          description: the medical device data.
-
-    MedicalTechnologyData:
-      type: array
+          description: Unique identifier for the implantable medical device.
+    MedicalTechnologyId:
+      type: object
       properties:
-        dateTime:
+        id:
           type: string
-          format: date-time
-          description: the date time of the medical technology data.
-        medicalTechnologyData:
-          type: object
-          description: the medical device data.
+          description: Unique identifier for the  medical technology.
