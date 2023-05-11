@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
 data class Room(
     val id: RoomData.RoomId,
     val name: String? = null,
-    val type: RoomData.RoomType
+    val type: RoomData.RoomType,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

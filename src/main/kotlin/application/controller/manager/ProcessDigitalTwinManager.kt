@@ -25,7 +25,7 @@ interface ProcessDigitalTwinManager {
      */
     fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean
 
     /**
@@ -33,7 +33,7 @@ interface ProcessDigitalTwinManager {
      */
     fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
-        step: ProcessData.ProcessStep
+        step: ProcessData.ProcessStep,
     ): Boolean
 
     /**
@@ -42,13 +42,13 @@ interface ProcessDigitalTwinManager {
     fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
         latestRoomId: String?,
-        room: Room
+        room: Room,
     ): Boolean
 
     /**
      * Delete a [SurgicalProcess] by its [processId].
      */
     fun deleteSurgicalProcess(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean
 }

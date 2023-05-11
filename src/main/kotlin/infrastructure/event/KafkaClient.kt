@@ -47,17 +47,17 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
 
         val medicalDeviceController = MedicalDeviceController(
             provider.medicalDeviceDatabaseManager,
-            provider.medicalDeviceDigitalTwinManager
+            provider.medicalDeviceDigitalTwinManager,
         )
 
         val surgicalProcessController = SurgicalProcessController(
             provider.processDatabaseManager,
-            provider.processDigitalTwinManager
+            provider.processDigitalTwinManager,
         )
 
         val patientDataController = PatientDataController(
             provider.patientMedicalDataDatabaseManager,
-            provider.patientDigitalTwinManager
+            provider.patientDigitalTwinManager,
         )
 
         val surgeryBookingController = SurgeryBookingController(provider.surgeryBookingDigitalTwinManager)
@@ -87,15 +87,15 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
     private val kafkaConsumer: KafkaConsumer<String, String> = KafkaConsumer(
         loadConsumerProperties(
             System.getenv("BOOTSTRAP_SERVER_URL"),
-            System.getenv("SCHEMA_REGISTRY_URL")
-        )
+            System.getenv("SCHEMA_REGISTRY_URL"),
+        ),
     )
 
     private val kafkaProducer: KafkaProducer<String, Event<*>> = KafkaProducer(
         loadProducerProperties(
             System.getenv("BOOTSTRAP_SERVER_URL"),
-            System.getenv("SCHEMA_REGISTRY_URL")
-        )
+            System.getenv("SCHEMA_REGISTRY_URL"),
+        ),
     )
 
     /** Start consuming the events on the Kafka Broker. */
@@ -104,8 +104,8 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
             listOf(
                 processEventsTopic,
                 emergencyEventsTopic,
-                stepManualEventsTopic
-            )
+                stepManualEventsTopic,
+            ),
         ).run {
             while (true) {
                 kafkaConsumer.poll(Duration.ofMillis(pollingTime)).forEach { event ->

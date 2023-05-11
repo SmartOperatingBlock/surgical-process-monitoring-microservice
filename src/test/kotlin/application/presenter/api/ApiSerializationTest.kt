@@ -29,7 +29,7 @@ class ApiSerializationTest : StringSpec({
         Room(RoomData.RoomId("sample-pre-or"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
         Room(RoomData.RoomId("sample-or"), type = RoomData.RoomType.OPERATING_ROOM),
         ProcessData.ProcessState.SURGERY,
-        ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE
+        ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
     )
 
     val sampleSurgicalProcessDTO = SurgicalProcessApiDto(
@@ -40,7 +40,7 @@ class ApiSerializationTest : StringSpec({
         sampleSurgicalProcess.preOperatingRoom,
         sampleSurgicalProcess.operatingRoom,
         sampleSurgicalProcess.state.toString(),
-        sampleSurgicalProcess.step.toString()
+        sampleSurgicalProcess.step.toString(),
     )
 
     "It should be possible to obtain the right DTO of a surgical process" {

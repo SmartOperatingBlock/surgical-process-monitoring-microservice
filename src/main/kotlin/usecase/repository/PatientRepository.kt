@@ -24,7 +24,7 @@ interface PatientRepository {
     fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
-        dateTime: Instant
+        dateTime: Instant,
     ): Boolean
 
     /**
@@ -34,7 +34,7 @@ interface PatientRepository {
     fun getPatientMedicalData(
         patientId: PatientData.PatientId,
         from: Instant,
-        to: Instant
+        to: Instant,
     ): List<Pair<Instant, PatientData.MedicalData>>
 
     /**
@@ -42,7 +42,7 @@ interface PatientRepository {
      * @return the current patient medical data.
      */
     fun getCurrentPatientMedicalData(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): PatientData.MedicalData?
 
     /**

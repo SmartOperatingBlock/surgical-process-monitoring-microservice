@@ -26,7 +26,7 @@ data class SurgicalProcessApiDto(
     val preOperatingRoom: Room?,
     val operatingRoom: Room?,
     val state: String,
-    val step: String
+    val step: String,
 )
 
 /**
@@ -41,5 +41,5 @@ fun SurgicalProcess.toSurgicalProcessApiDto() =
         this.preOperatingRoom,
         this.operatingRoom,
         this.state.toString(),
-        this.step.toString()
+        this.step.toString(),
     )

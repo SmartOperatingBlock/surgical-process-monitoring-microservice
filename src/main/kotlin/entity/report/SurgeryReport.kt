@@ -47,5 +47,5 @@ data class SurgeryReport(
     val processSteps: List<Pair<@Contextual Instant, ProcessData.ProcessStep>>,
     val patientMedicalData: List<Pair<@Contextual Instant, PatientData.MedicalData>>,
     val medicalDeviceUsage: List<ImplantableMedicalDevice>,
-    val medicalTechnologyUsage: List<Pair<@Contextual Instant, MedicalTechnology>>
+    val medicalTechnologyUsage: List<Pair<@Contextual Instant, MedicalTechnology>>,
 )

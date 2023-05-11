@@ -17,7 +17,7 @@ data class HealthProfessional(
     val id: HealthProfessionalData.HealthProfessionalId,
     val name: String? = null,
     val surname: String? = null,
-    val role: HealthProfessionalData.HealthProfessionalRole = HealthProfessionalData.HealthProfessionalRole.SURGEON
+    val role: HealthProfessionalData.HealthProfessionalRole = HealthProfessionalData.HealthProfessionalRole.SURGEON,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

@@ -48,7 +48,7 @@ object ProcessEventHandlers {
                 MedicalDeviceServices.AddMedicalDeviceUsage(
                     MedicalDeviceData.ImplantableMedicalDeviceId(this.data.medicalDeviceID),
                     ProcessData.ProcessId(this.data.processId),
-                    medicalDeviceRepository
+                    medicalDeviceRepository,
                 ).execute()
             }
         }
@@ -56,7 +56,7 @@ object ProcessEventHandlers {
 
     /** The handler for medical technology usage event. */
     class MedicalTechnologyUsageEventHandler(
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -67,7 +67,7 @@ object ProcessEventHandlers {
             event.cast<ProcessEvent<ProcessEventsPayloads.MedicalTechnologyUsage>> {
                 val processId = MedicalDeviceServices.FindProcessByMedicalTechnology(
                     MedicalDeviceData.MedicalTechnologyId(this.data.medicalTechnologyID),
-                    medicalDeviceRepository
+                    medicalDeviceRepository,
                 ).execute()
                 if (processId != null) {
                     MedicalDeviceServices.AddMedicalTechnologyUsage(
@@ -75,9 +75,11 @@ object ProcessEventHandlers {
                         processId,
                         Instant.parse(this.dateTime),
                         this.data.inUse,
-                        medicalDeviceRepository
+                        medicalDeviceRepository,
                     ).execute()
-                } else false
+                } else {
+                    false
+                }
             }
         }
     }
@@ -90,7 +92,7 @@ object ProcessEventHandlers {
         private val surgeryBookingRepository: BookingRepository,
         private val patientRepository: PatientRepository,
         private val medicalDeviceRepository: MedicalDeviceRepository,
-        private val eventProducer: EventProducer
+        private val eventProducer: EventProducer,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -111,7 +113,7 @@ object ProcessEventHandlers {
                                 surgicalProcess,
                                 this,
                                 surgeryBookingRepository,
-                                surgicalProcessRepository
+                                surgicalProcessRepository,
                             )
                             true
                         } else {
@@ -122,7 +124,7 @@ object ProcessEventHandlers {
                                 surgeryBookingRepository,
                                 medicalDeviceRepository,
                                 this,
-                                eventProducer
+                                eventProducer,
                             )
                             true
                         }
@@ -148,13 +150,13 @@ object ProcessEventHandlers {
             val surgeryBooking =
                 SurgeryBookingServices.GetSurgeryBookingByPatient(
                     PatientData.PatientId(event.data.patientId),
-                    surgeryBookingRepository
+                    surgeryBookingRepository,
                 ).execute()
             if (surgeryBooking != null) {
                 SurgicalProcessServices.CreateSurgicalProcess(
                     SurgicalProcess(
                         ProcessData.ProcessId(
-                            "${event.data.patientId}-${event.dateTime.replace(":",".")}"
+                            "${event.data.patientId}-${event.dateTime.replace(":",".")}",
                         ),
                         Instant.parse(event.dateTime),
                         surgeryBooking.surgeryType,
@@ -162,24 +164,24 @@ object ProcessEventHandlers {
                         surgeryBooking.healthProfessionalId,
                         preOperatingRoom = Room(
                             RoomData.RoomId(event.data.roomId),
-                            type = RoomData.RoomType.PRE_POST_OPERATING_ROOM
+                            type = RoomData.RoomType.PRE_POST_OPERATING_ROOM,
                         ),
                         state = ProcessData.ProcessState.PRE_SURGERY,
-                        step = ProcessData.ProcessStep.PATIENT_IN_PREPARATION
+                        step = ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
                     ),
-                    surgicalProcessRepository
+                    surgicalProcessRepository,
                 ).execute()?.let {
                     SurgicalProcessServices.UpdateSurgicalProcessState(
                         it.id,
                         it.dateTime,
                         ProcessData.ProcessState.PRE_SURGERY,
-                        surgicalProcessRepository
+                        surgicalProcessRepository,
                     ).execute()
                     SurgicalProcessServices.UpdateSurgicalProcessStep(
                         it.id,
                         it.dateTime,
                         ProcessData.ProcessStep.PATIENT_IN_PREPARATION,
-                        surgicalProcessRepository
+                        surgicalProcessRepository,
                     ).execute()
                 }
             }
@@ -188,19 +190,19 @@ object ProcessEventHandlers {
                 surgicalProcess.id,
                 Instant.parse(event.dateTime),
                 ProcessData.ProcessState.POST_SURGERY,
-                surgicalProcessRepository
+                surgicalProcessRepository,
             ).execute()
             SurgicalProcessServices.UpdateSurgicalProcessStep(
                 surgicalProcess.id,
                 Instant.parse(event.dateTime),
                 ProcessData.ProcessStep.PATIENT_UNDER_OBSERVATION,
-                surgicalProcessRepository
+                surgicalProcessRepository,
             ).execute()
             SurgicalProcessServices.UpdateSurgicalProcessRoom(
                 surgicalProcess.id,
                 surgicalProcess.operatingRoom?.id?.id,
                 Room(RoomData.RoomId(event.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
-                surgicalProcessRepository
+                surgicalProcessRepository,
             ).execute()
         }
     }
@@ -215,7 +217,7 @@ object ProcessEventHandlers {
                 it.id,
                 it.preOperatingRoom?.id?.id,
                 Room(RoomData.RoomId(event.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
-                surgicalProcessRepository
+                surgicalProcessRepository,
             ).execute()
         }
     }
@@ -232,19 +234,19 @@ object ProcessEventHandlers {
         if (surgicalProcess != null &&
             surgicalProcess.state == ProcessData.ProcessState.POST_SURGERY &&
             !isSurgicalProcessOver(
-                    surgicalProcess.id.id,
-                    surgicalProcessRepository
-                )
+                surgicalProcess.id.id,
+                surgicalProcessRepository,
+            )
         ) {
             SurgicalProcessServices.UpdateSurgicalProcessState(
                 surgicalProcess.id,
                 Instant.parse(event.dateTime),
                 ProcessData.ProcessState.TERMINATED,
-                surgicalProcessRepository
+                surgicalProcessRepository,
             ).execute()
             SurgicalProcessServices.GetSurgicalProcessStates(
                 surgicalProcess.id,
-                surgicalProcessRepository
+                surgicalProcessRepository,
             ).execute().also { processStates ->
                 eventProducer.produceEvent(
                     SurgeryReportEvent(
@@ -255,7 +257,7 @@ object ProcessEventHandlers {
                             surgicalProcess.patientId,
                             PatientDataServices.GetPatientTaxCode(
                                 surgicalProcess.patientId,
-                                patientRepository
+                                patientRepository,
                             ).execute(),
                             surgicalProcess.healthProfessionalId,
                             surgicalProcess.preOperatingRoom,
@@ -263,50 +265,51 @@ object ProcessEventHandlers {
                             processStates,
                             SurgicalProcessServices.GetSurgicalProcessSteps(
                                 surgicalProcess.id,
-                                surgicalProcessRepository
+                                surgicalProcessRepository,
                             ).execute(),
                             PatientDataServices.GetPatientMedicalData(
                                 surgicalProcess.patientId,
                                 getStartAndEndProcessTime(processStates).first,
                                 getStartAndEndProcessTime(processStates).second,
-                                patientRepository
+                                patientRepository,
                             ).execute(),
                             MedicalDeviceServices.GetMedicalDeviceUsageByProcessId(
                                 surgicalProcess.id,
-                                medicalDeviceRepository
+                                medicalDeviceRepository,
                             ).execute().mapNotNull {
                                 MedicalDeviceServices.GetMedicalDeviceById(it, medicalDeviceRepository).execute()
                             },
                             MedicalDeviceServices.GetMedicalTechnologyUsageByProcessId(
                                 surgicalProcess.id,
-                                medicalDeviceRepository
+                                medicalDeviceRepository,
                             ).execute().map {
                                 Pair(
                                     it.first,
                                     MedicalDeviceServices.GetMedicalTechnologyById(
                                         it.second,
                                         medicalDeviceRepository,
-                                        it.third
-                                    ).execute()
+                                        it.third,
+                                    ).execute(),
                                 )
-                            }.filterPairs()
-                        )
-                    )
+                            }.filterPairs(),
+                        ),
+                    ),
                 )
             }
             SurgicalProcessServices.DeleteSurgicalProcess(surgicalProcess.id, surgicalProcessRepository).execute()
             SurgeryBookingServices.GetSurgeryBookingByPatient(
                 PatientData.PatientId(event.data.patientId),
-                surgeryBookingRepository
+                surgeryBookingRepository,
             ).execute()?.let {
                 SurgeryBookingServices.DeleteSurgeryBooking(
-                    it.id, surgeryBookingRepository
+                    it.id,
+                    surgeryBookingRepository,
                 ).execute()
             }
             PatientDataServices.DeletePatient(surgicalProcess.patientId, patientRepository).execute()
             MedicalDeviceServices.GetMedicalDeviceUsageByProcessId(
                 surgicalProcess.id,
-                medicalDeviceRepository
+                medicalDeviceRepository,
             ).execute().forEach {
                 MedicalDeviceServices.DeleteImplantableMedicalDevice(it, medicalDeviceRepository).execute()
             }
@@ -318,7 +321,7 @@ object ProcessEventHandlers {
      */
     class EmergencySurgeryEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -329,9 +332,9 @@ object ProcessEventHandlers {
             event.cast<ProcessEvent<ProcessEventsPayloads.EmergencySurgery>> {
                 val patient = PatientDataServices.CreatePatient(
                     PatientData.PatientId(
-                        "emergency-patient-${Instant.now()}"
+                        "emergency-patient-${Instant.now()}",
                     ),
-                    patientRepository
+                    patientRepository,
                 ).execute()
                 if (patient != null) {
                     SurgicalProcessServices.CreateSurgicalProcess(
@@ -344,11 +347,11 @@ object ProcessEventHandlers {
                             preOperatingRoom = null,
                             operatingRoom = Room(
                                 RoomData.RoomId(this.data.roomId),
-                                type = RoomData.RoomType.OPERATING_ROOM
+                                type = RoomData.RoomType.OPERATING_ROOM,
                             ),
-                            ProcessData.ProcessState.SURGERY
+                            ProcessData.ProcessState.SURGERY,
                         ),
-                        surgicalProcessRepository
+                        surgicalProcessRepository,
                     ).execute() != null
                 } else {
                     false
@@ -361,7 +364,7 @@ object ProcessEventHandlers {
      * The handler for Step manual events.
      */
     class StepManualEventHandler(
-        private val surgicalProcessRepository: SurgicalProcessRepository
+        private val surgicalProcessRepository: SurgicalProcessRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -380,7 +383,7 @@ object ProcessEventHandlers {
                         it.id,
                         Instant.parse(this.dateTime),
                         this.data.step,
-                        surgicalProcessRepository
+                        surgicalProcessRepository,
                     ).execute()
                 }
                 true
@@ -389,7 +392,7 @@ object ProcessEventHandlers {
     }
 
     private fun getStartAndEndProcessTime(
-        processStates: List<Pair<Instant, ProcessData.ProcessState>>
+        processStates: List<Pair<Instant, ProcessData.ProcessState>>,
     ): Pair<Instant, Instant> =
         Pair(
             processStates.first {
@@ -397,13 +400,15 @@ object ProcessEventHandlers {
             }.first,
             processStates.first {
                 it.second == ProcessData.ProcessState.TERMINATED || it.second == ProcessData.ProcessState.INTERRUPTED
-            }.first
+            }.first,
         )
 
     /** Utility function to cast en event to its type. */
     inline fun <reified T> Any?.cast(operation: T.() -> Boolean = { true }): Boolean = if (this is T) {
         operation()
-    } else false
+    } else {
+        false
+    }
 
     /**
      * Utility function to filter the null values of a list of pair.
@@ -419,7 +424,7 @@ object ProcessEventHandlers {
     fun isSurgicalProcessOver(processId: String, surgicalProcessRepository: SurgicalProcessRepository): Boolean {
         val process = SurgicalProcessServices.GetSurgicalProcessById(
             ProcessData.ProcessId(processId),
-            surgicalProcessRepository
+            surgicalProcessRepository,
         ).execute()
         return if (process != null) {
             process.state == ProcessData.ProcessState.INTERRUPTED ||

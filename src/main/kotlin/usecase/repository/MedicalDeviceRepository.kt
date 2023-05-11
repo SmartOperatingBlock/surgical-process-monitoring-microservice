@@ -25,7 +25,7 @@ interface MedicalDeviceRepository {
      */
     fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean
 
     /**
@@ -36,7 +36,7 @@ interface MedicalDeviceRepository {
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean
 
     /**
@@ -44,28 +44,28 @@ interface MedicalDeviceRepository {
      * @return the surgical process.
      */
     fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): ProcessData.ProcessId?
 
     /**
      * Get the medical devices used in a surgical process by the [processId].
      */
     fun getMedicalDeviceUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<MedicalDeviceData.ImplantableMedicalDeviceId>
 
     /**
      * Get the [ImplantableMedicalDevice] by its [implantableMedicalDeviceId].
      */
     fun getMedicalDeviceById(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): ImplantableMedicalDevice?
 
     /**
      * Get the medical technologies used in a surgical process by the [processId].
      */
     fun getMedicalTechnologyUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>>
 
     /**
@@ -73,7 +73,7 @@ interface MedicalDeviceRepository {
      */
     fun getMedicalTechnologyById(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        inUse: Boolean
+        inUse: Boolean,
     ): MedicalTechnology?
 
     /**

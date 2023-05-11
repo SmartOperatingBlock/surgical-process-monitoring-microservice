@@ -29,7 +29,7 @@ class TestSurgeryBooking : StringSpec({
                 Instant.now(),
                 healthProfessional.id,
                 patient.id,
-                "Colonscopy"
+                "Colonscopy",
             )
         }
     }
@@ -41,14 +41,14 @@ class TestSurgeryBooking : StringSpec({
             Instant.now(),
             healthProfessional.id,
             patient.id,
-            "Colonscopy"
+            "Colonscopy",
         )
         val second = SurgeryBooking(
             id,
             Instant.now(),
             healthProfessional.id,
             patient.id,
-            "Colonscopy"
+            "Colonscopy",
         )
 
         first shouldBe second

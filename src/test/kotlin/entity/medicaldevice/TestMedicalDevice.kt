@@ -20,7 +20,7 @@ class TestMedicalDevice : StringSpec({
                 MedicalDeviceData.MedicalTechnologyId(""),
                 "x-ray-1",
                 type = MedicalDeviceData.MedicalTechnologyType.X_RAY,
-                inUse = false
+                inUse = false,
             )
         }
     }
@@ -29,7 +29,7 @@ class TestMedicalDevice : StringSpec({
         shouldThrow<IllegalArgumentException> {
             ImplantableMedicalDevice(
                 MedicalDeviceData.ImplantableMedicalDeviceId(""),
-                MedicalDeviceData.DeviceType.PACE_MAKER
+                MedicalDeviceData.DeviceType.PACE_MAKER,
             )
         }
     }
@@ -40,13 +40,13 @@ class TestMedicalDevice : StringSpec({
             id,
             "x-ray-1",
             type = MedicalDeviceData.MedicalTechnologyType.X_RAY,
-            inUse = false
+            inUse = false,
         )
         val second = MedicalTechnology(
             id,
             "x-ray-1",
             type = MedicalDeviceData.MedicalTechnologyType.X_RAY,
-            inUse = false
+            inUse = false,
         )
         first shouldBe second
     }
@@ -55,7 +55,7 @@ class TestMedicalDevice : StringSpec({
         val id = MedicalDeviceData.ImplantableMedicalDeviceId("imd-1")
         val first = ImplantableMedicalDevice(
             id,
-            MedicalDeviceData.DeviceType.PACE_MAKER
+            MedicalDeviceData.DeviceType.PACE_MAKER,
         )
         val second = ImplantableMedicalDevice(id, MedicalDeviceData.DeviceType.PACE_MAKER)
         first shouldBe second

@@ -24,7 +24,7 @@ data class TimeSeriesPatientMedicalData(
     @Contextual
     val dateTime: Instant,
     val metadata: TimeSeriesPatientMedicalDataMetadata,
-    val value: Double
+    val value: Double,
 )
 
 /**
@@ -35,7 +35,7 @@ data class TimeSeriesPatientMedicalData(
 @Serializable
 data class TimeSeriesPatientMedicalDataMetadata(
     val patientId: PatientData.PatientId,
-    val type: MedicalDataType
+    val type: MedicalDataType,
 )
 
 /**
@@ -47,43 +47,43 @@ enum class MedicalDataType {
     HEARTH_BEAT,
     RESPIRATION_RATE,
     SATURATION_PERCENTAGE,
-    BODY_TEMPERATURE
+    BODY_TEMPERATURE,
 }
 
 /**
  * Convert a map of [MedicalDataType] and [TimeSeriesPatientMedicalData] to a [PatientData.MedicalData].
  */
 fun Map<MedicalDataType, TimeSeriesPatientMedicalData?>.toPatientMedicalData(
-    startData: PatientData.MedicalData? = null
+    startData: PatientData.MedicalData? = null,
 ) = PatientData.MedicalData(
     heartBeat = this[MedicalDataType.HEARTH_BEAT]?.let {
         PatientData.HeartBeat(
-            it.value.toInt()
+            it.value.toInt(),
         )
     } ?: startData?.heartBeat,
     diastolicBloodPressure = this[MedicalDataType.DIASTOLIC_BLOOD_PRESSURE]?.let {
         PatientData.DiastolicBloodPressure(
-            it.value.toInt()
+            it.value.toInt(),
         )
     } ?: startData?.diastolicBloodPressure,
     systolicBloodPressure = this[MedicalDataType.SYSTOLIC_BLOOD_PRESSURE]?.let {
         PatientData.SystolicBloodPressure(
-            it.value.toInt()
+            it.value.toInt(),
         )
     } ?: startData?.systolicBloodPressure,
     respiratoryRate = this[MedicalDataType.RESPIRATION_RATE]?.let {
         PatientData.RespiratoryRate(
-            it.value.toInt()
+            it.value.toInt(),
         )
     } ?: startData?.respiratoryRate,
     saturationPercentage = this[MedicalDataType.SATURATION_PERCENTAGE]?.let {
         PatientData.SaturationPercentage(
-            it.value.toInt()
+            it.value.toInt(),
         )
     } ?: startData?.saturationPercentage,
     bodyTemperature = this[MedicalDataType.BODY_TEMPERATURE]?.let {
         PatientData.BodyTemperature(
-            it.value
+            it.value,
         )
     } ?: startData?.bodyTemperature,
 )
@@ -99,9 +99,9 @@ fun PatientData.MedicalData.toTimeSeriesMedicalData(dateTime: Instant, patientId
             dateTime,
             TimeSeriesPatientMedicalDataMetadata(
                 patientId,
-                this.first
+                this.first,
             ),
-            this.second
+            this.second,
         )
     }
 
@@ -124,5 +124,5 @@ private fun getMedicalDataType(medicalData: PatientData.MedicalData): Pair<Medic
         },
         medicalData.saturationPercentage?.let {
             Pair(MedicalDataType.SATURATION_PERCENTAGE, it.percentage.toDouble())
-        }
+        },
     ).first()

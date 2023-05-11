@@ -20,35 +20,47 @@ import kotlinx.serialization.Serializable
 data class ProcessEvent<E : ProcessEventPayload>(
     override val key: String,
     override val data: E,
-    override val dateTime: String
+    override val dateTime: String,
 ) : Event<E>
 
 /** Module that wrap all the possible keys for process events. */
 object ProcessEventsKeys {
     /** The key of the medical device usage event. */
     const val MEDICAL_DEVICE_USAGE_EVENT = "MEDICAL_DEVICE_USAGE_EVENT"
+
     /** The key of the medical technology usage event. */
     const val MEDICAL_TECHNOLOGY_USAGE_EVENT = "MEDICAL_TECHNOLOGY_USAGE_EVENT"
+
     /** The key of the patient on operating bed event. */
     const val PATIENT_ON_OB_EVENT = "PATIENT_ON_OB_EVENT"
+
     /** The key of the body temperature update event. */
     const val PATIENT_BODY_TEMPERATURE_UPDATE_EVENT = "PATIENT_BODY_TEMPERATURE_UPDATE_EVENT"
+
     /** The key of the diastolic pressure update event. */
     const val PATIENT_DIASTOLIC_PRESSURE_UPDATE_EVENT = "PATIENT_DIASTOLIC_PRESSURE_UPDATE_EVENT"
+
     /** The key of the systolic pressure update event. */
     const val PATIENT_SYSTOLIC_PRESSURE_UPDATE_EVENT = "PATIENT_SYSTOLIC_PRESSURE_UPDATE_EVENT"
+
     /** The key of the respiratory rate update event. */
     const val PATIENT_RESPIRATORY_RATE_UPDATE_EVENT = "PATIENT_RESPIRATORY_RATE_UPDATE_EVENT"
+
     /** The key of the saturation update event. */
     const val PATIENT_SATURATION_UPDATE_EVENT = "PATIENT_SATURATION_UPDATE_EVENT"
+
     /** The key of the heartbeat update event. */
     const val PATIENT_HEARTBEAT_UPDATE_EVENT = "PATIENT_HEARTBEAT_UPDATE_EVENT"
+
     /** The key of the patient tracking event. */
     const val PATIENT_TRACKED_EVENT = "PATIENT_TRACKED_EVENT"
+
     /** The key of the event of an emergency surgery. */
     const val EMERGENCY_SURGERY_EVENT = "EMERGENCY_SURGERY_EVENT"
+
     /** The key of the event of a surgery report. */
     const val SURGERY_REPORT_EVENT = "SURGERY_REPORT_EVENT"
+
     /** The key of the step manual event. */
     const val STEP_MANUAL_EVENT = "STEP_MANUAL_EVENT"
 }

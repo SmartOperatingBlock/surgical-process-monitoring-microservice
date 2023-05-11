@@ -25,7 +25,7 @@ data class TimeSeriesMedicalTechnologyUsage(
     @Contextual
     val dateTime: Instant,
     val metadata: TimeSeriesMedicalTechnologyUsageMetadata,
-    val value: Boolean
+    val value: Boolean,
 )
 
 /**
@@ -36,5 +36,5 @@ data class TimeSeriesMedicalTechnologyUsage(
 @Serializable
 data class TimeSeriesMedicalTechnologyUsageMetadata(
     val medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-    val processId: ProcessData.ProcessId
+    val processId: ProcessData.ProcessId,
 )

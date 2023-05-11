@@ -22,7 +22,7 @@ interface BookingRepository {
      * @return null if the surgery booking doesn't exist, the surgery booking otherwise.
      */
     fun getSurgeryBookingByPatient(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): SurgeryBooking?
 
     /**
@@ -31,7 +31,7 @@ interface BookingRepository {
      */
     fun removePatientSurgeryBookingMapping(
         patientId: PatientData.PatientId,
-        surgeryBookingId: SurgeryBookingData.SurgeryBookingId
+        surgeryBookingId: SurgeryBookingData.SurgeryBookingId,
     ): Boolean
 
     /**

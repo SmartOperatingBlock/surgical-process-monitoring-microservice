@@ -33,20 +33,20 @@ class MockDigitalTwinManager :
     private val surgeryBookings: MutableSet<SurgeryBooking> = mutableSetOf()
 
     override fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): ProcessData.ProcessId? = null
 
     override fun getMedicalDeviceById(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): ImplantableMedicalDevice? = null
 
     override fun getMedicalTechnologyById(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        inUse: Boolean
+        inUse: Boolean,
     ): MedicalTechnology? = null
 
     override fun deleteMedicalDevice(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): Boolean = true
 
     override fun createPatientDT(patientId: PatientData.PatientId): Patient? = null
@@ -59,7 +59,7 @@ class MockDigitalTwinManager :
 
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean = surgicalProcesses.any { it.id == processId }
 
     override fun updateSurgicalProcessStep(processId: ProcessData.ProcessId, step: ProcessData.ProcessStep): Boolean =
@@ -68,7 +68,7 @@ class MockDigitalTwinManager :
     override fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
         latestRoomId: String?,
-        room: Room
+        room: Room,
     ): Boolean = true
 
     override fun deleteSurgicalProcess(processId: ProcessData.ProcessId): Boolean = true
@@ -78,7 +78,7 @@ class MockDigitalTwinManager :
 
     override fun removePatientSurgeryBookingMapping(
         patientId: PatientData.PatientId,
-        surgeryBookingId: SurgeryBookingData.SurgeryBookingId
+        surgeryBookingId: SurgeryBookingData.SurgeryBookingId,
     ): Boolean = true
 
     override fun deleteSurgeryBooking(bookingId: SurgeryBookingData.SurgeryBookingId): Boolean = true

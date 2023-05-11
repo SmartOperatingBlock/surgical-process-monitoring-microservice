@@ -20,7 +20,7 @@ data class MedicalTechnology(
     val name: String,
     val description: String? = null,
     val type: MedicalDeviceData.MedicalTechnologyType,
-    val inUse: Boolean
+    val inUse: Boolean,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

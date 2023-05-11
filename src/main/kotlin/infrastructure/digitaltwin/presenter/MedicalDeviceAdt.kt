@@ -30,6 +30,6 @@ object MedicalDeviceAdt {
                 TYPE_PACEMAKER -> MedicalDeviceData.DeviceType.PACE_MAKER
                 TYPE_CATHETER -> MedicalDeviceData.DeviceType.CATHETER
                 else -> throw IllegalArgumentException("medical device type not supported")
-            }
+            },
         )
 }

@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ImplantableMedicalDevice(
     val id: MedicalDeviceData.ImplantableMedicalDeviceId,
-    val type: MedicalDeviceData.DeviceType
+    val type: MedicalDeviceData.DeviceType,
 ) {
     override fun equals(other: Any?): Boolean = when {
         other === this -> true

@@ -23,7 +23,7 @@ interface MedicalDeviceDatabaseManager {
      */
     fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean
 
     /**
@@ -34,20 +34,20 @@ interface MedicalDeviceDatabaseManager {
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         dateTime: Instant,
         processId: ProcessData.ProcessId,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean
 
     /**
      * Get the usage of implantable medical devices in a process.
      */
     fun getMedicalDeviceUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<MedicalDeviceData.ImplantableMedicalDeviceId>
 
     /**
      * Get the usage of medical technologies in a process.
      */
     fun getMedicalDeviceTechnologyUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>>
 }

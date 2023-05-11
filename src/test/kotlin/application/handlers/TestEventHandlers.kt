@@ -41,16 +41,16 @@ class TestEventHandlers : StringSpec({
                 "patient-id",
                 "room-id",
                 true,
-                ProcessEventsPayloads.RoomType.OPERATING_ROOM
+                ProcessEventsPayloads.RoomType.OPERATING_ROOM,
             ),
-            dateTime = Instant.now().toString()
+            dateTime = Instant.now().toString(),
         )
         val eventHandler = ProcessEventHandlers.PatientTrackedEventHandler(
             surgicalProcessController(),
             surgeryBookingController(),
             patientController(),
             medicalDeviceController(),
-            MockEventProducer()
+            MockEventProducer(),
         )
         eventHandler.canHandle(event) shouldBe true
     }
@@ -62,7 +62,7 @@ class TestEventHandlers : StringSpec({
                 "mt-1",
                 true,
             ),
-            dateTime = Instant.now().toString()
+            dateTime = Instant.now().toString(),
         )
         val eventHandler = ProcessEventHandlers.MedicalTechnologyUsageEventHandler(medicalDeviceController())
         eventHandler.canHandle(event) shouldBe true
@@ -75,7 +75,7 @@ class TestEventHandlers : StringSpec({
                 "md-1",
                 "prova-process",
             ),
-            dateTime = Instant.now().toString()
+            dateTime = Instant.now().toString(),
         )
         val eventHandler = ProcessEventHandlers.MedicalDeviceUsageEventHandler(medicalDeviceController())
         eventHandler.canHandle(event) shouldBe true
@@ -88,11 +88,11 @@ class TestEventHandlers : StringSpec({
                 "room-1",
                 "12345678",
             ),
-            dateTime = Instant.now().toString()
+            dateTime = Instant.now().toString(),
         )
         val eventHandler = ProcessEventHandlers.EmergencySurgeryEventHandler(
             surgicalProcessController(),
-            patientController()
+            patientController(),
         )
         eventHandler.canHandle(event) shouldBe true
     }

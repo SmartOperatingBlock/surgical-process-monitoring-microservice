@@ -22,10 +22,13 @@ object SurgicalProcessAdt {
 
     /** The model of the surgical process DT. **/
     const val SURGICAL_PROCESS_MODEL = "dtmi:io:github:smartoperatingblock:SurgicalProcess;1"
+
     /** The relationship between surgical process and booking dt. */
     const val BOOKING_RELATIONSHIP = "rel_associated_to_booking"
+
     /** The relationship between surgical process and patient dt. */
     const val PATIENT_RELATIONSHIP = "rel_involve_patient"
+
     /** The relationship between surgical process and room dt. */
     const val ROOM_RELATIONSHIP = "rel_is_inside"
 
