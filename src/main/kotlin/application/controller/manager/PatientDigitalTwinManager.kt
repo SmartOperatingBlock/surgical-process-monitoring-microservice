@@ -18,20 +18,20 @@ interface PatientDigitalTwinManager {
      * Create the digital twin of a [Patient] given its [patientId].
      */
     fun createPatientDT(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): Patient?
 
     /**
      * Delete the digital twin of a [Patient] given its [patientId].
      */
     fun deletePatientDT(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): Boolean
 
     /**
      * Get the [Patient] tax code given its [patientId].
      */
     fun getPatientTaxCode(
-        patientId: PatientData.PatientId
+        patientId: PatientData.PatientId,
     ): PatientData.TaxCode?
 }

@@ -17,7 +17,7 @@ fun loadConsumerProperties(bootstrapServerUrl: String, schemaRegistryUrl: String
     "schema.registry.url" to schemaRegistryUrl,
     "group.id" to "surgical-process-consumer",
     "key.deserializer" to "org.apache.kafka.common.serialization.StringDeserializer",
-    "value.deserializer" to KafkaJsonDeserializer::class.java
+    "value.deserializer" to KafkaJsonDeserializer::class.java,
 )
 
 /** Load the properties needed to initialize the Kafka consumer. */
@@ -25,5 +25,5 @@ fun loadProducerProperties(bootstrapServerUrl: String, schemaRegistryUrl: String
     "bootstrap.servers" to bootstrapServerUrl,
     "schema.registry.url" to schemaRegistryUrl,
     "key.serializer" to "org.apache.kafka.common.serialization.StringSerializer",
-    "value.serializer" to KafkaJsonSerializer::class.java
+    "value.serializer" to KafkaJsonSerializer::class.java,
 )

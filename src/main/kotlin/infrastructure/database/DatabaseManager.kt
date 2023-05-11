@@ -48,7 +48,7 @@ import java.time.Instant
  * Implementation of all database managers.
  */
 class DatabaseManager(
-    connectionString: String
+    connectionString: String,
 ) : MedicalDeviceDatabaseManager, PatientMedicalDataDatabaseManager, ProcessDatabaseManager {
 
     /**
@@ -76,7 +76,7 @@ class DatabaseManager(
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean = this.implantableMedicalDeviceCollection.safeMongoDbWrite(defaultResult = false) {
         insertOne(MedicalDeviceUsage(medicalDeviceId, processId)).wasAcknowledged()
     }
@@ -85,48 +85,48 @@ class DatabaseManager(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         dateTime: Instant,
         processId: ProcessData.ProcessId,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean = this.medicalTechnologyUsageDataCollection.safeMongoDbWrite(defaultResult = false) {
         insertOne(
             TimeSeriesMedicalTechnologyUsage(
                 dateTime,
                 TimeSeriesMedicalTechnologyUsageMetadata(medicalTechnologyId, processId),
-                inUse
-            )
+                inUse,
+            ),
         ).wasAcknowledged()
     }
 
     override fun getMedicalDeviceUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<MedicalDeviceData.ImplantableMedicalDeviceId> =
         this.implantableMedicalDeviceCollection.find(
-            MedicalDeviceUsage::processId eq processId
+            MedicalDeviceUsage::processId eq processId,
         ).map {
             it.implantableMedicalDeviceId
         }.toList()
 
     override fun getMedicalDeviceTechnologyUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>> =
         this.medicalTechnologyUsageDataCollection.find(
-            TimeSeriesMedicalTechnologyUsage :: metadata /
-                TimeSeriesMedicalTechnologyUsageMetadata :: processId eq processId
+            TimeSeriesMedicalTechnologyUsage::metadata /
+                TimeSeriesMedicalTechnologyUsageMetadata::processId eq processId,
         ).map {
             Triple(
                 it.dateTime,
                 it.metadata.medicalTechnologyId,
-                it.value
+                it.value,
             )
         }.toList()
 
     override fun updatePatientMedicalData(
         patientId: PatientData.PatientId,
         medicalData: PatientData.MedicalData,
-        dateTime: Instant
+        dateTime: Instant,
     ): Boolean =
         this.patientMedicalDataCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(
-                medicalData.toTimeSeriesMedicalData(dateTime, patientId)
+                medicalData.toTimeSeriesMedicalData(dateTime, patientId),
             ).wasAcknowledged()
         }
 
@@ -139,7 +139,7 @@ class DatabaseManager(
         return this.patientMedicalDataCollection.find(
             TimeSeriesPatientMedicalData::metadata / TimeSeriesPatientMedicalDataMetadata::patientId eq patientId,
             TimeSeriesPatientMedicalData::dateTime gte from,
-            TimeSeriesPatientMedicalData::dateTime lte to
+            TimeSeriesPatientMedicalData::dateTime lte to,
         ).ascendingSort(TimeSeriesPatientMedicalData::dateTime).toList().map {
             val updatedPatientMedicalData = mapOf(it.metadata.type to it).toPatientMedicalData(patientMedicalData)
             patientMedicalData = updatedPatientMedicalData
@@ -161,7 +161,7 @@ class DatabaseManager(
     override fun createSurgicalProcess(process: SurgicalProcess): SurgicalProcess? =
         this.surgicalProcessCollection.safeMongoDbWrite(defaultResult = null) {
             insertOne(
-                process
+                process,
             ).run {
                 getSurgicalProcessById(process.id)
             }
@@ -179,7 +179,7 @@ class DatabaseManager(
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean =
         this.processStateEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStateEvent(dateTime, TimeSeriesProcessStateEventMetadata(processId), state))
@@ -188,14 +188,14 @@ class DatabaseManager(
             this.surgicalProcessCollection.safeMongoDbWrite(false) {
                 updateOne(
                     SurgicalProcess::id eq processId,
-                    setValue(SurgicalProcess::state, state)
+                    setValue(SurgicalProcess::state, state),
                 ).wasAcknowledged()
             }
 
     override fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        step: ProcessData.ProcessStep
+        step: ProcessData.ProcessStep,
     ): Boolean =
         this.processStepEventCollection.safeMongoDbWrite(defaultResult = false) {
             insertOne(TimeSeriesProcessStepEvent(dateTime, TimeSeriesProcessStepEventMetadata(processId), step))
@@ -204,21 +204,21 @@ class DatabaseManager(
             this.surgicalProcessCollection.safeMongoDbWrite(false) {
                 updateOne(
                     SurgicalProcess::id eq processId,
-                    setValue(SurgicalProcess::step, step)
+                    setValue(SurgicalProcess::step, step),
                 ).wasAcknowledged()
             }
 
     override fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
         latestRoomId: String?,
-        room: Room
+        room: Room,
     ): Boolean =
         when (room.type) {
             RoomData.RoomType.PRE_POST_OPERATING_ROOM -> {
                 this.surgicalProcessCollection.safeMongoDbWrite(false) {
                     updateOne(
                         SurgicalProcess::id eq processId,
-                        setValue(SurgicalProcess::preOperatingRoom, room)
+                        setValue(SurgicalProcess::preOperatingRoom, room),
                     ).matchedCount > 0
                 }
             }
@@ -226,26 +226,26 @@ class DatabaseManager(
                 this.surgicalProcessCollection.safeMongoDbWrite(false) {
                     updateOne(
                         SurgicalProcess::id eq processId,
-                        setValue(SurgicalProcess::operatingRoom, room)
+                        setValue(SurgicalProcess::operatingRoom, room),
                     ).matchedCount > 0
                 }
             }
         }
 
     override fun getSurgicalProcessStates(
-        surgicalProcessId: ProcessData.ProcessId
+        surgicalProcessId: ProcessData.ProcessId,
     ): List<Pair<Instant, ProcessData.ProcessState>> =
         this.processStateEventCollection.find(
-            TimeSeriesProcessStateEvent::metadata / TimeSeriesProcessStateEventMetadata::processId eq surgicalProcessId
+            TimeSeriesProcessStateEvent::metadata / TimeSeriesProcessStateEventMetadata::processId eq surgicalProcessId,
         ).map {
             Pair(it.dateTime, it.value)
         }.toList()
 
     override fun getSurgicalProcessSteps(
-        surgicalProcessId: ProcessData.ProcessId
+        surgicalProcessId: ProcessData.ProcessId,
     ): List<Pair<Instant, ProcessData.ProcessStep>> =
         this.processStepEventCollection.find(
-            TimeSeriesProcessStepEvent::metadata / TimeSeriesProcessStepEventMetadata::processId eq surgicalProcessId
+            TimeSeriesProcessStepEvent::metadata / TimeSeriesProcessStepEventMetadata::processId eq surgicalProcessId,
         ).map {
             Pair(it.dateTime, it.value)
         }.toList()

@@ -26,6 +26,7 @@ object SurgeryBookingAdt {
 
     /** The relationship between patient and booking dt. */
     const val PATIENT_RELATIONSHIP = "rel_booking_associated_patient"
+
     /** The relationship between patient and healtcare user dt. */
     const val PATIENT_HEALTCAREUSER_RELATIONSHIP = "rel_is_associated"
     private const val RESPONSIBLE_HEALTH_PROFESSIONAL_RELATIONSHIP = "rel_responsible_health_professional"
@@ -36,10 +37,10 @@ object SurgeryBookingAdt {
             id = SurgeryBookingData.SurgeryBookingId(this.id),
             dateTime = Instant.parse(this.contents[DATETIME_PROPERTY].propertyAs("")),
             healthProfessionalId = HealthProfessionalData.HealthProfessionalId(
-                this.contents[RESPONSIBLE_HEALTH_PROFESSIONAL_RELATIONSHIP].propertyAs("")
+                this.contents[RESPONSIBLE_HEALTH_PROFESSIONAL_RELATIONSHIP].propertyAs(""),
             ),
             patientId = PatientData.PatientId(
-                this.contents[PATIENT_RELATIONSHIP].propertyAs("")
+                this.contents[PATIENT_RELATIONSHIP].propertyAs(""),
             ),
             surgeryType = this.contents[TYPE_PROPERTY].propertyAs(""),
         )

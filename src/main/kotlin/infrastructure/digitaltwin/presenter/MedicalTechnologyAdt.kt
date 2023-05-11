@@ -36,6 +36,6 @@ object MedicalTechnologyAdt {
                 TYPE_XRAY -> MedicalDeviceData.MedicalTechnologyType.X_RAY
                 else -> throw IllegalArgumentException("medical device type not supported")
             },
-            inUse = value
+            inUse = value,
         )
 }

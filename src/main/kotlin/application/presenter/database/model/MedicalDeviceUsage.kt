@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MedicalDeviceUsage(
     val implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-    val processId: ProcessData.ProcessId
+    val processId: ProcessData.ProcessId,
 )

@@ -40,7 +40,7 @@ class TestProcessApi : StringSpec({
                 Room(RoomData.RoomId("room-1"), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
                 state = ProcessData.ProcessState.PRE_SURGERY,
             ),
-            SurgicalProcessController(DatabaseManager("mongodb://localhost:27017"), MockDigitalTwinManager())
+            SurgicalProcessController(DatabaseManager("mongodb://localhost:27017"), MockDigitalTwinManager()),
         ).execute()
 
     "When there are no processes the response should be no content" {

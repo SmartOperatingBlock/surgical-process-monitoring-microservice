@@ -18,5 +18,5 @@ package application.presenter.event.model
 data class SurgeryReportEvent<E>(
     override val key: String = ProcessEventsKeys.SURGERY_REPORT_EVENT,
     override val dateTime: String,
-    override val data: E
+    override val data: E,
 ) : Event<E>

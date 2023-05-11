@@ -21,14 +21,14 @@ interface MedicalDeviceDigitalTwinManager {
      * @param medicalTechnologyId the id of the medical technology.
      */
     fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): ProcessData.ProcessId?
 
     /**
      * Get the [ImplantableMedicalDevice] by its [implantableMedicalDeviceId].
      */
     fun getMedicalDeviceById(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): ImplantableMedicalDevice?
 
     /**
@@ -36,7 +36,7 @@ interface MedicalDeviceDigitalTwinManager {
      */
     fun getMedicalTechnologyById(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        inUse: Boolean
+        inUse: Boolean,
     ): MedicalTechnology?
 
     /**

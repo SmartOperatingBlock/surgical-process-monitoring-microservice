@@ -63,7 +63,7 @@ class DigitalTwinManager :
         .buildClient()
 
     override fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): ProcessData.ProcessId? =
         this.dtClient.applySafeDigitalTwinOperation(null) {
             val roomId = query(
@@ -110,7 +110,7 @@ class DigitalTwinManager :
         }
 
     override fun getMedicalDeviceById(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): ImplantableMedicalDevice? =
         this.dtClient.applySafeDigitalTwinOperation(null) {
             getDigitalTwin(implantableMedicalDeviceId.id, BasicDigitalTwin::class.java).toImplantableMedicalDevice()
@@ -118,14 +118,14 @@ class DigitalTwinManager :
 
     override fun getMedicalTechnologyById(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        inUse: Boolean
+        inUse: Boolean,
     ): MedicalTechnology? =
         this.dtClient.applySafeDigitalTwinOperation(null) {
             getDigitalTwin(medicalTechnologyId.id, BasicDigitalTwin::class.java).toMedicalTechnology(inUse)
         }
 
     override fun deleteMedicalDevice(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
             deleteDigitalTwin(implantableMedicalDeviceId.id)
@@ -172,9 +172,9 @@ class DigitalTwinManager :
                             "${process.id.id}-${it.id.id}",
                             process.id.id,
                             it.id.id,
-                            SurgicalProcessAdt.BOOKING_RELATIONSHIP
+                            SurgicalProcessAdt.BOOKING_RELATIONSHIP,
                         ),
-                        BasicRelationship::class.java
+                        BasicRelationship::class.java,
                     )
                     createOrReplaceRelationship(
                         process.id.id,
@@ -183,9 +183,9 @@ class DigitalTwinManager :
                             "${process.id.id}-${it.patientId.id}",
                             process.id.id,
                             it.patientId.id,
-                            SurgicalProcessAdt.PATIENT_RELATIONSHIP
+                            SurgicalProcessAdt.PATIENT_RELATIONSHIP,
                         ),
-                        BasicRelationship::class.java
+                        BasicRelationship::class.java,
                     )
                     process.preOperatingRoom?.let { room ->
                         updateSurgicalProcessRoom(process.id, null, room)
@@ -197,7 +197,7 @@ class DigitalTwinManager :
 
     override fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
             updateDigitalTwin(processId.id, JsonPatchDocument().appendAdd("/process_state", state.ordinal.toString()))
@@ -213,7 +213,7 @@ class DigitalTwinManager :
     override fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
         latestRoomId: String?,
-        room: Room
+        room: Room,
     ): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
             this.listRelationships(processId.id, BasicRelationship::class.java).forEach {
@@ -228,9 +228,9 @@ class DigitalTwinManager :
                         "${processId.id}-${room.id.id}",
                         processId.id,
                         room.id.id,
-                        SurgicalProcessAdt.ROOM_RELATIONSHIP
+                        SurgicalProcessAdt.ROOM_RELATIONSHIP,
                     ),
-                    BasicRelationship::class.java
+                    BasicRelationship::class.java,
                 )
             }
             true
@@ -252,7 +252,7 @@ class DigitalTwinManager :
                     .fromDigitalTwins("T")
                     .joinRelationship("CT", "T", SurgeryBookingAdt.PATIENT_RELATIONSHIP)
                     .where("CT.\$dtId" eq patientId.id).query,
-                String::class.java
+                String::class.java,
             ).run {
                 if (this.count() == 1) {
                     Json.parseToJsonElement(this.first()).jsonObject["\$dtId"]?.jsonPrimitive?.content
@@ -269,7 +269,7 @@ class DigitalTwinManager :
 
     override fun removePatientSurgeryBookingMapping(
         patientId: PatientData.PatientId,
-        surgeryBookingId: SurgeryBookingData.SurgeryBookingId
+        surgeryBookingId: SurgeryBookingData.SurgeryBookingId,
     ): Boolean =
         this.dtClient.applySafeDigitalTwinOperation(false) {
             this.listRelationships(surgeryBookingId.id, BasicRelationship::class.java).firstOrNull {

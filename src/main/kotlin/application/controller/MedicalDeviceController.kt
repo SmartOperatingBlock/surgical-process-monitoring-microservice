@@ -22,55 +22,55 @@ import java.time.Instant
  */
 class MedicalDeviceController(
     private val medicalDeviceDatabaseManager: MedicalDeviceDatabaseManager,
-    private val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager
+    private val medicalDeviceDigitalTwinManager: MedicalDeviceDigitalTwinManager,
 ) : MedicalDeviceRepository {
 
     override fun addMedicalDeviceUsage(
         medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): Boolean = this.medicalDeviceDatabaseManager.addMedicalDeviceUsage(medicalDeviceId, processId)
 
     override fun addMedicalTechnologyUsage(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        inUse: Boolean
+        inUse: Boolean,
     ): Boolean =
         this.medicalDeviceDatabaseManager.addMedicalTechnologyUsage(
             medicalTechnologyId,
             dateTime,
             processId,
-            inUse
+            inUse,
         )
 
     override fun findSurgicalProcessByMedicalTechnology(
-        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId
+        medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
     ): ProcessData.ProcessId? =
         this.medicalDeviceDigitalTwinManager.findSurgicalProcessByMedicalTechnology(medicalTechnologyId)
 
     override fun getMedicalDeviceUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<MedicalDeviceData.ImplantableMedicalDeviceId> =
         this.medicalDeviceDatabaseManager.getMedicalDeviceUsageByProcessId(processId)
 
     override fun getMedicalDeviceById(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): ImplantableMedicalDevice? =
         this.medicalDeviceDigitalTwinManager.getMedicalDeviceById(implantableMedicalDeviceId)
 
     override fun getMedicalTechnologyUsageByProcessId(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>> =
         this.medicalDeviceDatabaseManager.getMedicalDeviceTechnologyUsageByProcessId(processId)
 
     override fun getMedicalTechnologyById(
         medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        inUse: Boolean
+        inUse: Boolean,
     ): MedicalTechnology? =
         this.medicalDeviceDigitalTwinManager.getMedicalTechnologyById(medicalTechnologyId, inUse)
 
     override fun deleteMedicalDevice(
-        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId
+        implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
     ): Boolean =
         this.medicalDeviceDigitalTwinManager.deleteMedicalDevice(implantableMedicalDeviceId)
 }

@@ -35,6 +35,6 @@ object ProcessData {
         ANESTHESIA,
         SURGERY_IN_PROGRESS,
         END_OF_SURGERY,
-        PATIENT_UNDER_OBSERVATION
+        PATIENT_UNDER_OBSERVATION,
     }
 }

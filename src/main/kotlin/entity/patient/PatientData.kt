@@ -95,7 +95,7 @@ object PatientData {
 
     /** The Temperature Unit. */
     enum class TemperatureUnit {
-        CELSIUS
+        CELSIUS,
     }
 
     /** Wrap all the medical data of the [Patient] such as:
@@ -112,6 +112,6 @@ object PatientData {
         val systolicBloodPressure: SystolicBloodPressure? = null,
         val respiratoryRate: RespiratoryRate? = null,
         val saturationPercentage: SaturationPercentage? = null,
-        val bodyTemperature: BodyTemperature? = null
+        val bodyTemperature: BodyTemperature? = null,
     )
 }

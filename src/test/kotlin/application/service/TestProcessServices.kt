@@ -27,7 +27,8 @@ import java.time.Instant
 class TestProcessServices : StringSpec({
 
     fun controller() = SurgicalProcessController(
-        DatabaseManager("mongodb://localhost:27017"), MockDigitalTwinManager()
+        DatabaseManager("mongodb://localhost:27017"),
+        MockDigitalTwinManager(),
     )
 
     val sampleSurgicalProcess = SurgicalProcess(
@@ -39,7 +40,7 @@ class TestProcessServices : StringSpec({
         Room(RoomId("sample-pre-or"), type = RoomType.PRE_POST_OPERATING_ROOM),
         Room(RoomId("sample-or"), type = RoomType.OPERATING_ROOM),
         ProcessData.ProcessState.SURGERY,
-        ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE
+        ProcessData.ProcessStep.PATIENT_ON_OPERATING_TABLE,
     )
 
     "It should be possible to create a surgical process" {
@@ -47,7 +48,7 @@ class TestProcessServices : StringSpec({
             val controller = controller()
             SurgicalProcessServices.CreateSurgicalProcess(
                 sampleSurgicalProcess,
-                controller
+                controller,
             ).execute().run {
                 controller.getCurrentSurgicalProcesses().size shouldBeGreaterThan 0
             }
@@ -59,7 +60,7 @@ class TestProcessServices : StringSpec({
             val controller = controller()
             SurgicalProcessServices.CreateSurgicalProcess(
                 sampleSurgicalProcess,
-                controller
+                controller,
             ).execute()?.let {
                 SurgicalProcessServices.GetSurgicalProcessById(it.id, controller).execute().run {
                     this shouldNotBe null
@@ -73,7 +74,7 @@ class TestProcessServices : StringSpec({
             val controller = controller()
             SurgicalProcessServices.CreateSurgicalProcess(
                 sampleSurgicalProcess,
-                controller
+                controller,
             ).execute()?.let {
                 SurgicalProcessServices.DeleteSurgicalProcess(it.id, controller).execute().run {
                     controller.getSurgicalProcessById(sampleSurgicalProcess.id) shouldNotBe null

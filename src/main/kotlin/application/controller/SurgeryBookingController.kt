@@ -18,7 +18,7 @@ import usecase.repository.BookingRepository
  * The implementation of the [BookingRepository].
  */
 class SurgeryBookingController(
-    private val surgeryBookingDigitalTwinManager: SurgeryBookingDigitalTwinManager
+    private val surgeryBookingDigitalTwinManager: SurgeryBookingDigitalTwinManager,
 ) : BookingRepository {
 
     override fun getSurgeryBookingByPatient(patientId: PatientData.PatientId): SurgeryBooking? =
@@ -26,7 +26,7 @@ class SurgeryBookingController(
 
     override fun removePatientSurgeryBookingMapping(
         patientId: PatientData.PatientId,
-        surgeryBookingId: SurgeryBookingData.SurgeryBookingId
+        surgeryBookingId: SurgeryBookingData.SurgeryBookingId,
     ): Boolean = this.surgeryBookingDigitalTwinManager.removePatientSurgeryBookingMapping(patientId, surgeryBookingId)
 
     override fun deleteSurgeryBooking(

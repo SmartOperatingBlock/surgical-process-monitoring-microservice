@@ -26,7 +26,7 @@ object MedicalDeviceServices {
     class AddMedicalDeviceUsage(
         private val medicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
         private val processId: ProcessData.ProcessId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean = this.medicalDeviceRepository.addMedicalDeviceUsage(medicalDeviceId, processId)
     }
@@ -39,13 +39,13 @@ object MedicalDeviceServices {
         private val processId: ProcessData.ProcessId,
         private val dateTime: Instant,
         private val inUse: Boolean,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean = this.medicalDeviceRepository.addMedicalTechnologyUsage(
             medicalTechnologyId,
             processId,
             dateTime,
-            inUse
+            inUse,
         )
     }
 
@@ -54,7 +54,7 @@ object MedicalDeviceServices {
      */
     class FindProcessByMedicalTechnology(
         private val medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<ProcessData.ProcessId?> {
 
         override fun execute(): ProcessData.ProcessId? =
@@ -66,7 +66,7 @@ object MedicalDeviceServices {
      */
     class GetMedicalDeviceUsageByProcessId(
         private val processId: ProcessData.ProcessId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<List<MedicalDeviceData.ImplantableMedicalDeviceId>> {
 
         override fun execute(): List<MedicalDeviceData.ImplantableMedicalDeviceId> =
@@ -78,7 +78,7 @@ object MedicalDeviceServices {
      */
     class GetMedicalDeviceById(
         private val implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<ImplantableMedicalDevice?> {
         override fun execute(): ImplantableMedicalDevice? =
             medicalDeviceRepository.getMedicalDeviceById(implantableMedicalDeviceId)
@@ -89,7 +89,7 @@ object MedicalDeviceServices {
      */
     class GetMedicalTechnologyUsageByProcessId(
         private val processId: ProcessData.ProcessId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>>> {
         override fun execute(): List<Triple<Instant, MedicalDeviceData.MedicalTechnologyId, Boolean>> =
             medicalDeviceRepository.getMedicalTechnologyUsageByProcessId(processId)
@@ -101,7 +101,7 @@ object MedicalDeviceServices {
     class GetMedicalTechnologyById(
         private val medicalTechnologyId: MedicalDeviceData.MedicalTechnologyId,
         private val medicalDeviceRepository: MedicalDeviceRepository,
-        private val inUse: Boolean
+        private val inUse: Boolean,
     ) : ApplicationService<MedicalTechnology?> {
         override fun execute(): MedicalTechnology? =
             medicalDeviceRepository.getMedicalTechnologyById(medicalTechnologyId, inUse)
@@ -112,7 +112,7 @@ object MedicalDeviceServices {
      */
     class DeleteImplantableMedicalDevice(
         private val implantableMedicalDeviceId: MedicalDeviceData.ImplantableMedicalDeviceId,
-        private val medicalDeviceRepository: MedicalDeviceRepository
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
             medicalDeviceRepository.deleteMedicalDevice(implantableMedicalDeviceId)

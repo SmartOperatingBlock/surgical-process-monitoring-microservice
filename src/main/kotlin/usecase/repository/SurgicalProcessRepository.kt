@@ -22,7 +22,7 @@ interface SurgicalProcessRepository {
      * @return null if the process already exist, the process otherwise.
      */
     fun createSurgicalProcess(
-        process: SurgicalProcess
+        process: SurgicalProcess,
     ): SurgicalProcess?
 
     /**
@@ -30,7 +30,7 @@ interface SurgicalProcessRepository {
      * @return the process if it exists, null otherwise.
      */
     fun getSurgicalProcessById(
-        processId: ProcessData.ProcessId
+        processId: ProcessData.ProcessId,
     ): SurgicalProcess?
 
     /**
@@ -45,7 +45,7 @@ interface SurgicalProcessRepository {
     fun updateSurgicalProcessState(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        state: ProcessData.ProcessState
+        state: ProcessData.ProcessState,
     ): Boolean
 
     /**
@@ -54,7 +54,7 @@ interface SurgicalProcessRepository {
     fun updateSurgicalProcessStep(
         processId: ProcessData.ProcessId,
         dateTime: Instant,
-        step: ProcessData.ProcessStep
+        step: ProcessData.ProcessStep,
     ): Boolean
 
     /**
@@ -63,27 +63,27 @@ interface SurgicalProcessRepository {
     fun updateSurgicalProcessRoom(
         processId: ProcessData.ProcessId,
         latestRoomId: String?,
-        room: Room
+        room: Room,
     ): Boolean
 
     /**
      * Get a list of pair of [Instant] and [ProcessData.ProcessState] given the [ProcessData.ProcessId].
      */
     fun getSurgicalProcessStates(
-        surgicalProcessId: ProcessData.ProcessId
+        surgicalProcessId: ProcessData.ProcessId,
     ): List<Pair<Instant, ProcessData.ProcessState>>
 
     /**
      * Get a list of pair of [Instant] and [ProcessData.ProcessStep] given the [ProcessData.ProcessId].
      */
     fun getSurgicalProcessSteps(
-        surgicalProcessId: ProcessData.ProcessId
+        surgicalProcessId: ProcessData.ProcessId,
     ): List<Pair<Instant, ProcessData.ProcessStep>>
 
     /**
      * Delete a [SurgicalProcess] by it [surgicalProcessId].
      */
     fun deleteSurgicalProcess(
-        surgicalProcessId: ProcessData.ProcessId
+        surgicalProcessId: ProcessData.ProcessId,
     ): Boolean
 }

@@ -25,7 +25,7 @@ object PatientDataServices {
         private val patientId: PatientData.PatientId,
         private val medicalData: PatientData.MedicalData,
         private val dateTime: Instant,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
             patientRepository.updatePatientMedicalData(patientId, medicalData, dateTime)
@@ -38,13 +38,13 @@ object PatientDataServices {
         private val patientId: PatientData.PatientId,
         private val from: Instant,
         private val to: Instant,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : ApplicationService<List<Pair<Instant, PatientData.MedicalData>>> {
         override fun execute(): List<Pair<Instant, PatientData.MedicalData>> =
             patientRepository.getPatientMedicalData(
                 patientId,
                 from,
-                to
+                to,
             )
     }
 
@@ -53,7 +53,7 @@ object PatientDataServices {
      */
     class GetCurrentPatientMedicalData(
         private val patientId: PatientData.PatientId,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : ApplicationService<PatientData.MedicalData?> {
         override fun execute(): PatientData.MedicalData? =
             patientRepository.getCurrentPatientMedicalData(patientId)
@@ -64,7 +64,7 @@ object PatientDataServices {
      */
     class CreatePatient(
         private val patientId: PatientData.PatientId,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : ApplicationService<Patient?> {
         override fun execute(): Patient? = patientRepository.createPatient(patientId)
     }
@@ -74,7 +74,7 @@ object PatientDataServices {
      */
     class DeletePatient(
         private val patientId: PatientData.PatientId,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : ApplicationService<Boolean> {
         override fun execute(): Boolean =
             patientRepository.deletePatient(patientId)
@@ -85,7 +85,7 @@ object PatientDataServices {
      */
     class GetPatientTaxCode(
         private val patientId: PatientData.PatientId,
-        private val patientRepository: PatientRepository
+        private val patientRepository: PatientRepository,
     ) : ApplicationService<PatientData.TaxCode?> {
         override fun execute(): PatientData.TaxCode? =
             patientRepository.getPatientTaxCode(patientId)
