@@ -1,3 +1,17 @@
+## [1.2.1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.0...1.2.1) (2023-05-11)
+
+
+### Documentation
+
+* **asyncapi:** update asyncapi spec with new surgery report ([fcb424c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/fcb424cfd3384f33b9652412d385fc0164825f6e))
+
+
+### Dependency updates
+
+* **deps:** update alpine docker tag to v3.18 ([e13e263](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e13e2630311fe3c000c3bf9053bd7d2785e62e9b))
+* **deps:** update dependency com.azure:azure-identity to v1.9.0 ([2d2f460](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/2d2f46092dee8cb7b73a1d02b1ed45f94c45b172))
+* **deps:** update plugin com.gradle.enterprise to v3.13.2 ([2f70ea8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/2f70ea8541215cb2b7a30d0592861839a2ac7812))
+
 ## [1.2.0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.1.0...1.2.0) (2023-05-09)
 
 
