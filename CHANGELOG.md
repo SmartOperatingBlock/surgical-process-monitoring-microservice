@@ -1,3 +1,24 @@
+## [1.2.2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.1...1.2.2) (2023-05-15)
+
+
+### Dependency updates
+
+* **core-deps:** update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.5.1 ([b646758](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/b646758a999c8a5096bc18eef428ce2e88ee2faa))
+* **deps:** update kotest to v5.6.2 ([5f56df6](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5f56df676df0c3d61fd7261d7517e95f41580e56))
+* **deps:** update plugin kotlin-qa to v0.39.0 ([797d1bf](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/797d1bfa0b883c30073695b31c0f8edb2a4b9198))
+* **deps:** update plugin kotlin-qa to v0.41.0 ([06293fb](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/06293fbc525a495008c691ed87156838acac0782))
+
+
+### General maintenance
+
+* change step manual event to process manual event ([d7684da](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d7684dab095b878d3ebb342bca379d04abb15a9a))
+
+
+### Style improvements
+
+* format code due to kotlin qa plugin update ([00af758](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/00af7589098624589a93ecc877c0b61437a2afee))
+* format code for kotlin convention ([e9c2b2b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e9c2b2b478608ef16e2656d4748b397a3cd3e68a))
+
 ## [1.2.1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.0...1.2.1) (2023-05-11)
 
 
