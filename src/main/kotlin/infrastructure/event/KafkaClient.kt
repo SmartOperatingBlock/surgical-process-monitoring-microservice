@@ -105,7 +105,7 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
                 processEventsTopic,
                 emergencyEventsTopic,
                 processManualEventsTopic,
-            )
+            ),
         ).run {
             while (true) {
                 kafkaConsumer.poll(Duration.ofMillis(pollingTime)).forEach { event ->

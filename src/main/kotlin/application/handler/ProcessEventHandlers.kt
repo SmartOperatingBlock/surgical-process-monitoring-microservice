@@ -381,7 +381,8 @@ object ProcessEventHandlers {
                 surgicalProcess?.let {
                     when (this.data.manualEvent) {
                         ProcessData.ProcessStep.ANESTHESIA.toString(),
-                        ProcessData.ProcessStep.END_OF_SURGERY.toString() -> {
+                        ProcessData.ProcessStep.END_OF_SURGERY.toString(),
+                        -> {
                             SurgicalProcessServices.UpdateSurgicalProcessStep(
                                 it.id,
                                 Instant.parse(this.dateTime),
