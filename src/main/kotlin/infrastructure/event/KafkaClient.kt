@@ -80,7 +80,7 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
                 this,
             ),
             ProcessEventHandlers.EmergencySurgeryEventHandler(surgicalProcessController, patientDataController),
-            ProcessEventHandlers.StepManualEventHandler(surgicalProcessController),
+            ProcessEventHandlers.ProcessManualEventHandler(surgicalProcessController),
         )
     }
 
@@ -104,8 +104,8 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
             listOf(
                 processEventsTopic,
                 emergencyEventsTopic,
-                stepManualEventsTopic,
-            ),
+                processManualEventsTopic,
+            )
         ).run {
             while (true) {
                 kafkaConsumer.poll(Duration.ofMillis(pollingTime)).forEach { event ->
@@ -138,7 +138,7 @@ class KafkaClient(private val provider: ManagerProvider) : EventProducer {
         private const val processEventsTopic = "process-events"
         private const val emergencyEventsTopic = "emergency-surgery-events"
         private const val surgeryReportTopic = "process-summary-events"
-        private const val stepManualEventsTopic = "step-manual-events"
+        private const val processManualEventsTopic = "process-manual-events"
     }
 
     override fun produceEvent(event: Event<*>) {

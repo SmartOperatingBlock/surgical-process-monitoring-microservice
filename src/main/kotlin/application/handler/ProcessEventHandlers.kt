@@ -361,30 +361,44 @@ object ProcessEventHandlers {
     }
 
     /**
-     * The handler for Step manual events.
+     * The handler for Process manual events.
      */
-    class StepManualEventHandler(
+    class ProcessManualEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
-            this.data.cast<ProcessEventsPayloads.StepManualEvent>()
+            this.data.cast<ProcessEventsPayloads.ProcessManualEvent>()
         }
 
         override fun consume(event: Event<*>) {
-            event.cast<ProcessEvent<ProcessEventsPayloads.StepManualEvent>> {
+            event.cast<ProcessEvent<ProcessEventsPayloads.ProcessManualEvent>> {
                 val surgicalProcess: SurgicalProcess? =
                     SurgicalProcessServices
                         .GetCurrentSurgicalProcesses(surgicalProcessRepository).execute().firstOrNull {
                             it.operatingRoom?.id?.id == this.data.roomId
                         }
                 surgicalProcess?.let {
-                    SurgicalProcessServices.UpdateSurgicalProcessStep(
-                        it.id,
-                        Instant.parse(this.dateTime),
-                        this.data.step,
-                        surgicalProcessRepository,
-                    ).execute()
+                    when (this.data.manualEvent) {
+                        ProcessData.ProcessStep.ANESTHESIA.toString(),
+                        ProcessData.ProcessStep.END_OF_SURGERY.toString() -> {
+                            SurgicalProcessServices.UpdateSurgicalProcessStep(
+                                it.id,
+                                Instant.parse(this.dateTime),
+                                ProcessData.ProcessStep.valueOf(this.data.manualEvent),
+                                surgicalProcessRepository,
+                            ).execute()
+                        }
+                        ProcessData.ProcessState.INTERRUPTED.toString() -> {
+                            SurgicalProcessServices.UpdateSurgicalProcessState(
+                                it.id,
+                                Instant.parse(this.dateTime),
+                                ProcessData.ProcessState.valueOf(this.data.manualEvent),
+                                surgicalProcessRepository,
+                            ).execute()
+                        }
+                        else -> {}
+                    }
                 }
                 true
             }

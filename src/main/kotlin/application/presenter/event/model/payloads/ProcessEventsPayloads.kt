@@ -9,7 +9,6 @@
 package application.presenter.event.model.payloads
 
 import application.presenter.event.model.ProcessEvent
-import entity.process.ProcessData
 import kotlinx.serialization.Serializable
 
 /** Module that wraps all payloads of process events. */
@@ -111,7 +110,7 @@ object ProcessEventsPayloads {
     data class EmergencySurgery(val roomId: String, val patientTaxCode: String?) : ProcessEventPayload
 
     /**
-     * The payload of a step manual event with the [roomId] and the [step].
+     * The payload of a process manual event with the [roomId] and the [manualEvent].
      */
-    data class StepManualEvent(val roomId: String, val step: ProcessData.ProcessStep) : ProcessEventPayload
+    data class ProcessManualEvent(val roomId: String, val manualEvent: String) : ProcessEventPayload
 }

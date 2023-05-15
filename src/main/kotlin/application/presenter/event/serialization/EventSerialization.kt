@@ -55,8 +55,8 @@ object EventSerialization {
             deserializeToEvent<PatientData<Heartbeat>>(this)
         ProcessEventsKeys.EMERGENCY_SURGERY_EVENT ->
             deserializeToEvent<EmergencySurgery>(this)
-        ProcessEventsKeys.STEP_MANUAL_EVENT ->
-            deserializeToEvent<ProcessEventsPayloads.StepManualEvent>(this)
+        ProcessEventsKeys.PROCESS_MANUAL_EVENT ->
+            deserializeToEvent<ProcessEventsPayloads.ProcessManualEvent>(this)
         else -> throw IllegalArgumentException("Event not supported")
     }
 

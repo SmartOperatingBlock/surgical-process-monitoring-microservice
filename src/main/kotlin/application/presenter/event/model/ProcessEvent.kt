@@ -61,6 +61,6 @@ object ProcessEventsKeys {
     /** The key of the event of a surgery report. */
     const val SURGERY_REPORT_EVENT = "SURGERY_REPORT_EVENT"
 
-    /** The key of the step manual event. */
-    const val STEP_MANUAL_EVENT = "STEP_MANUAL_EVENT"
+    /** The key of the process manual event. */
+    const val PROCESS_MANUAL_EVENT = "PROCESS_MANUAL_EVENT"
 }
