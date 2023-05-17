@@ -64,20 +64,20 @@ components:
         type: object
         properties:
           processId:
-            $ref: '#/components/schemas/ProcessId'
+            type: string
           processType:
             type: string
             description: Type of surgical procedure.
           patientId:
-            $ref: '#/components/schemas/PatientId'
+            type: string
           patientTaxCode:
-            $ref: '#/components/schemas/TaxCode'
+            type: string
           healthProfessionalId:
-            $ref: '#/components/schemas/HealthProfessionalId'
-          preOperatingRoom:
-            $ref: '#/components/schemas/Room'
-          operatingRoom:
-            $ref: '#/components/schemas/Room'
+            type: string
+          preOperatingRoomId:
+            type: string
+          operatingRoomId:
+            type: string
           processStates:
             type: array
             description: List of process states with timestamp.
