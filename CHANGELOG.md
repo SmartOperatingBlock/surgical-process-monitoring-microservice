@@ -1,3 +1,20 @@
+## [1.2.3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.2...1.2.3) (2023-05-17)
+
+
+### Build and continuous integration
+
+* **deps:** update codecov/codecov-action action to v3.1.4 ([3b0de8d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/3b0de8dc379cfbb41c91aa3bd77fcfd43ecb2a90))
+
+
+### General maintenance
+
+* create dto for surgery report event ([8c9593d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8c9593d04cc22f006ee8d6a073f2e726809384dc))
+
+
+### Documentation
+
+* **asyncapi:** update surgery report event documentation ([4b41050](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/4b410509396c6bf6599c27233cb3f81538ead520))
+
 ## [1.2.2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.1...1.2.2) (2023-05-15)
 
 
