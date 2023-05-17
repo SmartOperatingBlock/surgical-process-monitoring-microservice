@@ -14,6 +14,7 @@ import application.presenter.event.model.Event
 import application.presenter.event.model.ProcessEvent
 import application.presenter.event.model.SurgeryReportEvent
 import application.presenter.event.model.payloads.ProcessEventsPayloads
+import application.presenter.event.serialization.toSurgeryReportDto
 import application.service.MedicalDeviceServices
 import application.service.PatientDataServices
 import application.service.SurgeryBookingServices
@@ -292,7 +293,7 @@ object ProcessEventHandlers {
                                     ).execute(),
                                 )
                             }.filterPairs(),
-                        ),
+                        ).toSurgeryReportDto(),
                     ),
                 )
             }
