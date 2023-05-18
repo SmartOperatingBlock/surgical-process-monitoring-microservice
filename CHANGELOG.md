@@ -1,3 +1,15 @@
+## [1.2.4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.3...1.2.4) (2023-05-18)
+
+
+### Bug Fixes
+
+* add dateTime to surgical process dto ([fc9f4dc](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/fc9f4dc49908920cf279bdd64105f28cc80124ed))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.fasterxml.jackson.module:jackson-module-kotlin to v2.15.1 ([1397255](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/139725570b33dcd2fc11163d1c51b5e2388b072f))
+
 ## [1.2.3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.2...1.2.3) (2023-05-17)
 
 
