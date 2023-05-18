@@ -14,12 +14,13 @@ import kotlinx.serialization.Serializable
 
 /**
  * The DTO for [SurgicalProcess] composed by:
- * - the [processId], [type], [patientId], [healthProfessionalId],
+ * - the [processId], [dateTime], [type], [patientId], [healthProfessionalId],
  * [preOperatingRoom], [operatingRoom], [state] and [step].
  */
 @Serializable
 data class SurgicalProcessApiDto(
     val processId: String,
+    val dateTime: String,
     val type: String,
     val patientId: String,
     val healthProfessionalId: String?,
@@ -35,6 +36,7 @@ data class SurgicalProcessApiDto(
 fun SurgicalProcess.toSurgicalProcessApiDto() =
     SurgicalProcessApiDto(
         this.id.id,
+        this.dateTime.toString(),
         this.type,
         this.patientId.id,
         this.healthProfessionalId?.id,

@@ -40,7 +40,6 @@ class TestDatabaseManager : StringSpec({
     )
     val room = Room(
         RoomData.RoomId("room1"),
-        null,
         RoomData.RoomType.OPERATING_ROOM,
     )
     val surgicalProcess = SurgicalProcess(

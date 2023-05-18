@@ -34,6 +34,7 @@ class ApiSerializationTest : StringSpec({
 
     val sampleSurgicalProcessDTO = SurgicalProcessApiDto(
         sampleSurgicalProcess.id.id,
+        sampleSurgicalProcess.dateTime.toString(),
         sampleSurgicalProcess.type,
         sampleSurgicalProcess.patientId.id,
         sampleSurgicalProcess.healthProfessionalId?.id,
