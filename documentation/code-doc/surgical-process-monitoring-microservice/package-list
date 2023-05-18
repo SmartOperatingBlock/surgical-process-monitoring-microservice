@@ -129,7 +129,8 @@ $dokka.location:application.handler/ProcessEventHandlers/isSurgicalProcessOver/#
 $dokka.location:application.presenter.api////PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/index.html
 $dokka.location:application.presenter.api//toSurgicalProcessApiDto/entity.process.SurgicalProcess#/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/to-surgical-process-api-dto.html
 $dokka.location:application.presenter.api/SurgicalProcessApiDto///PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/index.html
-$dokka.location:application.presenter.api/SurgicalProcessApiDto/SurgicalProcessApiDto/#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#entity.room.Room?#entity.room.Room?#kotlin.String#kotlin.String/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/-surgical-process-api-dto.html
+$dokka.location:application.presenter.api/SurgicalProcessApiDto/SurgicalProcessApiDto/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#entity.room.Room?#entity.room.Room?#kotlin.String#kotlin.String/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/-surgical-process-api-dto.html
+$dokka.location:application.presenter.api/SurgicalProcessApiDto/dateTime/#/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/date-time.html
 $dokka.location:application.presenter.api/SurgicalProcessApiDto/healthProfessionalId/#/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/health-professional-id.html
 $dokka.location:application.presenter.api/SurgicalProcessApiDto/operatingRoom/#/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/operating-room.html
 $dokka.location:application.presenter.api/SurgicalProcessApiDto/patientId/#/PointingToDeclaration/surgical-process-monitoring-microservice/application.presenter.api/-surgical-process-api-dto/patient-id.html
@@ -538,11 +539,10 @@ $dokka.location:entity.report/SurgeryReport/processSteps/#/PointingToDeclaration
 $dokka.location:entity.report/SurgeryReport/processType/#/PointingToDeclaration/surgical-process-monitoring-microservice/entity.report/-surgery-report/process-type.html
 $dokka.location:entity.room////PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/index.html
 $dokka.location:entity.room/Room///PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/index.html
-$dokka.location:entity.room/Room/Room/#entity.room.RoomData.RoomId#kotlin.String?#entity.room.RoomData.RoomType/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/-room.html
+$dokka.location:entity.room/Room/Room/#entity.room.RoomData.RoomId#entity.room.RoomData.RoomType/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/-room.html
 $dokka.location:entity.room/Room/equals/#kotlin.Any?/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/equals.html
 $dokka.location:entity.room/Room/hashCode/#/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/hash-code.html
 $dokka.location:entity.room/Room/id/#/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/id.html
-$dokka.location:entity.room/Room/name/#/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/name.html
 $dokka.location:entity.room/Room/type/#/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room/type.html
 $dokka.location:entity.room/RoomData.RoomId///PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room-data/-room-id/index.html
 $dokka.location:entity.room/RoomData.RoomId/RoomId/#kotlin.String/PointingToDeclaration/surgical-process-monitoring-microservice/entity.room/-room-data/-room-id/-room-id.html
