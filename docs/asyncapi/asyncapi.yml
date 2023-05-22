@@ -285,6 +285,9 @@ components:
         type:
           type: string
           description: The type of medical technology.
+        inUse:
+          type: boolean
+          description: true if the technology is in use, false otherwise.
 
     ImplantableMedicalDeviceId:
       type: object
