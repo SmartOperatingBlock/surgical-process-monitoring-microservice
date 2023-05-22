@@ -1,3 +1,16 @@
+## [1.2.5](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.4...1.2.5) (2023-05-22)
+
+
+### General maintenance
+
+* make surgery report properties nullable ([1204e36](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/1204e36e7d4cc71d5f5ecb17b299ba4e42bc70df))
+
+
+### Documentation
+
+* **asyncapi:** add event schema documentation ([8242da3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8242da3e339b57cf782e267e2a2627827c2407cf))
+* **asyncapi:** add inUse properties to medical technology asyncapi spec ([d358f28](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d358f287adb9269790da25d214ae7fca3e1b0d11))
+
 ## [1.2.4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.3...1.2.4) (2023-05-18)
 
 
