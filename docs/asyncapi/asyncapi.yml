@@ -44,7 +44,7 @@ channels:
       summary: |
         Send all the events related to surgical processes summary within the operating block.
       message:
-        "$ref": '#/components/messages/SurgeryReport'
+        "$ref": '#/components/messages/surgeryReportEvent'
 components:
   messages:
     stepManualEvent:
@@ -54,6 +54,24 @@ components:
       contentType: application/json
       payload:
         $ref: "#/components/schemas/stepManualEventPayload"
+
+    surgeryReportEvent:
+      name: surgeryReportEvent
+      title: The Event of Surgery Report summary
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          key:
+            type: string
+            description: the key of the event
+          dateTime:
+            type: string
+            description: the date-time of the event
+          data:
+            type: object
+            $ref: '#/components/messages/SurgeryReport'
+
 
     SurgeryReport:
       name: SurgeryReport
