@@ -1,3 +1,16 @@
+## [1.2.6](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.5...1.2.6) (2023-05-31)
+
+
+### Bug Fixes
+
+* add surgery in progress step to event handler ([5b9e700](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5b9e700d98c2e6230eef9151d1d1b943dbe25428))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.9 ([baef07a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/baef07ab6719021e88aa60f3882efb40f5b5ac4c))
+* **deps:** update plugin kotlin-qa to v0.42.0 ([eadada0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/eadada0c0967503c7778b4dd8e94eb864e99c6ff))
+
 ## [1.2.5](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.4...1.2.5) (2023-05-22)
 
 
