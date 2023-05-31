@@ -382,6 +382,7 @@ object ProcessEventHandlers {
                 surgicalProcess?.let {
                     when (this.data.manualEvent) {
                         ProcessData.ProcessStep.ANESTHESIA.toString(),
+                        ProcessData.ProcessStep.SURGERY_IN_PROGRESS.toString(),
                         ProcessData.ProcessStep.END_OF_SURGERY.toString(),
                         -> {
                             SurgicalProcessServices.UpdateSurgicalProcessStep(
