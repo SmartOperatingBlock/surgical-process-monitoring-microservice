@@ -202,7 +202,7 @@ object ProcessEventHandlers {
             SurgicalProcessServices.UpdateSurgicalProcessRoom(
                 surgicalProcess.id,
                 surgicalProcess.operatingRoom?.id?.id,
-                Room(RoomData.RoomId(event.data.roomId), type = RoomData.RoomType.OPERATING_ROOM),
+                Room(RoomData.RoomId(event.data.roomId), type = RoomData.RoomType.PRE_POST_OPERATING_ROOM),
                 surgicalProcessRepository,
             ).execute()
         }
