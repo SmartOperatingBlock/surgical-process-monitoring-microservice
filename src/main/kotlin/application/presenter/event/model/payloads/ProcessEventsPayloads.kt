@@ -107,10 +107,12 @@ object ProcessEventsPayloads {
     /**
      * The payload of an emergency surgery with the [roomId] and the optional [patientTaxCode].
      */
+    @Serializable
     data class EmergencySurgery(val roomId: String, val patientTaxCode: String?) : ProcessEventPayload
 
     /**
      * The payload of a process manual event with the [roomId] and the [manualEvent].
      */
+    @Serializable
     data class ProcessManualEvent(val roomId: String, val manualEvent: String) : ProcessEventPayload
 }
