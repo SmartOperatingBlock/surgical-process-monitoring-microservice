@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.7...1.2.8) (2023-06-01)
+
+
+### Bug Fixes
+
+* make process manual event serializable ([d07de10](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d07de10eefc162e2eea8e653fc18a63337925445))
+
 ## [1.2.7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.6...1.2.7) (2023-06-01)
 
 
