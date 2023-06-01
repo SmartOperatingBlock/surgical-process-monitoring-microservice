@@ -1,3 +1,18 @@
+## [1.2.7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.6...1.2.7) (2023-06-01)
+
+
+### Bug Fixes
+
+* correct room type ([37d4cfc](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/37d4cfcba7d31cf32b1af031cbf5a9e7185420a4))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.fasterxml.jackson.module:jackson-module-kotlin to v2.15.2 ([7a43850](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7a43850118ec9bae66a8a962a1d5f93fba0d8ed2))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.27 ([28d4d00](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/28d4d004bc927d84a0f90593192b8f051176bb91))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.30 ([6ac2da7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6ac2da7a0e6248f41b3fee3992dbc8f05171d352))
+* **deps:** update ktor to v2.3.1 ([f933c7c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f933c7c0620205dc781e2f78da05989b759e6f25))
+
 ## [1.2.6](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.5...1.2.6) (2023-05-31)
 
 
