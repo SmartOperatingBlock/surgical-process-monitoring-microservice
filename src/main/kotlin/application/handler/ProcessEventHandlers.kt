@@ -428,7 +428,7 @@ object ProcessEventHandlers {
                                 }
                             }
                         }
-                        else -> {}
+                        else -> throw IllegalArgumentException("Event not supported!")
                     }
                 }
                 true
