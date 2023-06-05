@@ -69,17 +69,17 @@ class DigitalTwinManager :
             val roomId = query(
                 AdtQuery
                     .createQuery()
-                    .selectTop(1, "CT.\$dtId")
+                    .selectTop(1, "CT.$dtId")
                     .fromDigitalTwins("T")
                     .joinRelationship(
                         "CT",
                         "T",
                         "rel_is_located",
-                    ).where("T.\$dtId" eq medicalTechnologyId.id).query,
+                    ).where("T.$dtId" eq medicalTechnologyId.id).query,
                 String::class.java,
             ).let {
                 if (it.count() == 1) {
-                    Json.parseToJsonElement(it.first()).jsonObject["\$dtId"]?.let { id ->
+                    Json.parseToJsonElement(it.first()).jsonObject[dtId]?.let { id ->
                         RoomData.RoomId(id.jsonPrimitive.content)
                     }
                 } else {
@@ -90,16 +90,16 @@ class DigitalTwinManager :
             roomId?.let {
                 query(
                     AdtQuery.createQuery()
-                        .selectTop(1, "Process.\$dtId")
+                        .selectTop(1, "Process.$dtId")
                         .fromDigitalTwins("Process")
                         .joinRelationship("Room", "Process", SurgicalProcessAdt.ROOM_RELATIONSHIP)
-                        .where("Room.\$dtId" eq it.id)
+                        .where("Room.$dtId" eq it.id)
                         .and("IS_OF_MODEL(Process, '${SurgicalProcessAdt.SURGICAL_PROCESS_MODEL}')")
                         .query,
                     String::class.java,
                 ).let { result ->
                     if (result.count() == 1) {
-                        Json.parseToJsonElement(result.first()).jsonObject["\$dtId"]?.let { id ->
+                        Json.parseToJsonElement(result.first()).jsonObject[dtId]?.let { id ->
                             ProcessData.ProcessId(id.jsonPrimitive.content)
                         }
                     } else {
@@ -248,14 +248,14 @@ class DigitalTwinManager :
         this.dtClient.applySafeDigitalTwinOperation(null) {
             val bookingId: String? = query(
                 AdtQuery.createQuery()
-                    .selectTop(1, "T.\$dtId")
+                    .selectTop(1, "T.$dtId")
                     .fromDigitalTwins("T")
                     .joinRelationship("CT", "T", SurgeryBookingAdt.PATIENT_RELATIONSHIP)
-                    .where("CT.\$dtId" eq patientId.id).query,
+                    .where("CT.$dtId" eq patientId.id).query,
                 String::class.java,
             ).run {
                 if (this.count() == 1) {
-                    Json.parseToJsonElement(this.first()).jsonObject["\$dtId"]?.jsonPrimitive?.content
+                    Json.parseToJsonElement(this.first()).jsonObject[dtId]?.jsonPrimitive?.content
                 } else {
                     null
                 }
@@ -300,13 +300,6 @@ class DigitalTwinManager :
             defaultResult
         }
 
-    companion object {
-        private const val dtAppIdVariable = "AZURE_CLIENT_ID"
-        private const val dtTenantVariable = "AZURE_TENANT_ID"
-        private const val dtAppSecretVariable = "AZURE_CLIENT_SECRET"
-        private const val dtEndpointVariable = "AZURE_DT_ENDPOINT"
-    }
-
     /** Utility method to insert target relationships to the map with digital twins properties. */
     fun BasicDigitalTwin.mapRelationships(): BasicDigitalTwin {
         dtClient.listRelationships(this.id, BasicRelationship::class.java).forEach {
@@ -327,5 +320,13 @@ class DigitalTwinManager :
                 this.deleteRelationship(it.sourceId, it.id)
             }
         }
+    }
+
+    companion object {
+        private const val dtAppIdVariable = "AZURE_CLIENT_ID"
+        private const val dtTenantVariable = "AZURE_TENANT_ID"
+        private const val dtAppSecretVariable = "AZURE_CLIENT_SECRET"
+        private const val dtEndpointVariable = "AZURE_DT_ENDPOINT"
+        private const val dtId = "\$dtId"
     }
 }
