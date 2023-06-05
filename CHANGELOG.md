@@ -1,3 +1,16 @@
+## [1.2.9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.8...1.2.9) (2023-06-05)
+
+
+### Bug Fixes
+
+* manage unhandled process interruption ([4f228d4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/4f228d45fb229074d6a8a4338a97cbbc8de5b381))
+
+
+### Dependency updates
+
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.7.0 ([fe35863](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/fe358636d8602099ad98bbf3e30cef06ceee5d6e))
+* **deps:** update plugin com.gradle.enterprise to v3.13.3 ([e82a9a4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e82a9a4b9df9bad3013f39841ac790b924794d77))
+
 ## [1.2.8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.7...1.2.8) (2023-06-01)
 
 
