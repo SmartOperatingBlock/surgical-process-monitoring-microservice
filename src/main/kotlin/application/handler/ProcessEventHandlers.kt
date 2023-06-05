@@ -9,7 +9,6 @@
 package application.handler
 
 import application.controller.manager.EventProducer
-import application.handler.ProcessEventHandlers.cast
 import application.presenter.event.model.Event
 import application.presenter.event.model.ProcessEvent
 import application.presenter.event.model.SurgeryReportEvent
@@ -366,6 +365,9 @@ object ProcessEventHandlers {
      */
     class ProcessManualEventHandler(
         private val surgicalProcessRepository: SurgicalProcessRepository,
+        private val surgeryBookingRepository: BookingRepository,
+        private val patientRepository: PatientRepository,
+        private val medicalDeviceRepository: MedicalDeviceRepository,
     ) : EventHandler {
 
         override fun canHandle(event: Event<*>): Boolean = event.cast<ProcessEvent<*>> {
@@ -399,6 +401,32 @@ object ProcessEventHandlers {
                                 ProcessData.ProcessState.valueOf(this.data.manualEvent),
                                 surgicalProcessRepository,
                             ).execute()
+                            SurgicalProcessServices.DeleteSurgicalProcess(
+                                surgicalProcess.id,
+                                surgicalProcessRepository,
+                            ).execute()
+                            SurgeryBookingServices.GetSurgeryBookingByPatient(
+                                PatientData.PatientId(surgicalProcess.patientId.id),
+                                surgeryBookingRepository,
+                            ).execute()?.let { booking ->
+                                SurgeryBookingServices.DeleteSurgeryBooking(
+                                    booking.id,
+                                    surgeryBookingRepository,
+                                ).execute()
+                                PatientDataServices.DeletePatient(
+                                    surgicalProcess.patientId,
+                                    patientRepository,
+                                ).execute()
+                                MedicalDeviceServices.GetMedicalDeviceUsageByProcessId(
+                                    surgicalProcess.id,
+                                    medicalDeviceRepository,
+                                ).execute().forEach { device ->
+                                    MedicalDeviceServices.DeleteImplantableMedicalDevice(
+                                        device,
+                                        medicalDeviceRepository,
+                                    ).execute()
+                                }
+                            }
                         }
                         else -> {}
                     }
