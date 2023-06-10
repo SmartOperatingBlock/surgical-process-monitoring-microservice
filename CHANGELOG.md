@@ -1,3 +1,29 @@
+## [1.2.10](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.9...1.2.10) (2023-06-10)
+
+
+### General maintenance
+
+* manage unsupported event in process handler ([6fca699](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6fca69978eec399374c0056ee522145a3984f2f1))
+
+
+### Style improvements
+
+* remove code smell for duplicated dtid ([e072df8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e072df88e4dc2eee31fbeb75aab00ac87f96a952))
+
+
+### Build and continuous integration
+
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.1 ([eac20a6](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/eac20a649cf07242a411dab49cdb566168b22e6d))
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.2 ([6ea30e5](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6ea30e5516f8ec51cc9e33f61de759c3aa151234))
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.8.22 ([034fdc9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/034fdc9e86acf93124a1a4fa1b3dda2d46eb9a01))
+* **deps:** update dependency com.azure:azure-identity to v1.9.1 ([d541625](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d541625e691b54f688b0c6afe29a2d9ed0b49838))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.32 ([a03001a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a03001a1dac684bcb802c565c8f8f11d516f4074))
+* **deps:** update plugin kotlin-qa to v0.44.0 ([9b941dd](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/9b941dd491f117a680c3e9b87db7e8f48ab666cc))
+
 ## [1.2.9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.8...1.2.9) (2023-06-05)
 
 
