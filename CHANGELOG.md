@@ -1,3 +1,16 @@
+## [1.2.11](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.10...1.2.11) (2023-06-11)
+
+
+### Dependency updates
+
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.8 ([59bb927](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/59bb9279c8bb38e2544d92fda720496896607397))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.9 ([ee261d2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ee261d255e8dc98bb7b4f7d1a3b0a30dc6a1c40c))
+
+
+### Documentation
+
+* **deps:** update plugin dokka to v1.8.20 ([406c883](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/406c8838c8505a1f1ef78217e2e452a5aab07ae9))
+
 ## [1.2.10](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.9...1.2.10) (2023-06-10)
 
 
