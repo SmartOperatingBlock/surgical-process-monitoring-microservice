@@ -1,3 +1,29 @@
+## [1.2.12](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.11...1.2.12) (2023-07-07)
+
+
+### Dependency updates
+
+* **core-deps:** update dependency org.jetbrains.kotlin:kotlin-stdlib to v1.9.0 ([13e1336](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/13e1336688c918b7721ec1dc32b25a0adb720f5a))
+* **deps:** update dependency ch.qos.logback:logback-classic to v1.4.8 ([8d5e05c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8d5e05c2cfaee3b275577b7be87aa3e71b14274e))
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.10 ([a0ac799](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a0ac799fed65428b6ad6042771f583826d7e1081))
+* **deps:** update dependency gradle to v8.2 ([3d560ba](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/3d560ba7153a1401ab8ba165be163aa9f7ce8d89))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.33 ([e560b6e](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e560b6e5556792de5598067f61c72bb79704107b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.35 ([7166357](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7166357fd40560795e64fee5400759db879ec6ce))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.36 ([84a7c88](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/84a7c88273ac4371ad10d723c970e8a4c84f38d7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.37 ([f9f3699](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f9f369996dae68b15b1eec424cb84eb166bee5c9))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.38 ([9c622ad](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/9c622ad28e86d1895405e7a1725fc88acb821f4f))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.39 ([0a6295a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/0a6295a759ffb463927527e566ab91287f358b27))
+* **deps:** update ktor to v2.3.2 ([6b05293](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6b05293bb0973572e880365d265c105e79846f1e))
+* **deps:** update plugin com.gradle.enterprise to v3.13.4 ([d26c54d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d26c54d568741f7b75f61f3ad3d0996c02a7ba2e))
+* **deps:** update plugin kotlin-qa to v0.45.0 ([69fb996](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/69fb996162902cf1993e1cc02fe981f2ff21b3f1))
+* **deps:** update plugin kotlin-qa to v0.46.0 ([511c03b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/511c03bd515cd54d45c4451411407afe437fd5f8))
+* **deps:** update plugin kotlin-qa to v0.46.1 ([5a1ef0d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5a1ef0d43ff7169095af3799fa3395179f7b3913))
+
+
+### Build and continuous integration
+
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.3 ([188abfa](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/188abfa972ea7d9c2d83ba39eac4d0dd60e1af1d))
+
 ## [1.2.11](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.10...1.2.11) (2023-06-11)
 
 
