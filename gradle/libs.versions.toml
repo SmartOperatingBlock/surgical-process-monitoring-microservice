@@ -9,7 +9,7 @@ azure-digital-twins = { module = "com.azure:azure-digitaltwins-core", version = 
 azure-identity = { module = "com.azure:azure-identity", version = "1.9.2" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.15.2" }
 embedmongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version = "4.7.0" }
-kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.4.0-ce"}
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.4.1-ce"}
 kafka-json = { module = "io.confluent:kafka-json-serializer", version = "7.4.1"}
 kmongo = { module = "org.litote.kmongo:kmongo-serialization", version = "4.9.0" }
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
