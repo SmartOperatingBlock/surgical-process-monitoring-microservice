@@ -1,3 +1,19 @@
+## [1.2.13](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.12...1.2.13) (2023-07-17)
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.9.0 ([34d9421](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/34d9421070dabcb5d51e858a97cf558679753a86))
+* **deps:** update dependency com.azure:azure-identity to v1.9.2 ([5d5a3a7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5d5a3a77d579561a829592d7f87b39a26680404f))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.7.1 ([5449cd7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5449cd7961c7b17ca489583401fc2bcf599b8b79))
+* **deps:** update dependency gradle to v8.2.1 ([daefaa7](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/daefaa7531b146802f8ebcf4b16626b11cf212bf))
+* **deps:** update dependency io.confluent:kafka-json-serializer to v7.4.1 ([527c71b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/527c71b532a84902b60a68cbc1f3d56be4c15126))
+* **deps:** update dependency org.apache.kafka:kafka-clients to v7.4.1-ce ([a1db7e3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a1db7e3a036354fe2c2c501c32f3f6b0dd218289))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.40 ([4b776aa](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/4b776aa9e0e5d38108ccef01deef6bc9593457e3))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.41 ([c591bcd](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c591bcd152df0b964bab5a0cf9faf0398fb93911))
+* **deps:** update plugin kotlin-qa to v0.47.0 ([e229b00](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e229b0044635efe6334d4c8229a711cab72b40ce))
+* **deps:** update plugin kotlin-qa to v0.47.1 ([062f8de](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/062f8deca0a641ba4de6293380a2576678d5cb6b))
+
 ## [1.2.12](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.11...1.2.12) (2023-07-07)
 
 
