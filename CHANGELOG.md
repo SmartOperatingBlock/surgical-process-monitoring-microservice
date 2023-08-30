@@ -1,3 +1,17 @@
+## [1.2.15](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.14...1.2.15) (2023-08-30)
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.9.10 ([0a5ad9f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/0a5ad9f5964db7fb4743162bb745bb739c5ef4ec))
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.12 ([871a84f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/871a84f3da7a333e1a4b750e0bd688b5b4b9012a))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.9.1 ([7f4d166](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/7f4d1661f9d417f0606bb1c7af80eabf10ad6204))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.9.2 ([6429d3c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6429d3c4f0e7a4e6592e29e05e3937ae364d6765))
+* **deps:** update dependency io.confluent:kafka-json-serializer to v7.5.0 ([84796ad](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/84796adf5a935355243f889f33f9c37f3d7e7948))
+* **deps:** update dependency org.apache.kafka:kafka-clients to v7.5.0-ce ([ba78336](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ba78336448d0927ee1401084d2fafa7b6f04bc6a))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.47 ([752fe40](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/752fe40785570464c6daf3b19be9ef7b1cdd0be0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.48 ([a99182d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a99182db86a319af33ab08432db3f1ccdc925a10))
+
 ## [1.2.14](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.13...1.2.14) (2023-08-23)
 
 
