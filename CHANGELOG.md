@@ -1,3 +1,23 @@
+## [1.2.16](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.15...1.2.16) (2023-09-05)
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.49 ([5088fbd](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5088fbdea584fe0ec263f9acf54961e3f5bac27d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.51 ([f4e48e4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f4e48e45c846f513a6ee1d49beedbf5369480ce5))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.52 ([c137cf3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c137cf373e68ec9b31be7eaf6c1283a1a028aebb))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.53 ([efecb11](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/efecb1102a93c8967dd1ca6b14caf67d74d3f68a))
+* **deps:** update kotest to v5.7.0 ([0fba596](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/0fba5965a361eae2e6a5ed0a132f3cf4cf0b85c0))
+* **deps:** update kotest to v5.7.1 ([94fb830](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/94fb830baef00b4fa77e1bbdf1b25a366d2c8768))
+* **deps:** update ktor to v2.3.4 ([5b740dc](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5b740dc57c37624fd7d6a8b773705b70782f6b0a))
+* **deps:** update plugin kotlin-qa to v0.49.1 ([dd31637](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/dd316375e486c06a996181c9c9457901dd2627ad))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.10 ([cb970ef](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/cb970ef22d318448bff58568f9bb822d8e777138))
+
+
+### Documentation
+
+* **deps:** update plugin dokka to v1.9.0 ([c523fd9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/c523fd92d0a1e782bc2ada0856ba605f801aeca2))
+
 ## [1.2.15](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.14...1.2.15) (2023-08-30)
 
 
