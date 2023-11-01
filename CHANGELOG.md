@@ -1,3 +1,21 @@
+## [1.2.18](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.17...1.2.18) (2023-11-01)
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.9.20 ([188c8d0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/188c8d05539db4996a810204168f61f3087578af))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.9.3 ([a0e310c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/a0e310cdc05aa9821847b940673418939edeaad4))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.69 ([d63dc0d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/d63dc0d1c1443f2907dd9bade0e5c203925a7072))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.70 ([314e361](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/314e361b97b019b07b11312675bc9179e0500f00))
+* **deps:** update node.js to 20.9 ([200375f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/200375f7a107c7d4e1d5119f480cfbba17921d0d))
+* **deps:** update node.js to v20 ([5f0c8aa](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5f0c8aa791e2f180b67442d264bdddea2ebe9deb))
+* **deps:** update plugin kotlin-qa to v0.52.0 ([3b4f8b8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/3b4f8b86955b3793d1bcff2e7c8fe1f299265829))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v4 ([9695437](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/9695437bd9bc9cf6a417a0162d4d0dcfed03d1f7))
+
 ## [1.2.17](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.16...1.2.17) (2023-10-22)
 
 
