@@ -1,3 +1,31 @@
+## [1.2.20](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.19...1.2.20) (2023-12-01)
+
+
+### Dependency updates
+
+* **core-deps:** update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.6.2 ([977b978](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/977b9789689e279ebeea6ae223f9c10ebd53c576))
+* **deps:** update dependency ch.qos.logback:logback-classic to v1.4.12 ([638410b](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/638410b35fdd4239af8b1746b524a88dd129c97f))
+* **deps:** update dependency ch.qos.logback:logback-classic to v1.4.13 ([f3aceb2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f3aceb25c9ff37ffb3cebec95e2f96fc7a61094c))
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.15 ([f01e914](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f01e914833fc31d453d99939f4b01696e7e48234))
+* **deps:** update dependency com.fasterxml.jackson.module:jackson-module-kotlin to v2.16.0 ([92181a0](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/92181a0b004b81d7ebb2cc007cd5f98d5fd56b69))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.10.2 ([67cc354](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/67cc354e341f4530045eac26fcbbc60e03e54aa4))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.11.1 ([6534e7c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6534e7c7936b0de16734c0f456b1b763ce758e1c))
+* **deps:** update dependency gradle to v8.5 ([990ed1f](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/990ed1f1420892e47fb9f6965c01255f9816d11c))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.77 ([199afc5](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/199afc59186e22307c573e22b832113fcdd323f1))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.78 ([8b4e182](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8b4e182b48ee4c9dc398f99a0ed3337cca908c2f))
+* **deps:** update node.js to 20.10 ([dece85d](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/dece85dd1a8ebd6d7265d063e74cdb48f78214bb))
+* **deps:** update plugin kotlin-qa to v0.55.0 ([2a65be1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/2a65be17b1575988ff130bfb55b6a4e8c1ecd649))
+* **deps:** update plugin kotlin-qa to v0.55.1 ([922a4a8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/922a4a83bd727d835652dedbdc948033bad544b8))
+* **deps:** update plugin kotlin-qa to v0.55.2 ([6d33d21](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6d33d214fa3fc8c596372fd670111b9b18742cf8))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.15 ([f72afe1](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f72afe1f78b7fdc76f8439ff84ca11863a0fbf4f))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.16 ([ff40c1a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ff40c1ab15acb101836dccada238cd1e9eafedfe))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4 ([06085ec](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/06085ecd5750d6fc7f58d65730d2db1bc7bbaaf7))
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.11 ([8991352](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8991352e7a7c98fd96fb9b9426ee8b81f28f19a5))
+
 ## [1.2.19](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.18...1.2.19) (2023-11-16)
 
 
