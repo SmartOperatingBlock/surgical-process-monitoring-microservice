@@ -1,3 +1,12 @@
+## [1.2.21](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.20...1.2.21) (2023-12-03)
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.9.21 ([06ebf8c](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/06ebf8ced19cfd8640bd3a04b15d48179e7f5e20))
+* **deps:** update dependency ch.qos.logback:logback-classic to v1.4.14 ([3aa96a4](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/3aa96a4f8459aadd3695d596335363bcd2b7c144))
+* **deps:** update dependency com.azure:azure-identity to v1.11.1 ([349b7b9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/349b7b9ca42495db2e277a94697e3021a37e012c))
+
 ## [1.2.20](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.19...1.2.20) (2023-12-01)
 
 
