@@ -1,3 +1,27 @@
+## [1.2.22](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.21...1.2.22) (2023-12-23)
+
+
+### Dependency updates
+
+* **core-deps:** update plugin kotlin-serialization to v1.9.22 ([8496ccf](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8496ccfd21e24cc1bfad51a730d882ecb2e42b92))
+* **deps:** update alpine docker tag to v3.19 ([ad2e196](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ad2e196c233555751999efe39b103120c72fefa1))
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.16 ([1f0a477](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/1f0a4774a94149631cb3f3e51cb0d5a56f4d8282))
+* **deps:** update dependency com.tngtech.archunit:archunit-junit5 to v1.2.1 ([515fab9](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/515fab931fc7d02718c35aa537df51167e65fea4))
+* **deps:** update dependency de.flapdoodle.embed:de.flapdoodle.embed.mongo to v4.12.0 ([ed49da2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ed49da217dff9b5096c366f0379f220b41131279))
+* **deps:** update dependency org.apache.kafka:kafka-clients to v7.5.2-ce ([f696a48](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/f696a489cd8a770da9a27e5fa763764c1e681ebb))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.79 ([8f1cae3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/8f1cae3db858a42ef5137558ef30b23dd7154850))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.80 ([6b74dd8](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/6b74dd82354d4b6d88da872725e76dac958631a4))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.81 ([78611be](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/78611be64983d200ba3082b22bdfac986ae8a880))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.82 ([504c0c2](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/504c0c205a35df5313ef1af6360fa2ff7e300972))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.83 ([12cfc64](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/12cfc64e3f8b0810fc2f7ce3f753263f33b6b75b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.84 ([5a2b6bc](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/5a2b6bc9e848a93077756bf6f836df5310e458eb))
+* **deps:** update ktor to v2.3.7 ([ad8f5c3](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/ad8f5c3fedf73182fbd0c508f33db210d20129b8))
+* **deps:** update plugin com.gradle.enterprise to v3.16 ([dfaae19](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/dfaae193c946ae0ca811bf2c057ebbf23e01870f))
+* **deps:** update plugin com.gradle.enterprise to v3.16.1 ([daf8718](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/daf87182c2ddde538d8d04b2696da54e9086c22a))
+* **deps:** update plugin kotlin-qa to v0.56.0 ([823955a](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/823955af2f9d29f4f4b09f042c5d8f9c9613d0f9))
+* **deps:** update plugin kotlin-qa to v0.57.0 ([e6d0203](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/e6d0203309d92b3e35fd64c8cd9953c1affac0b3))
+* **deps:** update plugin kotlin-qa to v0.57.1 ([17048c6](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/commit/17048c6a884fdcebb89b6d4aa8e51cf85900999d))
+
 ## [1.2.21](https://github.com/SmartOperatingBlock/surgical-process-monitoring-microservice/compare/1.2.20...1.2.21) (2023-12-03)
 
 
